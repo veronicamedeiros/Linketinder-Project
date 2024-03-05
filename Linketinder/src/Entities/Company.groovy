@@ -2,12 +2,9 @@ package Entities
 
 class Company extends Person{
     String cnpj
-    ArrayList desiredSkills    //lista de competências desejadas do candidato
+    List<String> desiredSkills    //lista de competências desejadas do candidato
 
-    Company(){
-    }
-
-    Company(String name, String email, String country, String cep, String state, String description, String cnpj, ArrayList desiredSkills) {
+    Company(String name, String email, String country, String cep, String state, String description, String cnpj, List<String> desiredSkills) {
         super(name, email, country, cep, state, description)
         setCnpj(cnpj)
         setDesiredSkills(desiredSkills)
@@ -17,7 +14,7 @@ class Company extends Person{
         this.cnpj = cnpj
     }
 
-    void setDesiredSkills(ArrayList desiredSkills) {
+    void setDesiredSkills(List<String> desiredSkills) {
         this.desiredSkills = desiredSkills
     }
 

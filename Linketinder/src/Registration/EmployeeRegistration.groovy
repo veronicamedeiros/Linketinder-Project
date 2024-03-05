@@ -7,8 +7,6 @@ import Utilities.CandidatesArray
 
 class EmployeeRegistration {
 
-
-
      static Candidate registration(){
 
          List<String> skills = new ArrayList<>()
@@ -44,8 +42,8 @@ class EmployeeRegistration {
 
         while (skill != "0"){
 
-            println "Habilidades - Informe uma habilidade e pressione enter, insira quantas desejar."
-            println "Caso não deseje informar mais nenhuma, pressione 0."
+            println "\nHabilidades - Informe uma habilidade e pressione enter, insira quantas desejar."
+            println "Caso não deseje informar mais nenhuma, pressione 0.\n"
             print "Habilidade: "
             skill = scanner.nextLine()
 

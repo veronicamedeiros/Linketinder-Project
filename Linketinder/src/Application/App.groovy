@@ -1,10 +1,14 @@
 package Application
 
+import Entities.Candidate
+import Entities.Company
 import Utilities.CandidatesArray
 import Menus.Menu
 import Utilities.CompanyArray
 import Registration.EmployeeRegistration
+import Registration.CompanyRegistration
 import Tests.EmployeeRegistrationTest
+import Tests.CompanyRegistrationTest
 
 class App{
     static void main(String[] args) {
@@ -14,6 +18,8 @@ class App{
         List companyList = CompanyArray.Company()
 
         EmployeeRegistrationTest.addCandidateTest()  //  Candidate Registration Test
+
+        CompanyRegistrationTest.addCompanyTest()  //  Company Registration Test
 
         String resp;
 
@@ -33,8 +39,13 @@ class App{
                 break
 
             case("3"):
-                Object candidate = EmployeeRegistration.registration()
+                Candidate candidate = EmployeeRegistration.registration()
                 EmployeeRegistration.addCandidate(candidate, candidateList)
+                break
+
+            case("4"):
+                Company company = CompanyRegistration.registration()
+                CompanyRegistration.addCompany(company, companyList)
                 break
 
             case("0"):

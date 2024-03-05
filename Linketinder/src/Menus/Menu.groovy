@@ -14,13 +14,14 @@ class Menu {
             println "1 - Listar Candidatos"
             println "2 - Listar Empresas"
             println "3 - Cadastrar Candidatos"
+            println "4 - Cadastrar Empresas"
             println "0 - Sair"
 
             print "\nInforme o número da opção desejada: "
             resp = scanner.next()
             println ""
 
-            if (resp == "3" || resp == "2" || resp == "1" || resp == "0"){
+            if (resp == "4" || resp == "3" || resp == "2" || resp == "1" || resp == "0"){
                 return resp
             }
             else {
