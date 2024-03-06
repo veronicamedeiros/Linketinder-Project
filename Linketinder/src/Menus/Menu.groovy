@@ -21,12 +21,11 @@ class Menu {
             resp = scanner.next()
             println ""
 
-            if (resp == "4" || resp == "3" || resp == "2" || resp == "1" || resp == "0"){
+            if (resp == "4" ||resp == "3" || resp == "2" || resp == "1" || resp == "0"){
                 return resp
             }
-            else {
                 println "\nOpção inválida!\n"
-            }
+
         }
     }
 }

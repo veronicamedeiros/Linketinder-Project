@@ -9,6 +9,7 @@ class CompanyArray {
                 [new Company("Tecnologia Star", "empresa@tecnologia.com.br", "Brasil", "098169-726", "Bahia",
                         "Nossa empresa lidera o caminho em desenvolvimento de software, fornecendo soluções tecnológicas de ponta para impulsionar o crescimento dos negócios.",
                        "15.331.333-0001/09", ["Ruby", "Java", "Spring", "React", "Angular"]),
+
                 new Company("TI – Soluções", "empresa@tecnologia.com.br", "Brasil", "028169-726", "São Paulo",
                         "Especialistas em segurança cibernética: Protegemos o futuro digital das empresas, oferecendo soluções de segurança robustas e personalizadas para enfrentar os desafios da cibersegurança.",
                         "15.531.333-0001/08", ["Wireshark", "Java", "Spring", "React", "OSSEC"]),
@@ -25,6 +26,7 @@ class CompanyArray {
                          "Conduzindo a inovação tecnológica: Estamos na vanguarda da transformação digital, desenvolvendo soluções disruptivas que capacitam nossos clientes a se destacarem em um mercado competitivo.",
                         "15.531.333-0001/09", ["Snort", "Java", "React", "C#"])
                 ]
-        companyList
+
+        return companyList
     }
 }

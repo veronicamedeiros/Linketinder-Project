@@ -5,10 +5,13 @@
 por: Verônica Medeiros
 
 _O código foi separado por pacotes a fim de deixar o código mais limpo, as Listas criadas com informações (lista de candidatos e lista de empresas) também foram incluídas em um pacote devido ao seu tamanho._
+_O pacote Tests contém os testes para inserção dos novos elementos (Candidato e Empresa) em suas respectivas listas._
 
 Funcionalidades:
  - Listar candidatos;
  - Listar empresas;
+ - Cadastrar candidatos;
+ - Cadastrar empresas;
  - Sair.
 
 _Ao selecionar as opções de "Listar" do menu, as listas são exibidas contendo apenas duas informações, que são aquelas não sigilosas, devido à ideia do Linketinder possuir perfis de caráter anônimo. Porém todos os atributos são funcionais (possuem getters e setters) e formatação para String para quando for necessário exibir todas as informações em uma próxima etapa._

@@ -5,8 +5,6 @@ class Candidate extends Person {
     private String cpf
     private List<String> skills
 
- 
-
     Candidate(String name, String email, String country, String cep, String state, String description, int age, String cpf, List<String> skills) {
         super(name, email, country, cep, state, description)
         setAge(age)

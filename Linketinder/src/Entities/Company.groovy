@@ -2,7 +2,7 @@ package Entities
 
 class Company extends Person{
     String cnpj
-    List<String> desiredSkills    //lista de competências desejadas do candidato
+    List<String> desiredSkills
 
     Company(String name, String email, String country, String cep, String state, String description, String cnpj, List<String> desiredSkills) {
         super(name, email, country, cep, state, description)

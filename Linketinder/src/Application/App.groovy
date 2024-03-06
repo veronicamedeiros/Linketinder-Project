@@ -10,15 +10,14 @@ import Registration.CompanyRegistration
 import Tests.EmployeeRegistrationTest
 import Tests.CompanyRegistrationTest
 
+
 class App{
     static void main(String[] args) {
 
         List candidateList = CandidatesArray.Candidates()
-
         List companyList = CompanyArray.Company()
 
         EmployeeRegistrationTest.addCandidateTest()  //  Candidate Registration Test
-
         CompanyRegistrationTest.addCompanyTest()  //  Company Registration Test
 
         String resp;
@@ -40,12 +39,16 @@ class App{
 
             case("3"):
                 Candidate candidate = EmployeeRegistration.registration()
-                EmployeeRegistration.addCandidate(candidate, candidateList)
+                    if (candidate){
+                        EmployeeRegistration.addCandidate(candidate, candidateList)
+                    }
                 break
 
             case("4"):
                 Company company = CompanyRegistration.registration()
-                CompanyRegistration.addCompany(company, companyList)
+                    if(company){
+                        CompanyRegistration.addCompany(company, companyList)
+                    }
                 break
 
             case("0"):

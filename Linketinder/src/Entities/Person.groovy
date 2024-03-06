@@ -8,9 +8,6 @@ class Person{
     private String state
     private String description
 
-    Person(){
-    }
-
     Person (String name, String email, String country, String cep, String state, String description){
         setName(name)
         setEmail(email)
@@ -72,7 +69,7 @@ class Person{
     String toString() {
         return "\n\nnome: $name" +
                 "\ne-mail: $email" +
-                "\\país: $country" +
+                "\npaís: $country" +
                 "\nestado: $state" +
                 "\nCEP: $cep" +
                 "\ndescrição: $description"

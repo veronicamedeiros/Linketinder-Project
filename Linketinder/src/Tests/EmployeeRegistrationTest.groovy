@@ -1,8 +1,8 @@
 package Tests;
+
 import Entities.Candidate;
 import Registration.EmployeeRegistration;
 import Utilities.CandidatesArray
-
 
 
 class EmployeeRegistrationTest {
@@ -10,6 +10,7 @@ class EmployeeRegistrationTest {
     public static addCandidateTest() {
 
         //Given
+
         Candidate candidateTest = new Candidate("Anderson da Silva", "silva@gmail.com", "Brasil", "008169-736", "Ceará",
                 "Sou movido pela curiosidade e pela busca pelo conhecimento. " +
                         "Tenho uma mente analítica e adoro explorar novos conceitos e tecnologias. ",

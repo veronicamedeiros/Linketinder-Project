@@ -4,6 +4,7 @@ import Entities.Company
 import Registration.CompanyRegistration
 import Utilities.CompanyArray;
 
+
 class CompanyRegistrationTest {
 
     static void addCompanyTest() {
