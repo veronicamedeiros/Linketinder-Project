@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6fa17a1-33da-4711-8e64-90828302e191" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/App.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/App.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/Candidate.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Candidate.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/Company.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Company.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/Person.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Person.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menus/Menu.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menus/Menu.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Registration/CompanyRegistration.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Registration/CompanyRegistration.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Registration/EmployeeRegistration.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Registration/EmployeeRegistration.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tests/CompanyRegistrationTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/CompanyRegistrationTest.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tests/EmployeeRegistrationTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/EmployeeRegistrationTest.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utilities/CandidatesArray.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utilities/CandidatesArray.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utilities/CompanyArray.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utilities/CompanyArray.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-    </list>
+    <list default="true" id="a6fa17a1-33da-4711-8e64-90828302e191" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,7 +47,7 @@
     "create.test.in.the.same.root": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/veronica/Documentos/repositorios/Linketinder-Project/Linketinder"
+    "last_opened_file_path": "/home/veronica/Documentos/repositorios/to-do-list"
   }
 }]]></component>
   <component name="RecentsManager">
