@@ -1,4 +1,7 @@
-import { $ } from './libraries/jquery.d.js'
+import $ from 'jquery';
+//import { $ } from './libraries/jquery'
+//import { $ } from './libraries/jquery.d.js'
+//import $ from '../node_modules/jquery/dist/jquery';
 import Person from './entities/Person'
 import { Candidate } from './entities/Candidate' 
 import { Company } from './entities/Company' 
@@ -45,6 +48,10 @@ $('listCandidatesInformations').on('click', () => {
     candidatesInformations.append(showEach(candidateList))
     
 });
+
+
+//Criar Array com itens
+
 
 
 

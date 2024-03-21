@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous">
+    </script>
+              
+    <title>LinkeTinder - Candidato</title>
+</head>
+<body>
+
+    
+    <nav>
+        <p id="LinkeTinder">LinkeTinder</p>
+    </nav>
+
+    <form action="#" name="formulario" method="get">  
+        <fieldset>
+            <legend>Dados pessoais</legend>
+                <label for="name">Nome:</label>
+                    <input name="name" type="text" size="25">
+
+                <label for="age">Idade:</label>
+                    <input name="name" type="text" pattern="[0-9]{1-3}" id="age" size="3">
+                <br>
+                <label for="state">Estado:</label>
+                    <select name="state">
+                      
+                    </select>
+                <br>
+                <label for="filhos">Possui flhos?</label>
+                    <input type="radio" name="filhos" value="s" class="f_radio">Sim
+                    <input type="radio" name="filhos" value="n" class="f_radio">Não
+                <br>
+                <label for="quantidade">Se sim, quantos?</label>
+                    <select name="qfilhos" id="qfilho">
+                        <option value="0">Nenhum</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+        </fieldset> 
+        <fieldset>
+            <legend>Dados profissionais</legend>
+                <label for="job">Está trabalhando atualmente? </label>
+                    <input type="radio" name="job" value="s" class="f_radio">Sim
+                    <input type="radio" name="job" value="n" class="f_radio">Não
+                <br>
+                <label for="formacao">Nível de escolaridade:</label>
+                    <input list="f_formacao" name="f_formacao">
+                        <datalist id="f_formacao">
+                            <option value="1">Ensino Fundamental Completo</option>
+                            <option value="2">Ensino Médio Completo</option>
+                            <option value="3">Graduação Completa</option>
+                            <option value="4">Pós-graduação Completa</option>
+                            <option value="5">Mestrado</option>
+                            <option value="6">Doutorado</option>
+                        </datalist>
+                <br>            
+                    <label for="areas" > Selecione as áreas de interesse:</label>
+                    <br>              
+                            <ol>
+                                <li type="none"><input type="checkbox" name="coo" class="f_checkbox">Coordenador</li>
+                                <li type="none"><input type="checkbox" name="sur" class="f_checkbox">Surpevisor</li>
+                                <li type="none"><input type="checkbox" name="con" class="f_checkbox">Consultor</li>
+                                <li type="none"><input type="checkbox" name="es" class="f_checkbox">Especialista</li>
+                                <li type="none"><input type="checkbox" name="es" class="f_checkbox">Estagiário</li>
+                                <li type="none"><input type="checkbox" name="aux" class="f_checkbox">Auxiliar</li>
+                                <li type="none"><input type="checkbox" name="op" class="f_checkbox">Operacional</li>
+                                <li type="none"><input type="checkbox" name="as" class="f_checkbox">Assistente</li>
+                            </ol>                   
+                <br>               
+                        <label for="curriculo">Anexe seu currículo em PDF:</label>
+                        <input type="file" name="f_arquivo" accept=".pdf" id="file">             
+        </fieldset>
+                <br>
+                <input type="submit" name="f_enviar" value="Enviar" id="f_enviar">
+            
+     </form> 
+     <script src="/src/main.js"></script>
+     <script src="../src/entities/Candidate.js"></script>
+</body>
+</html>
