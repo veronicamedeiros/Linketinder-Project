@@ -1,0 +1,102 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    background-color: grey;
+}
+
+nav{
+    background-color: black;
+    padding: 15px;
+    padding-bottom: 23px;
+}
+
+.initialButton{
+    font-size: 20px;
+    padding: 8px;
+    margin-right: 15px;
+    float: right;
+    
+}
+
+#LinkeTinder{
+    display: inline-block;
+    font-size: 20px;
+    color: white;
+    margin-top: 10px;
+}
+
+a{
+    text-decoration: none;
+}
+
+form{
+    background-color: rgba(3, 3, 3, 0.897);
+    color: white;
+    max-width: 600px;
+    padding: 20px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: -10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 1px solid rgba(0, 0, 0, 0.479);
+}
+fieldset{
+    padding: 10px;
+    margin-top: 10px;
+} 
+label, input, select{
+    display: inline-block;
+    margin-top: 15px;
+    margin-right: 5px;
+    margin-bottom: 10px;   
+} 
+input#file{
+    margin: 0px;
+}
+#submitForm{
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin: auto;
+    padding: 4px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+input.f_checkbox{
+    margin-left: 15px;
+}
+input.f_radio{
+    margin-right: 7px;
+    margin-left: 36px;
+}
+ol{
+    display: inline-block;
+    margin-bottom: 7px;
+    columns: 2;
+}
+
+#back{
+    color: black;
+}
+
+main{
+    background-color: aliceblue;
+    width: 40%;
+    margin-top: -35%;
+    margin: auto;
+    padding: 3%;
+    border-radius: 10px;
+}
+
+#jobOpportunity, #candidatesInformations{
+    margin-top: -20px;
+    margin: auto;
+    background-color: rgb(212, 212, 145);
+    width: 80%;
+    border-radius: 7px;
+    padding: 3%;
+}
