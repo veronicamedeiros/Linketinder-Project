@@ -3,16 +3,13 @@ import Person from './entities/Person'
 import { Candidate } from './entities/Candidate' 
 import { Company } from './entities/Company' 
 import {states} from './utilities/states'
-
+import {companyList} from './utilities/companyList'
+import { candidateList } from './utilities/candidateList'
 
  //Lista de candidatos
 
 console.log('------*-----')
 
-//$('body').css("background-color", "green");
-
-
-let candidateList: Array<Candidate>;
 
 
 
