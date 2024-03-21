@@ -9,11 +9,11 @@ export class Candidate extends Person{
         protected _cep: string, 
         protected _state: string, 
         protected _description: string,
+        protected _skills: Array<string>,
         protected _age: number,
-        protected _cpf: string,
-        protected _skills: Array<string>    
+        protected _cpf: string
         ){ 
-            super(_name, _email, _country, _cep, _state, _description)
+            super(_name, _email, _country, _cep, _state, _description, _skills)
         }    
 
     get age(): number {
@@ -32,13 +32,6 @@ export class Candidate extends Person{
         this._cpf = value;
     }
 
-    get skills(): Array<string> {
-        return this._skills;
-    }
-
-    set skills(value: Array<string>) {
-        this._skills = value;
-    }
 }
 
   

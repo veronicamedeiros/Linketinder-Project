@@ -6,7 +6,8 @@ export default class Person{
         protected _country: string, 
         protected _cep: string, 
         protected _state: string, 
-        protected _description: string) {
+        protected _description: string,
+        protected _skills: Array<string>) {
         }
     
     get name(): string {
@@ -55,7 +56,15 @@ export default class Person{
     get description(): string {
         return this._description;
     }
-    
+
+    set skills(value: Array<string>) {
+        this._skills = value;
+    }
+
+    get skills(): Array<string> {
+        return this._skills;
+    }
+
 }
 
 
