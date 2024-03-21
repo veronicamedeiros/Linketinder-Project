@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous">
+    </script>
+              
+    <title>LinkeTinder - Empresa</title>
+</head>
+<body>
+
+    <nav>
+        <p id="LinkeTinder">LinkeTinder</p>
+    </nav>
+    <a href="index.html" id="back">Voltar</a> <br>
+    <a href="companyProfile.html" id="back">Perfil</a>
+
+    <form action="#" name="formulario" method="get" id="companyForm">  
+        <fieldset>
+            <legend>Dados empresariais</legend>
+                <label for="name">Nome fantasia:</label>
+                    <input name="name" type="text" size="25" id="companyName">
+
+                <label for="cpf">CNPJ:</label>
+                    <input name="cnpj" type="text" size="15" id="companyCnpj">
+
+                <label for="email">E-mail coorporativo:</label>
+                    <input name="email" type="text" size="25" id="companyEmail"> <br>
+
+                <label for="country">País:</label>
+                    <input name="country" id="companyCountry">   
+
+                <label for="state">Estado:</label>
+                    <input name="state" id="companyState"> <br>
+                    
+                <label for="cep">CEP:</label>
+                    <input name="cep" type="text" size="9" id="companyCEP">    
+
+        </fieldset> 
+        <fieldset>
+            <legend>Informações empresariais</legend>
+                <label for="description">Descrição da empresa:</label>
+                    <textarea name="description" id="companyDescription" cols="80" rows="10"></textarea>
+                
+                <br>
+                <br>            
+                    <label for="skills" >Informe as 5 principais habilidades que a empresa espera de um candidato:</label>
+                    <br>              
+                        <input name="skills" type="text" size="15" class="desiredSkills"> 
+                        <input name="skills" type="text" size="15" class="desiredSkills"> <br>                        
+                        <input name="skills" type="text" size="15" class="desiredSkills">                       
+                        <input name="skills" type="text" size="15" class="desiredSkills"> <br> 
+                        <input name="skills" type="text" size="15" class="desiredSkills"> 
+                <br>               
+            
+        </fieldset>
+                <br>
+                <button type="submit" value="Enviar" id="submitForm">Enviar</button>  
+            
+     </form> 
+     <script src="app.min.js"></script>
+
+    </script> 
+</body>
+</html>

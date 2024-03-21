@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous">
+    </script>
+              
+    <title>LinkeTinder - Candidato</title>
+</head>
+<body>
+    
+    <nav>
+        <p id="LinkeTinder">LinkeTinder</p>
+    </nav>
+    <a href="index.html" id="back">Voltar</a><br>
+    <a href="candidateProfile.html" id="back">Ver perfil</a>
+
+    <form action="#" name="formulario" method="get" id="candidateForm">  
+        <fieldset>
+            <legend>Dados pessoais</legend>
+                <label for="name">Nome:</label>
+                    <input name="name" type="text" size="25" id="personName">
+
+                <label for="cpf">CPF:</label>
+                    <input name="cpf" type="text" size="25" id="personCpf">
+
+                <label for="age">Idade:</label>
+                    <input name="name" type="text" size="3" id="personAge">
+                <br>
+
+                <label for="email">E-mail:</label>
+                    <input name="email" type="text" size="25" id="personEmail">
+
+                <label for="country">País:</label>
+                    <input name="country" id="personCountry">   
+
+                <label for="state">Estado:</label>
+                    <input name="state" id="personState">
+                    
+                <label for="cep">CEP:</label>
+                    <input name="cep" type="text" size="9" id="personCEP">    
+
+        </fieldset> 
+        <fieldset>
+            <legend>Dados profissionais</legend>
+                <label for="description">Descrição:</label>
+                    <textarea name="description" id="persondescription" cols="80" rows="10"></textarea>
+                
+                <br>
+            
+                <br>            
+                    <label for="skills" >Informe suas 5 principais habilidades:</label>
+                    <br>              
+                        <input name="skills" type="text" size="15" class="skillsPerson"> 
+                        <input name="skills" type="text" size="15" class="skillsPerson"> <br>                        
+                        <input name="skills" type="text" size="15" class="skillsPerson">                       
+                        <input name="skills" type="text" size="15" class="skillsPerson"> <br> 
+                        <input name="skills" type="text" size="15" class="skillsPerson"> 
+                <br>               
+            
+        </fieldset>
+                <br>
+                <button type="submit" value="Enviar" id="submitForm">Enviar</button>
+                <button id="submitTeste">Teste Aqui</button>
+
+               
+            
+     </form> 
+     <script src="app.min.js"></script>
+     <!-- 
+
+     <script>
+        SystemJS.config({
+            baseUrl: '/modulos',
+            packages: {
+                '/modulos': {
+                    defaultJSExtension: true
+                }
+            }
+        })
+
+        SystemJS.import('./modulos/modulos.js') -->
+    </script> 
+</body>
+</html>
