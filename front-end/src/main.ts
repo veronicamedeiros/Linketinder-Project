@@ -12,10 +12,16 @@ import {registerCandidate} from "./utilities/registerCandidate"
 import { Vacancy } from './entities/Vacancy'
 import { vacanciesList } from './utilities/vacanciesList'
 import listVacancies from './utilities/listVacancies'
+import { registerCompany } from './utilities/registerCompany'
 
 let submitForm: any = document.getElementById("submitForm");
+let submitFormTwo: any = document.getElementById("submitForm2");
+
 let listCandidatesInformations: any = document.getElementById("listCandidatesInformations");
 let candidatesInformations: any = document.getElementById("candidatesInformations");
+
+let listJobOpportunity:any = document.getElementById("listJobOpportunity");
+let jobOpportunity:any = document.getElementById("jobOpportunity")
 
 
 if(listCandidatesInformations){ //listar candidatos
@@ -27,7 +33,7 @@ if(listCandidatesInformations){ //listar candidatos
         candidatesInformations.style.display = "block" //exibe espaço para informação do candidato
     }
 } 
-
+ 
 
 if(submitForm){ //chama função para cadastrar candidatos
     
@@ -38,17 +44,22 @@ if(submitForm){ //chama função para cadastrar candidatos
 }
 
 
-//listar vagas
-let listJobOpportunity:any = document.getElementById("listJobOpportunity");
-let jobOpportunity:any = document.getElementById("jobOpportunity")
+if(submitFormTwo){ //chama função para cadastrar empresas
+    
+    submitFormTwo.onclick = function(){
 
-if(listJobOpportunity){ 
+        registerCompany()
+    }
+}
+
+
+if(listJobOpportunity){    //listar vagas
 
     listJobOpportunity.onclick = function(){
 
         jobOpportunity.innerHTML = listVacancies(vacanciesList) //chama função de listagem de vagas
-
     }
 }
+
 
 

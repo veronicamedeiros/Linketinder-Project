@@ -57,7 +57,7 @@ label, input, select{
 input#file{
     margin: 0px;
 }
-#submitForm{
+#submitForm, #submitForm2{
     display: block;
     margin-top: 8px;
     margin-bottom: 8px;
@@ -99,4 +99,10 @@ main{
     width: 80%;
     border-radius: 7px;
     padding: 3%;
+}
+
+#msg{
+    display: none;
+    background-color: rgb(61, 165, 42);
+    margin: auto;
 }
