@@ -2,7 +2,7 @@ import Person from "../entities/Person";
 
 //função para mostrar a descrição e habilidades dos candidatos
 
- export default function listPerson<T>(personList: Array<Person>):string{
+ export default function listPerson(personList: Array<Person>):string{
 
     let personText: string | undefined | number = "";
     
