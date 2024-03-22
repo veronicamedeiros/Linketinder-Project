@@ -1,4 +1,6 @@
 
+//criar classe Vaga, lista de vagas com algumas vagas cadastradas
+
 import Person from './entities/Person'
 import { Candidate } from './entities/Candidate' 
 import { Company } from './entities/Company' 
@@ -7,6 +9,7 @@ import {companyList} from './utilities/companyList'
 import { candidateList } from './utilities/candidateList'
 import listPerson from "./utilities/listPerson"
 import {registerCandidate} from "./utilities/registerCandidate"
+import { Vacancy } from './entities/Vacancy'
 
 let submitForm: HTMLElement | null = document.getElementById("submitForm");
 let listCandidatesInformations: any = document.getElementById("listCandidatesInformations");
