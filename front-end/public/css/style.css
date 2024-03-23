@@ -4,20 +4,14 @@
 }
 
 body{
-    background-color: grey;
+    background-color: rgb(186, 186, 186);
 }
 
 nav{
     background-color: black;
     padding: 15px;
     padding-bottom: 23px;
-}
-
-.initialButton{
-    font-size: 20px;
-    padding: 8px;
-    margin-right: 15px;
-    float: right; 
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.479);
 }
 
 #LinkeTinder{
@@ -29,6 +23,10 @@ nav{
 
 a{
     text-decoration: none;
+}
+
+a:visited{
+    color: black;
 }
 
 form{
@@ -60,14 +58,38 @@ input#file{
     margin: 0px;
 }
 
-#submitForm, #submitForm2{
+button{
     display: block;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.418);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.631);
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+.initialButton{
+    font-size: 18px;
+    padding: 8px;
+    margin-right: 15px;
+    float: right; 
+}
+
+#submitForm, #submitForm2{
     margin-top: 8px;
     margin-bottom: 8px;
     margin: auto;
-    padding: 4px;
     border-radius: 5px;
     font-weight: bold;
+}
+
+.otherButtons{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+}
+
+.buttonLink{
+    display: block;
 }
 
 input.f_checkbox{
@@ -85,24 +107,29 @@ ol{
     columns: 2;
 }
 
-#back{
-    color: black;
-}
-
 main{
+    font-family: Calibri, 'Trebuchet MS', sans-serif;
     background-color: aliceblue;
-    width: 40%;
+    width: 50%;
     margin-top: -35%;
     margin: auto;
     padding: 3%;
     border-radius: 10px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.52);
 }
 
 #jobOpportunity, #candidatesInformations{
     margin-top: -20px;
     margin: auto;
-    background-color: rgb(212, 212, 145);
+    background-color: rgba(198, 209, 211, 0.578);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.451);
     width: 80%;
     border-radius: 7px;
     padding: 3%;
+}
+
+#handShake{
+    display: block;
+    margin: auto;
+    margin-top: 5%;
 }

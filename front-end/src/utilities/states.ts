@@ -1,4 +1,4 @@
-export const states: string[] = [
+export const states: string[] = [ //para uso posterior
     'Acre',
     'Alagoas',
     'Amapá',

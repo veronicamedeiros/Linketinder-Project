@@ -53,8 +53,3 @@ if(submitFormTwo){ //cadastrar empresas
         registerCompany()
     }
 }
-
-
-
-
-

@@ -1,5 +1,3 @@
-import { Company } from "./Company";
-
 export class Vacancy{
 
     constructor(
@@ -8,8 +6,8 @@ export class Vacancy{
         protected _shift: string, //manhã, tarde, noite
         protected _model: string, //remoto, híbrido, presencial
         protected _jobDescription: string,
-        public _companyDescription?: string,
-        public _desiredSkills?: Array<string>
+        protected _companyDescription: string,
+        protected _desiredSKills: Array<string>
     ){}
 
 
@@ -45,13 +43,27 @@ export class Vacancy{
         this._model = value;
     }
 
-    set jobDescription(value: string) {
-        this._jobDescription = value;
-    }
-
     get jobDescription(): string {
         return this._jobDescription;
     }
 
-    
+    set jobDescription(value: string) {
+        this._jobDescription = value;
+    }
+
+    get companyDescription(): string {
+        return this._companyDescription;
+    }
+
+    set companyDescription(value: string) {
+        this._companyDescription = value;
+    }
+
+    get desiredSKills(): Array<string> {
+        return this._desiredSKills;
+    }
+
+    set desiredSKills(value: Array<string>) {
+        this._desiredSKills = value;
+    }  
 }

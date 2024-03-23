@@ -33,5 +33,4 @@ export class Candidate extends Person{
     }
 
 }
-
-  
+ 

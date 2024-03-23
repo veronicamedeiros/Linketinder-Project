@@ -9,8 +9,8 @@ import Person from "../entities/Person";
     for(let person in personList){
 
         personText += `\n<p><strong>Candidato</strong> ${parseInt(person) + 1}</p> 
-            \n<p>Descrição:  ${personList[person].description}</p>
-            \n<p>Habilidades: ${personList[person].skills}</p> <br>`
+            \n<p><u>Descrição</u>:  ${personList[person].description}</p>
+            \n<p><u>Habilidades</u>: ${personList[person].skills}</p> <br>`
     }
            
     return personText
