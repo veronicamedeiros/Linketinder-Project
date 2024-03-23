@@ -17,8 +17,7 @@ nav{
     font-size: 20px;
     padding: 8px;
     margin-right: 15px;
-    float: right;
-    
+    float: right; 
 }
 
 #LinkeTinder{
@@ -42,21 +41,25 @@ form{
     margin-bottom: -10px;
     border: 1px solid black;
     border-radius: 5px;
-    box-shadow: 1px solid rgba(0, 0, 0, 0.479);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.479);
 }
+
 fieldset{
     padding: 10px;
     margin-top: 10px;
-} 
+}
+
 label, input, select{
     display: inline-block;
     margin-top: 15px;
     margin-right: 5px;
     margin-bottom: 10px;   
-} 
+}
+
 input#file{
     margin: 0px;
 }
+
 #submitForm, #submitForm2{
     display: block;
     margin-top: 8px;
@@ -66,13 +69,16 @@ input#file{
     border-radius: 5px;
     font-weight: bold;
 }
+
 input.f_checkbox{
     margin-left: 15px;
 }
+
 input.f_radio{
     margin-right: 7px;
     margin-left: 36px;
 }
+
 ol{
     display: inline-block;
     margin-bottom: 7px;
@@ -99,10 +105,4 @@ main{
     width: 80%;
     border-radius: 7px;
     padding: 3%;
-}
-
-#msg{
-    display: none;
-    background-color: rgb(61, 165, 42);
-    margin: auto;
 }

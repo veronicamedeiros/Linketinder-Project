@@ -1,11 +1,9 @@
-import Person from "../entities/Person";
 import { Candidate } from "../entities/Candidate";
 import { candidateList } from "./candidateList";
-import listPerson from "./listPerson";
+
 
 export function registerCandidate(){
-    console.log('DENTRO:' + listPerson(candidateList))
-        
+    
     let personName: any = (document.getElementById('personName')as HTMLElement);
     let personEmail: any = (document.getElementById('personEmail')as HTMLElement);
     let personCountry: any = (document.getElementById('personCountry')as HTMLElement);
@@ -38,9 +36,14 @@ export function registerCandidate(){
         personAge.value,
         personCpf.value,
     )
-
+      
     candidateList.push(infoCandidate)
 
-    console.log('DENTRO:' + listPerson(candidateList))
-}
+    
+    //mostra a array de candidatos com o novo item no console:
+    console.log() //para 'resolver' bug com a array
 
+    for(let pos = 0; pos <= candidateList.length; pos++){
+        console.log(candidateList[pos]) 
+        }
+}

@@ -1,12 +1,12 @@
 import { Company } from "../entities/Company"
 
 export let companyList: Array<Company> = [
+
     new Company("Tecnologia Star", "empresa@tecnologia.com.br", "Brasil", "098169-726", "Bahia",
     "Nossa empresa lidera o caminho em desenvolvimento de software, fornecendo soluções tecnológicas de ponta para impulsionar o crescimento dos negócios.", ["Ruby", "Java", "Spring", "React", "Angular"], "15.331.333-0001/09"),
 
     new Company("TI – Soluções", "empresa@tecnologia.com.br", "Brasil", "028169-726", "São Paulo",
-    "Especialistas em segurança cibernética: Protegemos o futuro digital das empresas, oferecendo soluções de segurança robustas e personalizadas para enfrentar os desafios da cibersegurança.", ["Wireshark", "Java", "Spring", "React", "OSSEC"],
-    "15.531.333-0001/08"),
+    "Especialistas em segurança cibernética: Protegemos o futuro digital das empresas, oferecendo soluções de segurança robustas e personalizadas para enfrentar os desafios da cibersegurança.", ["Wireshark", "Java", "Spring", "React", "OSSEC"], "15.531.333-0001/08"),
 
     new Company("X -Tecnologia", "empresa@tecnologia.com.br", "Brasil", "002169-721", "Goiás",
     "Conduzindo a inovação tecnológica: Estamos na vanguarda da transformação digital, desenvolvendo soluções disruptivas que capacitam nossos clientes a se destacarem em um mercado competitivo.", ["PHP", "Java", "React", "OSSEC"],

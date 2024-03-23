@@ -7,7 +7,7 @@ export let candidateList: Array<Candidate> = [
 
     new Candidate("Pedro dos Santos", "pedro@gmail.com", "Brasil", "078169-726", "Bahia",
         "Sou um profissional que acredita no poder da colaboração para impulsionar o sucesso. " +
-                "Tenho habilidades sólidas em minha área de atuação e uma forte ética de trabalho.", ["Python", "Java", "Spring", "Framework", "Angular"], 57, "333.331.333-01"),
+        "Tenho habilidades sólidas em minha área de atuação e uma forte ética de trabalho.", ["Python", "Java", "Spring", "Framework", "Angular"], 57, "333.331.333-01"),
 
     new Candidate("Maria Pereira", "pereira@gmail.com", "Brasil",  "058169-721", "Goiás",
         "Acredito firmemente no poder da colaboração e da comunicação eficaz. " + "Possuo habilidade em trabalhar em equipe e comunicar ideias de forma clara e concisa.", ["JavaScript", "Java", "Spring", "Framework", "Angular"], 35 , "333.331.333-01"),

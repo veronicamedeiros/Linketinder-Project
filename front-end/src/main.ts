@@ -1,15 +1,6 @@
-
-//criar classe Vaga, lista de vagas com algumas vagas cadastradas
-
-import Person from './entities/Person'
-import { Candidate } from './entities/Candidate' 
-import { Company } from './entities/Company' 
-import {states} from './utilities/states'
-import {companyList} from './utilities/companyList'
 import { candidateList } from './utilities/candidateList'
 import listPerson from "./utilities/listPerson"
 import {registerCandidate} from "./utilities/registerCandidate"
-import { Vacancy } from './entities/Vacancy'
 import { vacanciesList } from './utilities/vacanciesList'
 import listVacancies from './utilities/listVacancies'
 import { registerCompany } from './utilities/registerCompany'
@@ -32,10 +23,21 @@ if(listCandidatesInformations){ //listar candidatos
 
         candidatesInformations.style.display = "block" //exibe espaço para informação do candidato
     }
-} 
- 
+}
 
-if(submitForm){ //chama função para cadastrar candidatos
+
+if(listJobOpportunity){ //listar vagas
+
+    listJobOpportunity.onclick = function(){
+
+        jobOpportunity.innerHTML = listVacancies(vacanciesList); //chama função de listagem de vagas
+
+        jobOpportunity.style.display = "block";
+    }
+}
+
+
+if(submitForm){ //cadastrar candidatos
     
     submitForm.onclick = function(){
 
@@ -44,7 +46,7 @@ if(submitForm){ //chama função para cadastrar candidatos
 }
 
 
-if(submitFormTwo){ //chama função para cadastrar empresas
+if(submitFormTwo){ //cadastrar empresas
     
     submitFormTwo.onclick = function(){
 
@@ -53,13 +55,6 @@ if(submitFormTwo){ //chama função para cadastrar empresas
 }
 
 
-if(listJobOpportunity){    //listar vagas
-
-    listJobOpportunity.onclick = function(){
-
-        jobOpportunity.innerHTML = listVacancies(vacanciesList) //chama função de listagem de vagas
-    }
-}
 
 
 

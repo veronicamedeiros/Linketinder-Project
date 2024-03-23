@@ -6,7 +6,7 @@ export default class Person{
         protected _country: string, 
         protected _cep: string, 
         protected _state: string, 
-        protected _description: string,
+        public _description: string,
         protected _skills: Array<string>) {
         }
     

@@ -1,11 +1,15 @@
-export class Vacancy {
+import { Company } from "./Company";
+
+export class Vacancy{
 
     constructor(
         protected _position: string,
         protected _level: string, //estágio, júnior, pleno, sênior
         protected _shift: string, //manhã, tarde, noite
         protected _model: string, //remoto, híbrido, presencial
-        protected _jobDescription: string
+        protected _jobDescription: string,
+        public _companyDescription?: string,
+        public _desiredSkills?: Array<string>
     ){}
 
 
@@ -48,4 +52,6 @@ export class Vacancy {
     get jobDescription(): string {
         return this._jobDescription;
     }
+
+    
 }

@@ -3,8 +3,6 @@ import { Company } from "../entities/Company";
 
 
 export function registerCompany(){
-
-    console.log('entra')
         
     let companyName: any = (document.getElementById('companyName')as HTMLElement);
     let companyEmail: any = (document.getElementById('companyEmail')as HTMLElement);
@@ -39,20 +37,11 @@ export function registerCompany(){
 
     companyList.push(infoCompany)
 
-    //mensagem de sucesso:
 
-    let msg: any = document.getElementById("msg");
+    //mostra a array de empresas com o novo item no console:
+    console.log() //para 'resolver' bug com a array
 
-    msg.style.display = "block";
-    
-    window.setTimeout(() => {
-        msg.style.display = "none";
-    }, 4000);
-
-    
-        //ativar para ver a array com a inclusão do novo item no console:
-
-    /*for(let pos = 0; pos <= companyList.length; pos++){
+    for(let pos = 0; pos <= companyList.length; pos++){
         console.log(companyList[pos]) 
-        } */
-}
+    }
+}    
