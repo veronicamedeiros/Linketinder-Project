@@ -19,38 +19,38 @@
         <fieldset>
             <legend>Dados empresariais</legend>
                 <label for="name">Nome fantasia:</label>
-                    <input name="name" type="text" size="25" id="companyName">
+                    <input name="name" type="text" size="25" id="companyName" required>
 
                 <label for="cpf">CNPJ:</label>
-                    <input name="cnpj" type="text" size="15" id="companyCnpj">
+                    <input name="cnpj" type="text" size="15" id="companyCnpj" required>
 
                 <label for="email">E-mail coorporativo:</label>
-                    <input name="email" type="text" size="25" id="companyEmail"> <br>
+                    <input name="email" type="text" size="25" id="companyEmail" required> <br>
 
                 <label for="country">País:</label>
-                    <input name="country" id="companyCountry">   
+                    <input name="country" id="companyCountry" required>   
 
                 <label for="state">Estado:</label>
-                    <input name="state" id="companyState"> <br>
+                    <input name="state" id="companyState" required> <br>
                     
                 <label for="cep">CEP:</label>
-                    <input name="cep" type="text" size="9" id="companyCep">    
+                    <input name="cep" type="text" size="9" id="companyCep" required>    
 
         </fieldset> 
         <fieldset>
             <legend>Informações empresariais</legend>
                 <label for="description">Descrição da empresa:</label>
-                    <textarea name="description" id="companyDescription" cols="80" rows="10"></textarea>
+                    <textarea name="description" id="companyDescription" cols="80" rows="10" required></textarea>
                 
                 <br>
                 <br>            
                     <label for="skills" >Informe as 5 principais habilidades que a empresa espera de um candidato:</label>
                     <br>              
-                        <input name="skills" type="text" size="15" class="desiredSkills"> 
-                        <input name="skills" type="text" size="15" class="desiredSkills"> <br>                        
-                        <input name="skills" type="text" size="15" class="desiredSkills">                       
-                        <input name="skills" type="text" size="15" class="desiredSkills"> <br> 
-                        <input name="skills" type="text" size="15" class="desiredSkills"> 
+                        <input name="skills" type="text" size="15" class="desiredSkills" required> 
+                        <input name="skills" type="text" size="15" class="desiredSkills" required> <br>                        
+                        <input name="skills" type="text" size="15" class="desiredSkills" required>                       
+                        <input name="skills" type="text" size="15" class="desiredSkills" required> <br> 
+                        <input name="skills" type="text" size="15" class="desiredSkills" required> 
                 <br>               
             
         </fieldset>

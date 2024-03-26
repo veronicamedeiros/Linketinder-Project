@@ -4,6 +4,11 @@
 
 por: Verônica Medeiros
 
+O projeto contém o back-end em Groovy e o front-end em TypeScript (ainda não integrados).
+
+
+Back-end:
+
 _O código foi separado por pacotes a fim de deixar o código mais limpo, as Listas criadas com informações (lista de candidatos e lista de empresas) também foram incluídas em um pacote devido ao seu tamanho._
 _O pacote Tests contém os testes para inserção dos novos elementos (Candidato e Empresa) em suas respectivas listas._
 
@@ -23,3 +28,22 @@ _Pre-requisitos - para rodar o projeto, é necessário instalar e configurar:_
 - JVM (Java Virtual Machine);
 - IDE (sugerida: IntelliJ IDEA).
 
+
+Front-end:
+
+Funcionalidades:
+ - Listar candidatos;
+ - Listar vagas;
+ - Cadastrar candidatos;
+ - Cadastrar empresas.
+ 
+ São 5 páginas simples:
+ - Página inicial (com direcionamento para os perfis de candidato e empresa);
+ - Página de perfil da empresa, onde é possível visualizar os candidatos (sem as informações pessoais);
+ - Página de cadastro da empresa (formulário com validação Regex);
+ - Página de perfil do candidato, onde é possível visualizar as vagas (sem as informações que possam identificar a empresa);
+ - Página de cadastro do candidato (formulário com validação Regex).
+ 
+ _Pre-requisitos - para rodar o projeto, é necessário instalar e configurar:_
+ - TypeScript;
+ - Webpack.
