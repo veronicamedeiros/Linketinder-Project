@@ -1,13 +1,11 @@
-BEGIN TRANSACTION;
-
 CREATE TABLE skills(
-	id_skill SERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	skill VARCHAR(30) NOT NULL
 );
 
 
 CREATE TABLE candidates(
-	id_candidate SERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	candidate_name VARCHAR(45) NOT NULL,
 	candidate_surname VARCHAR(45) NOT NULL,
 	candidate_birth DATE NOT NULL,
@@ -22,7 +20,7 @@ CREATE TABLE candidates(
 );
 
 CREATE TABLE company(
-	id_company SERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	company_name VARCHAR(50) NOT NULL,
 	company_email VARCHAR(50) NOT NULL,
 	company_country VARCHAR(45) NOT NULL,
@@ -34,7 +32,7 @@ CREATE TABLE company(
 );
 
 CREATE TABLE vacancy(
-	id_vacancy SERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	vacancy_position VARCHAR(30) NOT NULL,
 	vacancy_level VARCHAR(30) NOT NULL,
 	vacancy_shift VARCHAR(30) NOT NULL,
@@ -42,19 +40,19 @@ CREATE TABLE vacancy(
 	vacancy_city VARCHAR(30) NOT NULL,
 	vacancy_state VARCHAR(30) NOT NULL,
 	job_description TEXT NOT NULL,
-	id_company INT REFERENCES company(id_company) NOT NULL
+	id_company INT REFERENCES company(id) NOT NULL
 );
 
 CREATE TABLE candidate_skills(
-	id_candidate_skills SERIAL PRIMARY KEY,
-	id_skill INT REFERENCES skills(id_skill),
-	id_candidate INT REFERENCES candidates(id_candidate) NOT NULL
+	id SERIAL PRIMARY KEY,
+	id_skill INT REFERENCES skills(id) NOT NULL,
+	id_candidate INT REFERENCES candidates(id) NOT NULL
 );
 
 CREATE TABLE vacancy_skills(
-	id_vacancy_skills SERIAL PRIMARY KEY,
-	id_skill INT REFERENCES skills(id_skill),
-	id_vacancy INT REFERENCES vacancy(id_vacancy)
+	id SERIAL PRIMARY KEY,
+	id_skill INT REFERENCES skills(id),
+	id_vacancy INT REFERENCES vacancy(id)
 );
 
 INSERT INTO skills(skill)
@@ -100,6 +98,7 @@ VALUES
 INSERT INTO vacancy (vacancy_position, vacancy_level, vacancy_shift, vacancy_model, vacancy_city, vacancy_state, job_description, id_company)
 VALUES
 	('Desenvolvedor de Software', 'Pleno', 'Manhã', 'Presencial', 'Belo Horizonte', 'Minas Gerais', 'Responsável pelo desenvolvimento e manutenção de aplicativos web e móveis. Colabora com equipes multifuncionais para implementar soluções inovadoras. Experiência em linguagens de programação como JavaScript, Python e conhecimento em frameworks como React e Django é desejável.', 1),
+	('Engenheiro de Dados', 'Pleno', 'Tarde', 'Presencial', 'Campinas', 'São Paulo', 'Elabora relatórios gerenciais e prevê tendências de mercado. Responsável pelo desenvolvimento e manutenção de aplicativos web e móveis. Colabora com equipes multifuncionais para implementar soluções inovadoras. Experiência em linguagens de programação como JavaScript, Python é desejável.', 1),
 	('Analista de Marketing Digital', 'Júnior', 'Tarde', 'Remoto', 'Belo Horizonte', 'Minas Gerais','Apoia na criação e execução de campanhas de marketing digital. Realiza análises de métricas de desempenho e identifica oportunidades de melhoria. Conhecimento básico em SEO, SEM e ferramentas de análise de dados é preferencial.', 2),
 	('Engenheiro de Dados', 'Sênior', 'Manhã', 'Híbrido', 'Belo Horizonte', 'Minas Gerais', 'Projetar e implementar arquiteturas de dados escaláveis e eficientes. Desenvolver pipelines de ingestão, processamento e análise de grandes volumes de dados. Experiência em tecnologias como Apache Kafka, Hadoop e Spark é fundamental.', 3),
 	('Designer Gráfico', 'Júnior', 'Tarde', 'Presencial', 'Belo Horizonte', 'Minas Gerais', 'Criação de materiais visuais para campanhas de marketing e comunicação corporativa. Colabora com equipes de marketing e produto para desenvolver conceitos criativos. Domínio de ferramentas como Adobe Photoshop, Illustrator e InDesign é necessário.', 4),
@@ -137,7 +136,7 @@ INSERT INTO candidate_skills (id_candidate, id_skill)
 	(5, 8),
 	(5, 7);
 
-INSERT INTO vacancy(id_company, id_skill)
+INSERT INTO vacancy_skills (id_vacancy, id_skill)
 VALUES
 	(1, 2),
 	(1, 1),
@@ -168,5 +167,48 @@ VALUES
 	(5, 11),
 	(5, 14),
 	(5, 7);
+
+--QUERIES
+
+--habilidades desejadas por vaga
+
+SELECT
+	vacancy.vacancy_position AS VAGA,
+	skills.skill
+FROM 
+	vacancy,
+	vacancy_skills,
+	skills	
+WHERE
+	vacancy_skills.id_vacancy = vacancy.id AND vacancy_skills.id_skill = skills.id;
+	
+	
+--vagas por empresa
+
+SELECT
+	company.company_name,
+	vacancy.vacancy_position
+FROM
+	company,
+	vacancy
+WHERE
+	vacancy.id_company = company.id
+ORDER BY
+	company.company_name
+	
+
+--habilidades por candidato
+
+SELECT
+	candidates.candidate_name,
+	candidates.candidate_surname,
+	skills.skill
+FROM
+	candidates,
+	candidate_skills,
+	skills
+WHERE
+	candidate_skills.id_candidate = candidates.id AND candidate_skills.id_skill = skills.id;
+
 
 --ROLLBACK;
