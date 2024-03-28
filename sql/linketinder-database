@@ -1,0 +1,53 @@
+--BEGIN TRANSACTION;
+
+CREATE TABLE skills(
+	id_skill SERIAL PRIMARY KEY,
+	skill VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE candidates(
+	id_candidate SERIAL PRIMARY KEY,
+	candidate_name VARCHAR(45) NOT NULL,
+	candidate_cpf VARCHAR(15) NOT NULL,
+	candidate_age INT NOT NULL,
+	candidate_email VARCHAR(45) NOT NULL,
+	candidate_country VARCHAR(45) NOT NULL,
+	candidate_state VARCHAR(45) NOT NULL,
+	candidate_cep VARCHAR(10) NOT NULL, 
+	candidate_description TEXT NOT NULL
+);
+
+CREATE TABLE company(
+	id_company SERIAL PRIMARY KEY,
+	company_name VARCHAR(50) NOT NULL,
+	company_email VARCHAR(50) NOT NULL,
+	company_country VARCHAR(45) NOT NULL,
+	company_cep VARCHAR(10) NOT NULL,
+	company_state VARCHAR(45) NOT NULL,
+	company_description TEXT NOT NULL,
+	company_cnpj VARCHAR(19) NOT NULL
+);
+
+CREATE TABLE vacancy(
+	id_vacancy SERIAL PRIMARY KEY,
+	vacancy_position VARCHAR(30) NOT NULL,
+	vacancy_level VARCHAR(30) NOT NULL,
+	vacancy_shift VARCHAR(30) NOT NULL,
+	vacancy_model VARCHAR(30) NOT NULL,
+	id_company INT REFERENCES company(id_company) NOT NULL
+);
+
+CREATE TABLE candidate_skills(
+	id_candidate_skills SERIAL PRIMARY KEY,
+	id_skill INT REFERENCES skills(id_skill),
+	id_candidate INT REFERENCES candidates(id_candidate) NOT NULL
+);
+
+CREATE TABLE vacancy_skills(
+	id_vacancy_skills SERIAL PRIMARY KEY,
+	id_skill INT REFERENCES skills(id_skill),
+	id_vacancy INT REFERENCES vacancy(id_vacancy)
+);
+
+
+--ROLLBACK;
