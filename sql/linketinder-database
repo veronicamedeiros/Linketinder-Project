@@ -5,6 +5,8 @@ CREATE TABLE skills(
 	skill VARCHAR(30) NOT NULL
 );
 
+
+-- conferir: nome, sobre nome, data de nascimento, e-mail, CPF, País onde mora, CEP, Descrição pessoal e senha  de 6 digitos ou mais
 CREATE TABLE candidates(
 	id_candidate SERIAL PRIMARY KEY,
 	candidate_name VARCHAR(45) NOT NULL,
@@ -12,11 +14,11 @@ CREATE TABLE candidates(
 	candidate_age INT NOT NULL,
 	candidate_email VARCHAR(45) NOT NULL,
 	candidate_country VARCHAR(45) NOT NULL,
-	candidate_state VARCHAR(45) NOT NULL,
 	candidate_cep VARCHAR(10) NOT NULL, 
 	candidate_description TEXT NOT NULL
 );
 
+-- conferir: nome da empresa, CNPJ, E-mail corporativo, descrição da empresa, país onde reside a empresa, CEP e Senha de 6 dígitos ou mais
 CREATE TABLE company(
 	id_company SERIAL PRIMARY KEY,
 	company_name VARCHAR(50) NOT NULL,
@@ -28,12 +30,16 @@ CREATE TABLE company(
 	company_cnpj VARCHAR(19) NOT NULL
 );
 
+--nome, descrição, competências exigidas e local da vaga (estado/cidade).
 CREATE TABLE vacancy(
 	id_vacancy SERIAL PRIMARY KEY,
 	vacancy_position VARCHAR(30) NOT NULL,
 	vacancy_level VARCHAR(30) NOT NULL,
 	vacancy_shift VARCHAR(30) NOT NULL,
 	vacancy_model VARCHAR(30) NOT NULL,
+	vacancy_city VARCHAR(30) NOT NULL,
+	vacancy_state VARCHAR(30) NOT NULL,
+	job_description TEXT NOT NULL,
 	id_company INT REFERENCES company(id_company) NOT NULL
 );
 
@@ -49,5 +55,116 @@ CREATE TABLE vacancy_skills(
 	id_vacancy INT REFERENCES vacancy(id_vacancy)
 );
 
+INSERT INTO skills(skill)
+VALUES
+	('Angular'),
+	('C#'),
+	('C++'),
+	('Go'),
+	('Gradle'),
+	('Java'),
+	('JavaScript'),
+	('Kotlin'),
+	('MATLAB'),
+	('OSSEC'),
+	('PHP'),
+	('Perl'),
+	('Python'),
+	('R'),
+	('Ruby'),
+	('Rust'),
+	('Spring'),
+	('Snort'),
+	('Swift'),
+	('TypeScript'),
+	('Wireshark');
 
---ROLLBACK;
+INSERT INTO candidates (candidate_name, candidate_email, candidate_country, candidate_cep, candidate_state, candidate_description, candidate_age, candidate_cpf)
+VALUES 
+	('Ana Júlia da Silva', 'ana.silva@gmail.com', 'Brasil', '098169-726', 'São Paulo', 'Sou uma profissional que valoriza a colaboração como um motor essencial para alcançar o sucesso.', 39, '323.331.333-01'),
+	('Pedro dos Santos', 'pedro@gmail.com', 'Brasil', '078169-726', 'Bahia', 'Sou um profissional que acredita no poder da colaboração para impulsionar o sucesso. Tenho habilidades sólidas em minha área de atuação e uma forte ética de trabalho.', 57, '333.331.333-01'),
+	('Maria Pereira', 'pereira@gmail.com', 'Brasil',  '058169-721', 'Goiás', 'Acredito firmemente no poder da colaboração e da comunicação eficaz. Possuo habilidade em trabalhar em equipe e comunicar ideias de forma clara e concisa.', 35 , '333.331.333-01'),
+	('Julho Martins', 'martins@gmail.com', 'Brasil', '018169-723', 'Rio de Janeiro', 'Sou um profissional apaixonado por transformar ideias em realidade.Minha experiência em diversas tecnologias e ferramentas me permite criar soluções digitais impressionantes.', 22 , '333.331.333-01'),
+	('Anderson da Silva', 'silva@gmail.com', 'Brasil', '008169-736', 'Ceará', 'Sou movido pela curiosidade e pela busca pelo conhecimento. Tenho uma mente analítica e adoro explorar novos conceitos e tecnologias. ', 42, '333.331.333-01');
+
+INSERT INTO company (company_name, company_email, company_country, company_cep, company_state, company_description, company_cnpj)
+VALUES
+	('Tecnologia Star', 'empresa@tecnologia.com.br', 'Brasil', '098169-726', 'Bahia', 'Nossa empresa lidera o caminho em desenvolvimento de software, fornecendo soluções tecnológicas de ponta para impulsionar o crescimento dos negócios.', '15.331.333-0001/09'),
+	('TI – Soluções', 'empresa@tecnologia.com.br', 'Brasil', '028169-726', 'São Paulo', 'Especialistas em segurança cibernética: Protegemos o futuro digital das empresas, oferecendo soluções de segurança robustas e personalizadas para enfrentar os desafios da cibersegurança.', '15.531.333-0001/08'),
+	('X -Tecnologia', 'empresa@tecnologia.com.br', 'Brasil', '002169-721', 'Goiás', 'Conduzindo a inovação tecnológica: Estamos na vanguarda da transformação digital, desenvolvendo soluções disruptivas que capacitam nossos clientes a se destacarem em um mercado competitivo.', '15.331.833-0001/09'),
+	('WBD-Tech', 'empresa@tecnologia.com.br', 'Brasil', '096169-723', 'Rio de Janeiro', 'Oferecemos suporte técnico especializado e soluções de infraestrutura confiáveis, permitindo que empresas concentrem-se em seu core business enquanto cuidamos de sua tecnologia.', '15.731.333-0001/09'),
+	('X -Tecnologia', 'empresa@tecnologia.com.br', 'Brasil', '098169-727', 'Pernambuco', 'Conduzindo a inovação tecnológica: Estamos na vanguarda da transformação digital, desenvolvendo soluções disruptivas que capacitam nossos clientes a se destacarem em um mercado competitivo.', '15.531.333-0001/09');
+
+INSERT INTO vacancy (vacancy_position, vacancy_level, vacancy_shift, vacancy_model, job_description, id_company)
+VALUES
+	('Desenvolvedor de Software', 'Pleno', 'Manhã', 'Presencial', 'Responsável pelo desenvolvimento e manutenção de aplicativos web e móveis. Colabora com equipes multifuncionais para implementar soluções inovadoras. Experiência em linguagens de programação como JavaScript, Python e conhecimento em frameworks como React e Django é desejável.', 1),
+	('Analista de Marketing Digital', 'Júnior', 'Tarde', 'Remoto', 'Apoia na criação e execução de campanhas de marketing digital. Realiza análises de métricas de desempenho e identifica oportunidades de melhoria. Conhecimento básico em SEO, SEM e ferramentas de análise de dados é preferencial.', 2),
+	('Engenheiro de Dados', 'Sênior', 'Manhã', 'Híbrido', 'Projetar e implementar arquiteturas de dados escaláveis e eficientes. Desenvolver pipelines de ingestão, processamento e análise de grandes volumes de dados. Experiência em tecnologias como Apache Kafka, Hadoop e Spark é fundamental.', 3),
+	('Designer Gráfico', 'Júnior', 'Tarde', 'Presencial', 'Criação de materiais visuais para campanhas de marketing e comunicação corporativa. Colabora com equipes de marketing e produto para desenvolver conceitos criativos. Domínio de ferramentas como Adobe Photoshop, Illustrator e InDesign é necessário.', 4),
+	('Analista Financeiro', 'Pleno', 'Manhã', 'Híbrido', 'Responsável pela análise e interpretação de dados financeiros. Elabora relatórios gerenciais e prevê tendências de desempenho financeiro. Experiência em modelagem financeira e ferramentas como Excel e SAP é valorizada.', 5);
+
+INSERT INTO candidate_skills (id_candidate, id_skill)
+	VALUES
+	(1, 5),
+	(1, 8),
+	(1, 7),
+	(1, 21),
+	(1, 3),
+
+	(2, 1),
+	(2, 3),
+	(2, 9),
+	(2, 20),
+	(2, 13),
+
+	(3, 5),
+	(3, 10),
+	(3, 7),
+	(3, 8),
+	(3, 11),
+
+	(4, 1),
+	(4, 3),
+	(4, 9),
+	(4, 15),
+	(4, 13),
+
+	(5, 3),
+	(5, 2),
+	(5, 11),
+	(5, 8),
+	(5, 7);
+
+INSERT INTO vacancy(id_vacancy, id_skill)
+VALUES
+	(1, 2),
+	(1, 1),
+	(1, 7),
+	(1, 16),
+	(1, 3),
+
+	(2, 17),
+	(2, 3),
+	(2, 9),
+	(2, 12),
+	(2, 11),
+
+	(3, 15),
+	(3, 6),
+	(3, 7),
+	(3, 4),
+	(3, 11),
+
+	(4, 2),
+	(4, 4),
+	(4, 9),
+	(4, 2),
+	(4, 12),
+
+	(5, 9),
+	(5, 2),
+	(5, 11),
+	(5, 14),
+	(5, 7);
+
+
