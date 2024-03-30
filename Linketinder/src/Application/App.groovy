@@ -9,7 +9,10 @@ import Registration.EmployeeRegistration
 import Registration.CompanyRegistration
 import Tests.EmployeeRegistrationTest
 import Tests.CompanyRegistrationTest
-
+import DatabaseConnection.CandidateConnection
+import DatabaseConnection.CompanyConnection
+import DatabaseConnection.VacancyConnection
+import DatabaseConnection.SkillsConnection
 
 class App{
     static void main(String[] args) {
@@ -28,13 +31,19 @@ class App{
             switch (resp){
 
             case("1"):
-                candidateList.eachWithIndex {element, index ->
-                println "Candidato ${index + 1} \nDescrição: ${element.description} \nCompetências: ${element.skills}\n"}
+                CandidateConnection.listarCandidatos()
                 break
 
             case("2"):
-                companyList.eachWithIndex {element, index ->
-                println "Empresa ${index + 1} \nDescrição: ${element.description} \nCompetências Desejadas: ${element.desiredSkills}\n"}
+                CompanyConnection.listarEmpresas()
+                break
+
+            case("5"):
+                VacancyConnection.listarVagas()
+                break
+
+            case("6"):
+                SkillsConnection.listarSkills()
                 break
 
             case("3"):

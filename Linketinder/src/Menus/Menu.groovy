@@ -13,6 +13,8 @@ class Menu {
             print("*" * 40 +"\n")
             println "1 - Listar Candidatos"
             println "2 - Listar Empresas"
+            println "5 - Listar Vagas"
+            println "6 - Listar Habilidades"
             println "3 - Cadastrar Candidatos"
             println "4 - Cadastrar Empresas"
             println "0 - Sair"
@@ -21,7 +23,7 @@ class Menu {
             resp = scanner.next()
             println ""
 
-            if (resp == "4" ||resp == "3" || resp == "2" || resp == "1" || resp == "0"){
+            if (resp == "6" || resp == "5" || resp == "4" ||resp == "3" || resp == "2" || resp == "1" || resp == "0"){
                 return resp
             }
                 println "\nOpção inválida!\n"
