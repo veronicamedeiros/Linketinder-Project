@@ -2,7 +2,7 @@ package Utilities
 
 import Entities.Candidate
 import Entities.Person
-
+/*
 class CandidatesArray {
 
     static List Candidates(){
@@ -36,4 +36,4 @@ class CandidatesArray {
 
 
 
-}
+}*/

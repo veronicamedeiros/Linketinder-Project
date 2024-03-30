@@ -1,5 +1,6 @@
 package Registration
 
+import DatabaseConnection.SkillsConnection
 import Entities.Candidate
 
 
@@ -7,24 +8,33 @@ class EmployeeRegistration {
 
      static Candidate registration(){
 
-        List<String> skills = new ArrayList<>()
-
+        List<Integer> skills = new ArrayList<>()
         Scanner scanner = new Scanner(System.in)
+        Integer skill
 
-        String skill
 
         try {
-            print "Informe seu nome completo: "
+            print "Informe seu primeiro nome: "
             String name = scanner.nextLine()
 
+            print "Informe seu sobrenome: "
+            String surname = scanner.nextLine()
+
+            print "Informe sua data de nascimento (\"yyyy-MM-dd\"): "
+            String birth = scanner.next()
+            String y = scanner.nextLine()
+
+            print "Crie uma senha de pelo menos 6 dígitos: "
+            String password = scanner.nextLine()
+
             print "Informe sua idade: "
-            int age = scanner.nextInt()
+            Integer age = scanner.nextInt()
 
             print "Informe seu CPF: "
             String x = scanner.nextLine()
             String cpf = scanner.nextLine()
 
-            print "Informe seu melhor e-mail:  "
+            print "Informe seu melhor e-mail: "
             String email = scanner.nextLine()
 
             print "Informe o País: "
@@ -39,32 +49,43 @@ class EmployeeRegistration {
             print "Escreva uma breve descrição sobre seu perfil profissional: "
             String description = scanner.nextLine()
 
-            while (skill != "0"){
+            while (skill != 0){
 
-                println "\nHabilidades - Informe uma habilidade e pressione enter, insira quantas desejar."
+                print("*" * 40 + "\n")
+                println " " * 15 + "Habilidades"
+                print("*" * 40 +"\n")
+
+                SkillsConnection.listarSkills()
+                println "\nDigite o número referente à habilidade desejada e pressione enter."
                 println "Caso não deseje informar mais nenhuma, pressione 0.\n"
-                print "Habilidade: "
-                skill = scanner.nextLine()
 
-                if (skill == "0"){
-                    break
+                print("Habilidade: ")
+                skill = (Integer) scanner.nextInt()
+
+
+                if(skill < 0 | skill > 21) {
+                    println("Opção inválida.")
                 }
-
-                skills.add(skill)
+                else{
+                    if (skill == 0) {
+                        break
+                    }else{
+                        skills.add(skill)
+                    }
+                }
             }
 
-            Candidate newCandidate = new Candidate(name, email, country, cep, state, description, age, cpf, skills)
+            Candidate newCandidate = new Candidate(name, surname, birth, email, country, cep, state, description, age, cpf, skills as List<String>, password)
         }
         catch (Exception e){
             println "\nOcorreu um erro: $e \n"
         }
     }
 
-
     static addCandidate(Candidate newCandidate, List candidateList){
 
         try {
-            candidateList.add(newCandidate)
+            return newCandidate
         }
         catch (Exception e){
             println "\nOcorreu um erro: $e \n"

@@ -1,22 +1,27 @@
 package Entities
 
 class Candidate extends Person {
-    private int age
+
+    private String surname
+    private String birth
+    private Integer age
     private String cpf
     private List<String> skills
 
-    Candidate(String name, String email, String country, String cep, String state, String description, int age, String cpf, List<String> skills) {
-        super(name, email, country, cep, state, description)
+    Candidate(String name, String surname, String birth, String email, String country, String cep, String state, String description, Integer age, String cpf, List<String> skills, String password) {
+        super(name, email, country, cep, state, description, password)
+        setSurname(surname)
+        setBirth(birth)
         setAge(age)
         setCpf(cpf)
         setSkills(skills)
     }
 
-    int getAge() {
+    Integer getAge() {
         return age
     }
 
-    void setAge(int age) {
+    void setAge(Integer age) {
         this.age = age
     }
 
@@ -36,13 +41,29 @@ class Candidate extends Person {
         this.skills = skills
     }
 
-    @Override
+    String getSurname() {
+        return surname
+    }
+
+    void setSurname(String surname) {
+        this.surname = surname
+    }
+
+    String getBirth() {
+        return birth
+    }
+
+    void setBirth(String birth) {
+        this.birth = birth
+    }
+
+ /*   @Override
     String toString() {
         return super.toString()+
                 "\nidade: $age" +
                 "\nCPF: $cpf" +
                 "\ncompetências: $skills"
-    }
+    }*/
 }
 
 

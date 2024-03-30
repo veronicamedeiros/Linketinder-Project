@@ -1,8 +1,8 @@
 package Entities
 
 class Company extends Person{
-    String cnpj
-    List<String> desiredSkills
+    private String cnpj
+    private List<String> desiredSkills
 
     Company(String name, String email, String country, String cep, String state, String description, String cnpj, List<String> desiredSkills) {
         super(name, email, country, cep, state, description)

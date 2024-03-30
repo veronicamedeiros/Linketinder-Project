@@ -14,14 +14,15 @@ import DatabaseConnection.CompanyConnection
 import DatabaseConnection.VacancyConnection
 import DatabaseConnection.SkillsConnection
 
+
 class App{
     static void main(String[] args) {
 
-        List candidateList = CandidatesArray.Candidates()
-        List companyList = CompanyArray.Company()
+        //List candidateList = CandidatesArray.Candidates()
+        //List companyList = CompanyArray.Company()
 
-        EmployeeRegistrationTest.addCandidateTest()  //  Candidate Registration Test
-        CompanyRegistrationTest.addCompanyTest()  //  Company Registration Test
+        //EmployeeRegistrationTest.addCandidateTest()  //  Candidate Registration Test
+        //CompanyRegistrationTest.addCompanyTest()  //  Company Registration Test
 
         String resp;
 
@@ -47,17 +48,14 @@ class App{
                 break
 
             case("3"):
-                Candidate candidate = EmployeeRegistration.registration()
-                    if (candidate){
-                        EmployeeRegistration.addCandidate(candidate, candidateList)
-                    }
+                CandidateConnection.insertInformations()
                 break
 
             case("4"):
-                Company company = CompanyRegistration.registration()
+                /*Company company = CompanyRegistration.registration()
                     if(company){
                         CompanyRegistration.addCompany(company, companyList)
-                    }
+                    }*/
                 break
 
             case("0"):

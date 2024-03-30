@@ -7,14 +7,16 @@ class Person{
     private String cep
     private String state
     private String description
+    private String password
 
-    Person (String name, String email, String country, String cep, String state, String description){
+    Person (String name, String email, String country, String cep, String state, String description, password){
         setName(name)
         setEmail(email)
         setCountry(country)
         setCep(cep)
         setState(state)
         setDescription(description)
+        setPassword(password)
     }
 
     String getName() {
@@ -65,7 +67,16 @@ class Person{
         this.description = description
     }
 
-    @Override
+    String getPassword(){
+        return password
+    }
+
+    void setPassword(String password){
+        this.password = password
+    }
+
+
+ /*   @Override
     String toString() {
         return "\n\nnome: $name" +
                 "\ne-mail: $email" +
@@ -73,5 +84,5 @@ class Person{
                 "\nestado: $state" +
                 "\nCEP: $cep" +
                 "\ndescrição: $description"
-    }
+    }*/
 }
