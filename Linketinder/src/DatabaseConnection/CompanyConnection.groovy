@@ -1,5 +1,7 @@
 package DatabaseConnection
 
+import Entities.Company
+import Registration.CompanyRegistration
 import groovy.sql.Sql
 
 
@@ -37,6 +39,23 @@ class CompanyConnection {
                 println('\n---- \n')
             }
         }
+    }
+
+
+    static insertInformations(){
+
+        connectDataBase()
+
+        Company newCompany = CompanyRegistration.registration()
+
+        try {
+            sql.executeInsert("INSERT INTO company (company_name, company_email, company_country, company_cep, company_state, company_description, company_cnpj, company_password) VALUES ($newCompany.name, $newCompany.email, $newCompany.country, $newCompany.cep, $newCompany.state, $newCompany.description, $newCompany.cnpj, $newCompany.password)")
+            println("Cadastro realizado com sucesso.")
+        }
+        catch (Exception e){
+            println("Não foi possível inserir os dados no sistema. Erro: $e")
+        }
+
     }
 }
 

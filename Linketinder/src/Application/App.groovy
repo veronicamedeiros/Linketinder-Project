@@ -52,10 +52,7 @@ class App{
                 break
 
             case("4"):
-                /*Company company = CompanyRegistration.registration()
-                    if(company){
-                        CompanyRegistration.addCompany(company, companyList)
-                    }*/
+                CompanyConnection.insertInformations()
                 break
 
             case("0"):

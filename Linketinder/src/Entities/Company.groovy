@@ -1,27 +1,29 @@
 package Entities
 
 class Company extends Person{
-    private String cnpj
-    private List<String> desiredSkills
 
-    Company(String name, String email, String country, String cep, String state, String description, String cnpj, List<String> desiredSkills) {
-        super(name, email, country, cep, state, description)
+    private String cnpj
+
+
+    Company(String name, String email, String country, String cep, String state, String description, String cnpj, String password) {
+        super(name, email, country, cep, state, description, password)
         setCnpj(cnpj)
-        setDesiredSkills(desiredSkills)
     }
+
 
     void setCnpj(String cnpj) {
         this.cnpj = cnpj
     }
 
-    void setDesiredSkills(List<String> desiredSkills) {
-        this.desiredSkills = desiredSkills
+    String getCnpj() {
+        return cnpj
     }
 
-    @Override
+
+    /*@Override
     String toString() {
         return super.toString()+
                 "\nCNPJ: $cnpj" +
                 "\nCompetências desejadas: $desiredSkills"
-    }
+    }*/
 }
