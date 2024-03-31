@@ -10,9 +10,9 @@ class Vacancy {
     private String state
     private String jobDescription
     private List<Integer> desiredSkills
-    private Integer idCompany
+    private int idCompany
 
-    Vacancy(String position, String level, String shift, String model, String city, String state, String jobDescription, List<Integer> desiredSkills, Integer idCompany){
+    Vacancy (String position, String level, String shift, String model, String city, String state, String jobDescription, List<Integer> desiredSkills, Integer idCompany){
         setPosition(position)
         setLevel(level)
         setShift(shift)

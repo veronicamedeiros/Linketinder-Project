@@ -19,10 +19,10 @@ class VacancyRegistration {
             print "Informe o nível do cargo: "
             String level = scanner.nextLine()
 
-            print "Informe o turno de trabalho (manhã, tarde, noite):  "
+            print "Informe o turno de trabalho (manhã, tarde, noite): "
             String shift = scanner.nextLine()
 
-            print "Informe o modelo de trabalho (presencial, remoto, híbrido)"
+            print "Informe o modelo de trabalho (presencial, remoto, híbrido): "
             String model = scanner.nextLine()
 
             print "Informe a Cidade: "
@@ -31,11 +31,11 @@ class VacancyRegistration {
             print "Informe o Estado: "
             String state = scanner.nextLine()
 
-            print "Descreve o cargo: "
+            print "Descreva o cargo: "
             String jobDescription = scanner.nextLine()
 
             print "Informe o número de cadastro da empresa: "
-            Integer  idCompany = scanner.nextLine()
+            int  idCompany = scanner.nextInt()
 
             while (skill != 0){
 
@@ -44,7 +44,7 @@ class VacancyRegistration {
                 print("*" * 40 +"\n")
 
                 SkillsConnection.listarSkills()
-                println "\nDigite o número referente à habilidade desejada e pressione enter."
+                println "\nDigite o número referente à habilidade desejada para a vaga e pressione enter."
                 println "Caso não deseje informar mais nenhuma, pressione 0.\n"
 
                 print("Habilidade: ")
@@ -63,7 +63,7 @@ class VacancyRegistration {
                 }
             }
 
-            Vacancy newVacancy = new Vacancy(position, level, shift, model, city, state, jobDescription desiredSkills, idCompany)
+            Vacancy newVacancy = new Vacancy(position, level, shift, model, city, state, jobDescription, desiredSkills, idCompany)
         }
         catch (Exception e){
             println "\nOcorreu um erro: $e \n"

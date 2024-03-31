@@ -55,6 +55,9 @@ class App{
                 CompanyConnection.insertInformations()
                 break
 
+            case("7"):
+                VacancyConnection.insertInformations()
+
             case("0"):
                 println "Encerrando..."
                 break

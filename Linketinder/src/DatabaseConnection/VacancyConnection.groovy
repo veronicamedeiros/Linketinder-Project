@@ -1,5 +1,7 @@
 package DatabaseConnection
 
+import Entities.Vacancy
+import Registration.VacancyRegistration
 import groovy.sql.Sql
 
 class VacancyConnection {
@@ -29,11 +31,8 @@ class VacancyConnection {
         sql.eachRow('SELECT vacancy.id, vacancy_position, vacancy_level, vacancy_shift, vacancy_model, vacancy_state, vacancy_city, job_description, skills.skill, company_description FROM vacancy, vacancy_skills, skills, company WHERE vacancy_skills.id_vacancy = vacancy.id AND vacancy_skills.id_skill = skills.id AND vacancy.id_company = company.id; ') { resultSet ->
             while (resultSet.next()) {
 
-            //vacancy_level, vacancy_shift, vacancy_model, vacancy_state, vacancy_city, job_description, company_description, skill
-
                 def numerodaVaga = resultSet.getString(1)
                 def vacancy_position = resultSet.getString(2)
-
                 def vacancy_level = resultSet.getString(3)
                 def vacancy_shift = resultSet.getString(4)
                 def vacancy_model = resultSet.getString(5)
@@ -55,10 +54,34 @@ class VacancyConnection {
 
                 println(skills)
 
-                x = numerodaVaga;
+                x = numerodaVaga
             }
         }
         println()
     }
 
+
+    static insertInformations(){
+
+        connectDataBase()
+
+        Vacancy newVacancy = VacancyRegistration.registration()
+
+        try {
+
+            def result = sql.executeInsert("INSERT INTO vacancy (vacancy_position, vacancy_level, vacancy_shift, vacancy_model, vacancy_city, vacancy_state, job_description, id_company) VALUES ($newVacancy.position, $newVacancy.level, $newVacancy.shift, $newVacancy.model, $newVacancy.city, $newVacancy.state, $newVacancy.jobDescription, $newVacancy.idCompany)")
+
+            def generatedId = (Integer) result[0][0]
+            println("generatedId.getClass()" + generatedId.getClass())
+
+            for (newSkill in newVacancy.desiredSkills){
+                sql.execute("INSERT INTO vacancy_skills (id_vacancy, id_skill) VALUES ($generatedId, $newSkill)")
+            }
+        }
+        catch (Exception e){
+
+            println("Ocorreu um erro ao cadastrar a vaga: $e")
+        }
+
+    }
 }
