@@ -80,7 +80,7 @@ class CandidateUpdateMenu {
 
     static updatedSkill(){
 
-        SkillsConnection.listarSkills()
+        SkillsConnection.listAllSkills()
 
         print("\nInsira o número da nova habilidade e pressione enter: ")
         Integer updatedInformation = (Integer) scanner.nextInt()

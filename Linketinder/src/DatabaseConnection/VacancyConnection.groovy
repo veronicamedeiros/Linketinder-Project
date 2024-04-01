@@ -28,7 +28,7 @@ class VacancyConnection {
         }
     }
 
-    static listarVagas(){
+    static listAllVacancies(){
 
         connectDataBase()
         def x
@@ -64,6 +64,7 @@ class VacancyConnection {
         }
         println()
     }
+
 
     static numberVacancyExists(Integer cadastro){
 

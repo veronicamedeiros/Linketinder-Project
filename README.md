@@ -4,29 +4,30 @@
 
 por: Verônica Medeiros
 
-O projeto contém o back-end do código em Groovy, banco de dados em SQL e o front-end em TypeScript (ainda não integrados).
+O projeto contém o back-end do código em Groovy integrado ao banco de dados em SQL e o front-end em TypeScript (ainda não integrado).
 
 
-Código em Groovy:
-
-_O código foi separado por pacotes a fim de deixar o código mais limpo, as Listas criadas com informações (lista de candidatos e lista de empresas) também foram incluídas em um pacote devido ao seu tamanho._
-_O pacote Tests contém os testes para inserção dos novos elementos (Candidato e Empresa) em suas respectivas listas._
+Código em Groovy (integrado ao banco):
 
 Funcionalidades:
- - Listar candidatos;
- - Listar empresas;
- - Cadastrar candidatos;
- - Cadastrar empresas;
- - Sair.
+ - Listar Candidatos;
+ - Listar Empresas
+ - Listar Vagas
+ - Atualizar e apagar informações das Vagas
+ - Atualizar e apagar informações de Candidatos
+ - Atualizar e apagar informações de Empresas
+ - Cadastrar Candidatos, Empresas, Vagas
+ - Cadastrar, listar, atualizar e deletar Habilidades (estas funcionalidade são acessível dentro das funcionalidades anteriores)
+ - Sair
 
-_Ao selecionar as opções de "Listar" do menu, as listas são exibidas contendo apenas duas informações, que são aquelas não sigilosas, devido à ideia do Linketinder possuir perfis de caráter anônimo. Porém todos os atributos são funcionais (possuem getters e setters) e formatação para String para quando for necessário exibir todas as informações em uma próxima etapa._
 
 _O arquivo que deve ser executado é o App (src/Application)._
     
 _Pre-requisitos - para rodar o projeto, é necessário instalar e configurar:_
 - Groovy;
 - JVM (Java Virtual Machine);
-- IDE (sugerida: IntelliJ IDEA).
+- IDE (sugerida: IntelliJ IDEA; aqui é necessário alterar as informações de conexão para se conectar ao servidor local);
+- PostgreSQL e arquivo sql do banco.
 
 
 
@@ -55,9 +56,9 @@ Funcionalidades:
  
  _Realizou-se previamente uma modelagem de dados pela ferramenta dbdiagram.io, o print deste modelo consta na página sql/modelagem._
  
- _O banco de dados foi feito em linguagem SQL pelo PostgreSQL._
+ _O banco de dados foi feito em linguagem SQL pelo PostgreSQL e integrado ao código em Groovy pelo JDBC._
  
-Possui as seguintes tabelas:
+Possui as seguintes tabelas: 
 
  - skills - para código e nome das habilidades, utilizado tanto para o candidato quanto para requesitos da vaga;
  - cadidates - para as informações de candidato;
@@ -66,5 +67,5 @@ Possui as seguintes tabelas:
  - cadidate_skills - para armazenar as habilidades de cada candidatos;
  - vacancy_skills - para armazenar as habilidades desejadas para cada vaga;
  
- _Foram inseridos dados em todas as tabelas acima e realizadas algumas queries para demonstrar a relação entre tabelas._
+ _Foram inseridos dados em todas as tabelas acima e realizadas algumas queries para demonstrar a relação entre tabelas, que podem ser visualizadas em sql/linketinder-database._
 

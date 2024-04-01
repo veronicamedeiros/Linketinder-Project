@@ -43,7 +43,7 @@ class VacancyRegistrationMenu {
                 println " " * 15 + "Habilidades"
                 print("*" * 40 +"\n")
 
-                SkillsConnection.listarSkills()
+                SkillsConnection.listAllSkills()
                 println "\nDigite o número referente à habilidade desejada para a vaga e pressione enter."
                 println "Caso não deseje informar mais nenhuma, pressione 0.\n"
 

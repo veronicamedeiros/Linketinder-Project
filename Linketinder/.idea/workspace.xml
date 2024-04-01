@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6fa17a1-33da-4711-8e64-90828302e191" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Menus/VacancyDeleteMenu.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/App.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/App.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DatabaseConnection/CandidateConnection.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseConnection/CandidateConnection.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DatabaseConnection/SkillsConnection.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseConnection/SkillsConnection.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DatabaseConnection/VacancyConnection.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseConnection/VacancyConnection.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menus/CandidateUpdateMenu.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menus/CandidateUpdateMenu.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menus/EmployeeRegistrationMenu.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menus/CandidateRegistrationMenu.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Menus/Menu.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menus/Menu.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menus/VacancyRegistrationMenu.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menus/VacancyRegistrationMenu.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Menus/VacancyUpdateMenu.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menus/VacancyUpdateMenu.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/CompanyRegistrationTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/CompanyRegistrationTest.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/EmployeeRegistrationTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/EmployeeRegistrationTest.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utilities/CandidatesArray.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utilities/CompanyArray.groovy" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../sql/linketinder-database" beforeDir="false" afterPath="$PROJECT_DIR$/../sql/linketinder-database" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

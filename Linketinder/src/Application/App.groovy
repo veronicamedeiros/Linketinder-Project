@@ -4,8 +4,6 @@ import Menus.Menu
 import DatabaseConnection.CandidateConnection
 import DatabaseConnection.CompanyConnection
 import DatabaseConnection.VacancyConnection
-import DatabaseConnection.SkillsConnection
-
 
 class App{
     static void main(String[] args) {
@@ -24,50 +22,46 @@ class App{
             switch (resp){
 
             case("1"):
-                CandidateConnection.listarCandidatos()
+                CandidateConnection.listAllCandidates()
                 break
 
             case("2"):
                 CompanyConnection.listarEmpresas()
                 break
 
-            case("5"):
-                VacancyConnection.listarVagas()
-                break
-
-            case("6"):
-                SkillsConnection.listarSkills()
-                break
-
             case("3"):
-                CandidateConnection.insertInformations()
+                VacancyConnection.listAllVacancies()
                 break
 
             case("4"):
+                CandidateConnection.insertInformations()
+                break
+
+            case("5"):
                 CompanyConnection.insertInformations()
                 break
 
-            case("7"):
+            case("6"):
                 VacancyConnection.insertInformations()
                 break
 
-            case("8"):
+            case("7"):
                 VacancyConnection.updateInformations()
                 break
 
-            case("9"):
+            case("8"):
                 CandidateConnection.updateInformations()
                 break
 
-            case("10"):
+            case("9"):
                 CompanyConnection.updateInformations()
                 break
 
-            case("11"):
+            case("10"):
                 CompanyConnection.deleteInformations()
                 break
 
-            case("12"):
+            case("11"):
                  CandidateConnection.deleteInformations()
                 break
 

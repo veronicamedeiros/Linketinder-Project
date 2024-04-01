@@ -4,7 +4,7 @@ import DatabaseConnection.SkillsConnection
 import Entities.Candidate
 
 
-class EmployeeRegistrationMenu {
+class CandidateRegistrationMenu {
 
      static Candidate registration(){
 
@@ -55,7 +55,7 @@ class EmployeeRegistrationMenu {
                 println " " * 15 + "Habilidades"
                 print("*" * 40 +"\n")
 
-                SkillsConnection.listarSkills()
+                SkillsConnection.listAllSkills()
                 println "\nDigite o número referente à habilidade desejada e pressione enter."
                 println "Caso não deseje informar mais nenhuma, pressione 0.\n"
 

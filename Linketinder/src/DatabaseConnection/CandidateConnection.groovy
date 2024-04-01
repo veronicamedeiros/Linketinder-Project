@@ -3,7 +3,7 @@ package DatabaseConnection
 import Entities.Candidate
 import Menus.CandidateDeleteMenu
 import Menus.CandidateUpdateMenu
-import Menus.EmployeeRegistrationMenu
+import Menus.CandidateRegistrationMenu
 import Menus.VacancyUpdateMenu
 import groovy.sql.Sql
 class CandidateConnection {
@@ -27,7 +27,7 @@ class CandidateConnection {
         }
     }
 
-    static listarCandidatos(){
+    static listAllCandidates(){
 
         connectDataBase()
         def x
@@ -58,7 +58,7 @@ class CandidateConnection {
 
         connectDataBase()
 
-        Candidate newCandidate = EmployeeRegistrationMenu.registration()
+        Candidate newCandidate = CandidateRegistrationMenu.registration()
 
         def result = sql.executeInsert("INSERT INTO candidates (candidate_name, candidate_surname, candidate_birth, candidate_email, candidate_country, candidate_cep, candidate_state, candidate_description, candidate_age, candidate_cpf, candidate_password) VALUES ($newCandidate.name, $newCandidate.surname, TO_DATE($newCandidate.birth, 'YYYY-MM-DD'), $newCandidate.email, $newCandidate.country, $newCandidate.cep, $newCandidate.state, $newCandidate.description, $newCandidate.age, $newCandidate.cpf, $newCandidate.password) RETURNING id")
         println('OK')
@@ -75,8 +75,7 @@ class CandidateConnection {
 
         connectDataBase()
 
-        sql.rows("SELECT id FROM candidates WHERE id = $numberCandidate;".toString()){ resultSet ->
-        } //se não existir o número do id do candidato, retorna false
+        sql.rows("SELECT id FROM candidates WHERE id = $numberCandidate;".toString()){ resultSet ->} //se não existir o número do id do candidato, retorna false
     }
 
 
@@ -143,7 +142,6 @@ class CandidateConnection {
                 sql.execute("UPDATE candidates SET $textChosenOption = '' WHERE id = $idCandidate;".toString())
 
                 println("\nInformação excluiída com sucesso")
-
             }
 
             if (chosenOption == 12){

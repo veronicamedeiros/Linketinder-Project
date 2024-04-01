@@ -21,7 +21,7 @@ class SkillsConnection {
         }
     }
 
-    static listarSkills(){
+    static listAllSkills(){
 
         connectDataBase()
         def x
