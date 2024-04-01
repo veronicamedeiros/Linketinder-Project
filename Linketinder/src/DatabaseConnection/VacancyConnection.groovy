@@ -1,11 +1,15 @@
 package DatabaseConnection
 
 import Entities.Vacancy
+import Menus.VacancyDeleteMenu
 import Menus.VacancyRegistrationMenu
 import Menus.VacancyUpdateMenu
 import groovy.sql.Sql
 
 class VacancyConnection {
+
+    static String[] vacancyInformation = ['vacancy_position', 'vacancy_level', 'vacancy_shift', 'vacancy_model', 'vacancy_city', 'vacancy_state', 'job_description', 'id_company']
+
 
     static def url = 'jdbc:postgresql://localhost:5432/linketinder_banco'
     static def user = 'postgres'
@@ -99,7 +103,7 @@ class VacancyConnection {
         connectDataBase()
 
         try {
-            Integer idVaga = (Integer) VacancyUpdateMenu.vacancyRegistrationNumber()
+            Integer idVacancy = (Integer) VacancyUpdateMenu.vacancyRegistrationNumber()
 
             Integer chosenOption = VacancyUpdateMenu.chosenOption()
 
@@ -112,18 +116,14 @@ class VacancyConnection {
 
                 String updatedInformation = (String) VacancyUpdateMenu.updatedInformation()
 
-                String[] itensVaga = ['vacancy_position', 'vacancy_level', 'vacancy_shift', 'vacancy_model', 'vacancy_city', 'vacancy_state', 'job_description']
+                String textChosenOption = (String) vacancyInformation[chosenOption]
 
-                String textChosenOption = (String) itensVaga[chosenOption]
-
-                sql.execute("UPDATE vacancy SET $textChosenOption = '$updatedInformation' WHERE id = $idVaga;".toString())
+                sql.execute("UPDATE vacancy SET $textChosenOption = '$updatedInformation' WHERE id = $idVacancy;".toString())
             }
 
             if (chosenOption == 8){
 
-
-
-                sql.query("SELECT skills.id, skills.skill FROM vacancy, vacancy_skills, skills WHERE vacancy_skills.id_vacancy = vacancy.id AND vacancy_skills.id_skill = skills.id AND id_vacancy = ${idVaga};".toString()) { resultSet ->
+                sql.query("SELECT skills.id, skills.skill FROM vacancy, vacancy_skills, skills WHERE vacancy_skills.id_vacancy = vacancy.id AND vacancy_skills.id_skill = skills.id AND id_vacancy = ${idVacancy};".toString()) { resultSet ->
 
                     while (resultSet.next()) {
 
@@ -136,11 +136,58 @@ class VacancyConnection {
                 Integer changeSKill = (Integer) VacancyUpdateMenu.changeSKill()
                 Integer updatedSkill = (Integer) VacancyUpdateMenu.updatedSkill()
 
-                sql.execute("UPDATE vacancy_skills SET id_skill = ${updatedSkill} WHERE id_skill = ${changeSKill} AND id_vacancy = ${idVaga};".toString())
+                sql.execute("UPDATE vacancy_skills SET id_skill = ${updatedSkill} WHERE id_skill = ${changeSKill} AND id_vacancy = ${idVacancy};".toString())
             }
         }
         catch(Exception e){
             println("n\não foi possível atualizar os dados. Erro: $e")
+        }
+    }
+
+
+    static deleteInformations(){
+
+        connectDataBase()
+
+        try {
+            Integer idVacancy = (Integer) VacancyUpdateMenu.vacancyRegistrationNumber()
+
+            Integer chosenOption = VacancyDeleteMenu.chosenOption()
+
+
+            if (chosenOption < 8) {
+
+                chosenOption -=  1
+
+                String textChosenOption = (String) vacancyInformation[chosenOption]
+
+                sql.execute("UPDATE vacancy SET $textChosenOption = '' WHERE id = $idVacancy;".toString())
+
+                println("\nInformação excluÍda com sucesso")
+
+            }
+
+            if (chosenOption == 8){
+
+                sql.query("SELECT skills.id, skills.skill FROM vacancy, vacancy_skills, skills WHERE vacancy_skills.id_vacancy = vacancy.id AND vacancy_skills.id_skill = skills.id AND id_vacancy = ${idVacancy};".toString()) { resultSet ->
+
+                    while (resultSet.next()) {
+
+                        def vacancyNumber = resultSet.getString(1)
+                        def vacancySkill = resultSet.getString(2)
+                        println(vacancyNumber + " - " + vacancySkill)
+                    }
+                }
+
+                Integer changeSKill = (Integer) VacancyUpdateMenu.changeSKill()
+
+                sql.execute("DELETE FROM vacancy_skills WHERE id_skill = $changeSKill AND vacancy_skills.id_vacancy = ${idVacancy}".toString())
+
+                println("\nInformação excluída com sucesso")
+            }
+        }
+        catch(Exception e){
+            println("\nNão foi possível atualizar os dados. Erro: $e")
         }
     }
 

@@ -23,13 +23,14 @@ class Menu {
             println "10 - Atualizar Empresas"
             println "11 - Excluir dados da Empresas"
             println "12 - Excluir dados do Candidato"
+            println "13 - Excluir dados da Vaga"
             println "0 - Sair"
 
             print "\nInforme o número da opção desejada: "
             resp = scanner.next()
             println ""
 
-            if (resp == "12" || resp == "11" || resp == "10" || resp == "9" || resp == "8" || resp == "7" || resp == "6" || resp == "5" || resp == "4" ||resp == "3" || resp == "2" || resp == "1" || resp == "0"){
+            if (resp == "13" || resp == "12" || resp == "11" || resp == "10" || resp == "9" || resp == "8" || resp == "7" || resp == "6" || resp == "5" || resp == "4" ||resp == "3" || resp == "2" || resp == "1" || resp == "0"){
                 return resp
             }
                 println "\nOpção inválida!\n"

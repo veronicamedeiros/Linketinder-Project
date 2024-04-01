@@ -71,6 +71,10 @@ class App{
                  CandidateConnection.deleteInformations()
                 break
 
+            case("13"):
+                VacancyConnection.deleteInformations()
+                break
+
             case("0"):
                 println "Encerrando..."
                 break

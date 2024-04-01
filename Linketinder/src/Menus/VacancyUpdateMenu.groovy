@@ -12,7 +12,7 @@ class VacancyUpdateMenu {
 
         while (true){
 
-            print('Informe o número do cadastro da vaga que deseja atualizar: ')
+            print('Informe o número da vaga que deseja selecionar: ')
 
             Integer idVaga = scanner.nextInt()
 
@@ -23,7 +23,6 @@ class VacancyUpdateMenu {
                 return idVaga
             }
             else{
-
                 println("\nVaga não encontrada.\n")
             }
         }
