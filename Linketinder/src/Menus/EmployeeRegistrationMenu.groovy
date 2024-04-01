@@ -82,7 +82,7 @@ class EmployeeRegistration {
         }
     }
 
-    static addCandidate(Candidate newCandidate, List candidateList){
+    static addCandidate(Candidate newCandidate){
 
         try {
             return newCandidate

@@ -68,7 +68,6 @@ class VacancyRegistration {
         catch (Exception e){
             println "\nOcorreu um erro: $e \n"
         }
-
     }
 
     static addVacancy(Vacancy newVacancy){
