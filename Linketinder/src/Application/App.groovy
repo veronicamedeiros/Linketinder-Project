@@ -1,14 +1,7 @@
 package Application
 
-import Entities.Candidate
-import Entities.Company
-import Utilities.CandidatesArray
+
 import Menus.Menu
-import Utilities.CompanyArray
-import Registration.EmployeeRegistration
-import Registration.CompanyRegistration
-import Tests.EmployeeRegistrationTest
-import Tests.CompanyRegistrationTest
 import DatabaseConnection.CandidateConnection
 import DatabaseConnection.CompanyConnection
 import DatabaseConnection.VacancyConnection
@@ -57,6 +50,11 @@ class App{
 
             case("7"):
                 VacancyConnection.insertInformations()
+                break
+
+            case("8"):
+                VacancyConnection.updateInformations()
+                break
 
             case("0"):
                 println "Encerrando..."

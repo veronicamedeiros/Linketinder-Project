@@ -1,10 +1,10 @@
-package Registration
+package Menus
 
 import DatabaseConnection.SkillsConnection
 import Entities.Candidate
 
 
-class EmployeeRegistration {
+class EmployeeRegistrationMenu {
 
      static Candidate registration(){
 

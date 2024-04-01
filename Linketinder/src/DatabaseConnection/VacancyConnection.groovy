@@ -1,7 +1,8 @@
 package DatabaseConnection
 
 import Entities.Vacancy
-import Registration.VacancyRegistration
+import Menus.VacancyRegistrationMenu
+import Menus.VacancyUpdateMenu
 import groovy.sql.Sql
 
 class VacancyConnection {
@@ -60,19 +61,26 @@ class VacancyConnection {
         println()
     }
 
+    static numberVacancyExists(Integer cadastro){
+
+        connectDataBase()
+
+        sql.rows("SELECT id FROM vacancy WHERE id = $cadastro;".toString()){ resultSet ->
+        } //se não existir o número da vaga, retorna false
+    }
+
 
     static insertInformations(){
 
         connectDataBase()
 
-        Vacancy newVacancy = VacancyRegistration.registration()
+        Vacancy newVacancy = VacancyRegistrationMenu.registration()
 
         try {
 
             def result = sql.executeInsert("INSERT INTO vacancy (vacancy_position, vacancy_level, vacancy_shift, vacancy_model, vacancy_city, vacancy_state, job_description, id_company) VALUES ($newVacancy.position, $newVacancy.level, $newVacancy.shift, $newVacancy.model, $newVacancy.city, $newVacancy.state, $newVacancy.jobDescription, $newVacancy.idCompany)")
 
             def generatedId = (Integer) result[0][0]
-            println("generatedId.getClass()" + generatedId.getClass())
 
             for (newSkill in newVacancy.desiredSkills){
                 sql.execute("INSERT INTO vacancy_skills (id_vacancy, id_skill) VALUES ($generatedId, $newSkill)")
@@ -84,4 +92,56 @@ class VacancyConnection {
         }
 
     }
+
+
+    static updateInformations(){
+
+        connectDataBase()
+
+        try {
+            Integer idVaga = (Integer) VacancyUpdateMenu.vacancyRegistrationNumber()
+
+            Integer chosenOption = VacancyUpdateMenu.chosenOption()
+
+
+            if (chosenOption < 8) {
+
+                chosenOption -=  1
+
+                println("Primeira parte")
+
+                String updatedInformation = (String) VacancyUpdateMenu.updatedInformation()
+
+                String[] itensVaga = ['vacancy_position', 'vacancy_level', 'vacancy_shift', 'vacancy_model', 'vacancy_city', 'vacancy_state', 'job_description']
+
+                String textChosenOption = (String) itensVaga[chosenOption]
+
+                sql.execute("UPDATE vacancy SET $textChosenOption = '$updatedInformation' WHERE id = $idVaga;".toString())
+            }
+
+            if (chosenOption == 8){
+
+
+
+                sql.query("SELECT skills.id, skills.skill FROM vacancy, vacancy_skills, skills WHERE vacancy_skills.id_vacancy = vacancy.id AND vacancy_skills.id_skill = skills.id AND id_vacancy = ${idVaga};".toString()) { resultSet ->
+
+                    while (resultSet.next()) {
+
+                        def vacancyNumber = resultSet.getString(1)
+                        def vacancySkill = resultSet.getString(2)
+                        println(vacancyNumber + " - " + vacancySkill)
+                    }
+                }
+
+                Integer changeSKill = (Integer) VacancyUpdateMenu.changeSKill()
+                Integer updatedSkill = (Integer) VacancyUpdateMenu.updatedSkill()
+
+                sql.execute("UPDATE vacancy_skills SET id_skill = ${updatedSkill} WHERE id_skill = ${changeSKill} AND id_vacancy = ${idVaga};".toString())
+            }
+        }
+        catch(Exception e){
+            println("n\não foi possível atualizar os dados. Erro: $e")
+        }
+    }
+
 }

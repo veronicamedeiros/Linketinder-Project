@@ -1,9 +1,9 @@
-package Registration
+package Menus
 
 import DatabaseConnection.SkillsConnection
 import Entities.Vacancy
 
-class VacancyRegistration {
+class VacancyRegistrationMenu {
 
     static Vacancy registration(){
 

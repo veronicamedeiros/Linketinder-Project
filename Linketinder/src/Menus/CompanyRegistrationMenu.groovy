@@ -1,8 +1,8 @@
-package Registration
+package Menus
 import Entities.Company
 
 
-class CompanyRegistration {
+class CompanyRegistrationMenu {
 
      static Company registration(){
 

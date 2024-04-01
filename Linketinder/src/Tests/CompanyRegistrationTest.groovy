@@ -1,7 +1,7 @@
 package Tests;
 
 import Entities.Company
-import Registration.CompanyRegistration
+import Menus.CompanyRegistrationMenu
 import Utilities.CompanyArray;
 
 
@@ -19,7 +19,7 @@ class CompanyRegistrationTest {
 
         //When
 
-        boolean result = CompanyRegistration.addCompany(companyTest, companyList)
+        boolean result = CompanyRegistrationMenu.addCompany(companyTest, companyList)
 
         //Than
 

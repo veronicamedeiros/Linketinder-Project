@@ -4,7 +4,7 @@ import DatabaseConnection.SkillsConnection
 import DatabaseConnection.VacancyConnection
 
 
-class UpdateVacancyMenu {
+class VacancyUpdateMenu {
 
     static Scanner scanner = new Scanner(System.in)
 

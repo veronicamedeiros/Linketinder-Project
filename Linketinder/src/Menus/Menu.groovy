@@ -8,7 +8,7 @@ class Menu {
         String resp
 
         while(resp !in "12"){
-            print("*" * 40 + "\n")
+            print("\n" + "*" * 40 + "\n")
             println " " * 15 + "Menu"
             print("*" * 40 +"\n")
             println "1 - Listar Candidatos"
@@ -18,13 +18,14 @@ class Menu {
             println "3 - Cadastrar Candidatos"
             println "4 - Cadastrar Empresas"
             println "7 - Cadastrar Vagas"
+            println "8 - Atualizar Vagas"
             println "0 - Sair"
 
             print "\nInforme o número da opção desejada: "
             resp = scanner.next()
             println ""
 
-            if (resp == "7" || resp == "6" || resp == "5" || resp == "4" ||resp == "3" || resp == "2" || resp == "1" || resp == "0"){
+            if (resp == "8" || resp == "7" || resp == "6" || resp == "5" || resp == "4" ||resp == "3" || resp == "2" || resp == "1" || resp == "0"){
                 return resp
             }
                 println "\nOpção inválida!\n"

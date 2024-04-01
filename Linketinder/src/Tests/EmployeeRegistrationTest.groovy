@@ -1,7 +1,7 @@
 package Tests;
 
 import Entities.Candidate;
-import Registration.EmployeeRegistration;
+import Menus.EmployeeRegistrationMenu;
 import Utilities.CandidatesArray
 
 
@@ -20,7 +20,7 @@ class EmployeeRegistrationTest {
 
         //When
 
-        boolean result = EmployeeRegistration.addCandidate(candidateTest, candidateList)
+        boolean result = EmployeeRegistrationMenu.addCandidate(candidateTest, candidateList)
 
         //Then
 

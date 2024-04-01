@@ -25,7 +25,6 @@ class SkillsConnection {
 
         connectDataBase()
         def x
-
         sql.query('SELECT id, skill FROM skills;') { resultSet ->
 
             while (resultSet.next()) {

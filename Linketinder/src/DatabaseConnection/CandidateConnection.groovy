@@ -1,7 +1,7 @@
 package DatabaseConnection
 
 import Entities.Candidate
-import Registration.EmployeeRegistration
+import Menus.EmployeeRegistrationMenu
 import groovy.sql.Sql
 class CandidateConnection {
 
@@ -52,7 +52,7 @@ class CandidateConnection {
 
         connectDataBase()
 
-        Candidate newCandidate = EmployeeRegistration.registration()
+        Candidate newCandidate = EmployeeRegistrationMenu.registration()
 
 
         def result = sql.executeInsert("INSERT INTO candidates (candidate_name, candidate_surname, candidate_birth, candidate_email, candidate_country, candidate_cep, candidate_state, candidate_description, candidate_age, candidate_cpf, candidate_password) VALUES ($newCandidate.name, $newCandidate.surname, TO_DATE($newCandidate.birth, 'YYYY-MM-DD'), $newCandidate.email, $newCandidate.country, $newCandidate.cep, $newCandidate.state, $newCandidate.description, $newCandidate.age, $newCandidate.cpf, $newCandidate.password) RETURNING id")
@@ -63,6 +63,13 @@ class CandidateConnection {
         for (newSkill in newCandidate.skills){
             sql.execute("INSERT INTO candidate_skills (id_candidate, id_skill) VALUES ($generatedId, $newSkill)")
         }
+
+    }
+
+    static updateInformations(){
+
+        connectDataBase()
+
 
     }
 }

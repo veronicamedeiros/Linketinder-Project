@@ -5,11 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6fa17a1-33da-4711-8e64-90828302e191" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Menus/VacancyUpdateMenu.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/App.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/App.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DatabaseConnection/CandidateConnection.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseConnection/CandidateConnection.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DatabaseConnection/CompanyConnection.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseConnection/CompanyConnection.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/Company.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Company.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Registration/CompanyRegistration.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Registration/CompanyRegistration.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DatabaseConnection/SkillsConnection.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseConnection/SkillsConnection.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DatabaseConnection/VacancyConnection.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseConnection/VacancyConnection.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menus/Menu.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menus/Menu.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Registration/CompanyRegistration.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menus/CompanyRegistrationMenu.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Registration/EmployeeRegistration.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menus/EmployeeRegistrationMenu.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Registration/VacancyRegistration.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menus/VacancyRegistrationMenu.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/CompanyRegistrationTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/CompanyRegistrationTest.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/EmployeeRegistrationTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/EmployeeRegistrationTest.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sql/linketinder-database" beforeDir="false" afterPath="$PROJECT_DIR$/../sql/linketinder-database" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,31 +47,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.App.executor": "Run",
-    "Application.CandidateConnection.executor": "Run",
-    "Application.connectDB.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Groovy.connectionDB.executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/veronica/Documentos/repositorios/Linketinder-Project/Linketinder/src/DatabaseConnection",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.editor"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CandidateConnection.executor&quot;: &quot;Run&quot;,
+    &quot;Application.connectDB.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Groovy.connectionDB.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/veronica/Documentos/repositorios/Linketinder-Project/Linketinder/src/DatabaseConnection&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/DatabaseConnection" />
@@ -73,8 +81,8 @@
       <recent name="" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="Utilities" />
       <recent name="Menus" />
+      <recent name="Utilities" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="Tests" />
