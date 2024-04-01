@@ -19,13 +19,14 @@ class Menu {
             println "4 - Cadastrar Empresas"
             println "7 - Cadastrar Vagas"
             println "8 - Atualizar Vagas"
+            println "9 - Atualizar Candidatos"
             println "0 - Sair"
 
             print "\nInforme o número da opção desejada: "
             resp = scanner.next()
             println ""
 
-            if (resp == "8" || resp == "7" || resp == "6" || resp == "5" || resp == "4" ||resp == "3" || resp == "2" || resp == "1" || resp == "0"){
+            if (resp == "9" || resp == "8" || resp == "7" || resp == "6" || resp == "5" || resp == "4" ||resp == "3" || resp == "2" || resp == "1" || resp == "0"){
                 return resp
             }
                 println "\nOpção inválida!\n"
