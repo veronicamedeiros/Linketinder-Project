@@ -1,12 +1,16 @@
 package DatabaseConnection
 
 import Entities.Company
+import Menus.CompanyDeleteMenu
 import Menus.CompanyRegistrationMenu
 import Menus.CompanyUpdateMenu
 import groovy.sql.Sql
 
 
 class CompanyConnection {
+
+    static String[] companyInformation = ['company_name', 'company_email', 'company_country', 'company_cep', 'company_state', 'company_description', 'company_cnpj', 'company_password']
+
 
     static def url = 'jdbc:postgresql://localhost:5432/linketinder_banco'
     static def user = 'postgres'
@@ -43,6 +47,14 @@ class CompanyConnection {
     }
 
 
+    static companyExists(Integer numberCompany){
+
+        connectDataBase()
+
+        sql.rows("SELECT id FROM company WHERE id = $numberCompany;".toString()){ resultSet ->} //se não existir o id da empresa, retorna false
+    }
+
+
     static insertInformations(){
 
         connectDataBase()
@@ -58,13 +70,6 @@ class CompanyConnection {
         }
     }
 
-    static companyExists(Integer numberCompany){
-
-        connectDataBase()
-
-        sql.rows("SELECT id FROM company WHERE id = $numberCompany;".toString()){ resultSet ->
-        } //se não existir o id da empresa, retorna false
-    }
 
     static updateInformations(){
 
@@ -75,8 +80,6 @@ class CompanyConnection {
 
             String updatedInformation = (String) CompanyUpdateMenu.updatedInformation()
 
-            String[] companyInformation = ['company_name', 'company_email', 'company_country', 'company_cep', 'company_state', 'company_description', 'company_cnpj', 'company_password']
-
             String textChosenOption = (String) companyInformation[chosenOption]
 
             sql.execute("UPDATE company SET $textChosenOption = '$updatedInformation' WHERE id = $idCompany;".toString())
@@ -86,6 +89,28 @@ class CompanyConnection {
 
         catch(Exception e){
             println("n\não foi possível atualizar os dados. Erro: $e")
+        }
+    }
+
+
+    static deleteInformations(){
+
+        connectDataBase()
+
+        try {
+            Integer idCompany = (Integer) CompanyUpdateMenu.companyRegistrationNumber()
+
+            Integer chosenOption = CompanyDeleteMenu.chosenOption() - 1
+
+            String textChosenOption = (String) companyInformation[chosenOption]
+
+            sql.execute("UPDATE company SET $textChosenOption = '' WHERE id = $idCompany".toString())
+
+            println("Dado deletado com sucesso.")
+
+        }
+        catch(Exception e){
+            println("\nOcorreu um erro: $e")
         }
     }
 }

@@ -70,7 +70,7 @@ class VacancyUpdateMenu {
 
     static changeSKill(){
 
-        print("\nInforme o número da habilidade que deseja atualizar: ")
+        print("\nInforme o número da habilidade que deseja selecionar: ")
         Integer changeSKill = (Integer) scanner.nextInt()
         return changeSKill
     }

@@ -1,6 +1,5 @@
 package Application
 
-
 import Menus.Menu
 import DatabaseConnection.CandidateConnection
 import DatabaseConnection.CompanyConnection
@@ -62,6 +61,14 @@ class App{
 
             case("10"):
                 CompanyConnection.updateInformations()
+                break
+
+            case("11"):
+                CompanyConnection.deleteInformations()
+                break
+
+            case("12"):
+                 CandidateConnection.deleteInformations()
                 break
 
             case("0"):
