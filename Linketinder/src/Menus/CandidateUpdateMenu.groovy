@@ -2,7 +2,6 @@ package Menus
 
 import DatabaseConnection.CandidateConnection
 import DatabaseConnection.SkillsConnection
-import DatabaseConnection.VacancyConnection
 
 class CandidateUpdateMenu {
     static Scanner scanner = new Scanner(System.in)

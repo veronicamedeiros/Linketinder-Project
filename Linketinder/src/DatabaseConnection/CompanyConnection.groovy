@@ -2,6 +2,7 @@ package DatabaseConnection
 
 import Entities.Company
 import Menus.CompanyRegistrationMenu
+import Menus.CompanyUpdateMenu
 import groovy.sql.Sql
 
 
@@ -55,7 +56,36 @@ class CompanyConnection {
         catch (Exception e){
             println("Não foi possível inserir os dados no sistema. Erro: $e")
         }
+    }
 
+    static companyExists(Integer numberCompany){
+
+        connectDataBase()
+
+        sql.rows("SELECT id FROM company WHERE id = $numberCompany;".toString()){ resultSet ->
+        } //se não existir o id da empresa, retorna false
+    }
+
+    static updateInformations(){
+
+        try {
+            Integer idCompany = (Integer) CompanyUpdateMenu.companyRegistrationNumber()
+
+            Integer chosenOption = CompanyUpdateMenu.chosenOption() - 1
+
+            String updatedInformation = (String) CompanyUpdateMenu.updatedInformation()
+
+            String[] companyInformation = ['company_name', 'company_email', 'company_country', 'company_cep', 'company_state', 'company_description', 'company_cnpj', 'company_password']
+
+            String textChosenOption = (String) companyInformation[chosenOption]
+
+            sql.execute("UPDATE company SET $textChosenOption = '$updatedInformation' WHERE id = $idCompany;".toString())
+
+            println("\n Atualização realizada com sucesso.\n")
+        }
+
+        catch(Exception e){
+            println("n\não foi possível atualizar os dados. Erro: $e")
+        }
     }
 }
-

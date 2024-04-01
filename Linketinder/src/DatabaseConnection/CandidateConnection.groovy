@@ -73,7 +73,7 @@ class CandidateConnection {
         connectDataBase()
 
         sql.rows("SELECT id FROM candidates WHERE id = $numberCandidate;".toString()){ resultSet ->
-        } //se não existir o número da vaga, retorna false
+        } //se não existir o número do id do candidato, retorna false
     }
 
     static updateInformations(){

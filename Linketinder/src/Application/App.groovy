@@ -60,6 +60,10 @@ class App{
                 CandidateConnection.updateInformations()
                 break
 
+            case("10"):
+                CompanyConnection.updateInformations()
+                break
+
             case("0"):
                 println "Encerrando..."
                 break
