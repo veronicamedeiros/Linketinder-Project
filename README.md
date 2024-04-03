@@ -7,10 +7,10 @@ _A ideia do Linketinder é ser uma aplicação que conecta empresas e candidatos
 
 por: Verônica Medeiros
  
-O repositório atual contém o back-end do código em Groovy integrado ao banco de dados em SQL com adaptação para build em Gradle e o front-end em TypeScript (ainda não integrado).
+O repositório atual contém o back-end do código em Groovy integrado ao banco de dados em SQL com adaptação para build em Gradle e o front-end em TypeScript (ainda não integrado).<br/>
 
 
-Código em Groovy (integrado ao banco):
+**Código em Groovy (integrado ao banco):
 
 Funcionalidades:
  - Listar Candidatos;
@@ -23,21 +23,18 @@ Funcionalidades:
  - Cadastrar, listar, atualizar e deletar Habilidades (estas funcionalidade são acessível dentro das funcionalidades anteriores)
  - Sair
 
-
 _O arquivo que deve ser executado é o Main.groovy, localizado no caminho backend/src/main/groovy/org/linketinder, que iniciará com um menu._
     
 _Pre-requisitos - para rodar o projeto, é necessário instalar e configurar:_
 - Groovy;
 - JVM (Java Virtual Machine);
 - IDE (sugerida: IntelliJ IDEA; aqui é necessário alterar as informações de conexão para se conectar ao servidor local);
-- PostgreSQL e arquivo sql do banco.
+- PostgreSQL e arquivo sql do banco.<br/>
   
-   
-    
-    
- Banco de dados:
+  
+**Banco de dados:
  
- _Realizou-se previamente uma modelagem de dados pela ferramenta dbdiagram.io, o print deste modelo consta na página sql/modelagem._
+ _Realizou-se previamente uma modelagem de dados pela ferramenta dbdiagram.io, o print deste modelo consta na página sql/modelagem/modelagem-LinkeTinder.png._
  
  _O banco de dados foi feito em linguagem SQL pelo PostgreSQL e integrado ao código em Groovy pelo JDBC._
  
@@ -50,11 +47,10 @@ Possui as seguintes tabelas:
  - cadidate_skills - para armazenar as habilidades de cada candidatos;
  - vacancy_skills - para armazenar as habilidades desejadas para cada vaga;
  
- _Foram inseridos dados em todas as tabelas acima e realizadas algumas queries para demonstrar a relação entre tabelas, que podem ser visualizadas em sql/linketinder-database._
-  
+ _Foram inseridos dados em todas as tabelas acima e realizadas algumas queries para demonstrar a relação entre tabelas, que podem ser visualizadas em backend/sql/linketinder-database._
    
-    
-Front-end:
+
+**Front-end:
 
 Funcionalidades:
  - Listar candidatos;
@@ -72,4 +68,4 @@ Funcionalidades:
  _Pre-requisitos - para rodar o projeto, é necessário instalar e configurar:_
  - TypeScript;
  - Webpack.
-
+ 
