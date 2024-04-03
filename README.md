@@ -10,7 +10,7 @@ por: Verônica Medeiros
 O repositório atual contém o back-end do código em Groovy integrado ao banco de dados em SQL com adaptação para build em Gradle e o front-end em TypeScript (ainda não integrado).<br/>
 
 
-**Código em Groovy (integrado ao banco):
+**Código em Groovy** (integrado ao banco):
 
 Funcionalidades:
  - Listar Candidatos;
@@ -32,7 +32,7 @@ _Pre-requisitos - para rodar o projeto, é necessário instalar e configurar:_
 - PostgreSQL e arquivo sql do banco.<br/>
   
   
-**Banco de dados:
+**Banco de dados**:
  
  _Realizou-se previamente uma modelagem de dados pela ferramenta dbdiagram.io, o print deste modelo consta na página sql/modelagem/modelagem-LinkeTinder.png._
  
@@ -50,7 +50,7 @@ Possui as seguintes tabelas:
  _Foram inseridos dados em todas as tabelas acima e realizadas algumas queries para demonstrar a relação entre tabelas, que podem ser visualizadas em backend/sql/linketinder-database._
    
 
-**Front-end:
+**Front-end**:
 
 Funcionalidades:
  - Listar candidatos;
