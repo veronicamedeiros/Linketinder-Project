@@ -4,7 +4,7 @@ import org.linketinder.Entities.Vacancy
 
 class VacancyRegistrationMenu {
 
-    static Vacancy registration(){
+    static Vacancy register(){
 
         List<Integer> desiredSkills = new ArrayList<>()
         Scanner scanner = new Scanner(System.in)

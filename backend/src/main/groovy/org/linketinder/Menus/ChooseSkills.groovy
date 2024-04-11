@@ -14,6 +14,7 @@ static List chooseSkills(){
 
         println "\nDigite o número referente à habilidade desejada e pressione enter."
         println "Caso não deseje informar mais nenhuma, pressione 0.\n"
+
         skill = chooseNewSkill("Habilidade: ")
 
 

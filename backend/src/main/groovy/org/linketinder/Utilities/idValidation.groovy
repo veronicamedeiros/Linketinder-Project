@@ -3,10 +3,9 @@ package org.linketinder.Utilities
 import org.linketinder.DatabaseConnection.CandidateConnection
 import org.linketinder.DatabaseConnection.CompanyConnection
 import org.linketinder.DatabaseConnection.VacancyConnection
-import static org.linketinder.Utilities.RegistrationNumberValidation.registrationNumber
 
 
-static registrationNumber(String typeRegistration){
+static validateId(String personType){
 
     Scanner scanner = new Scanner(System.in)
 
@@ -14,28 +13,28 @@ static registrationNumber(String typeRegistration){
 
         print('Informe o número de cadastro: ')
 
-        Integer idRegistration = scanner.nextInt()
+        Integer id = scanner.nextInt()
 
-        boolean registrationExists
+        boolean idExists
 
 
-        switch (typeRegistration){
+        switch (personType){
 
             case("candidate"):
-                registrationExists = CandidateConnection.candidateExists(idRegistration)
+                idExists = CandidateConnection.candidateExists(id)
                 break
             case("company"):
-                registrationExists = CompanyConnection.companyExists(idRegistration)
+                idExists = CompanyConnection.companyExists(id)
                 break
             case("vacancy"):
-                registrationExists = VacancyConnection.numberVacancyExists(idRegistration)
+                idExists = VacancyConnection.idExists(id)
                 break
         }
 
 
-        if (registrationExists){
+        if (idExists){
 
-            return idRegistration
+            return id
         }
         else{
             println("\nCadastro não encontrada.\n")

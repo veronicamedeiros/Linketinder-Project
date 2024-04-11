@@ -24,15 +24,15 @@ class Main{
                 break
 
             case("2"):
-                CandidateConnection.insertInformations()
+                CandidateConnection.registerCandidates()
                 break
 
             case("3"):
-                CandidateConnection.updateInformations()
+                CandidateConnection.updateCandidatesInformations()
                 break
 
             case("4"):
-                CandidateConnection.deleteInformations()
+                CandidateConnection.deleteCandidatesInformations()
                 break
 
             case("5"):
@@ -40,15 +40,15 @@ class Main{
                 break
 
             case("6"):
-                CompanyConnection.insertInformations()
+                CompanyConnection.registerCompanies()
                 break
 
             case("7"):
-                CompanyConnection.updateInformations()
+                CompanyConnection.updateCompaniesInformations()
                 break
 
             case("8"):
-                CompanyConnection.deleteInformations()
+                CompanyConnection.deleteCompaniesInformations()
                 break
 
             case("9"):
@@ -56,15 +56,15 @@ class Main{
                 break
 
             case("10"):
-                VacancyConnection.insertInformations()
+                VacancyConnection.registerVacancies()
                 break
 
             case("11"):
-                VacancyConnection.updateInformations()
+                VacancyConnection.updateVacanciesInformations()
                 break
 
             case("12"):
-                VacancyConnection.deleteInformations()
+                VacancyConnection.deleteVacanciesInformations()
                 break
 
             case("13"):

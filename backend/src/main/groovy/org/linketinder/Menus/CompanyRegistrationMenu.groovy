@@ -4,7 +4,7 @@ import org.linketinder.Entities.Company
 
 class CompanyRegistrationMenu {
 
-     static Company registration(){
+     static Company register(){
 
          Scanner scanner = new Scanner(System.in)
 

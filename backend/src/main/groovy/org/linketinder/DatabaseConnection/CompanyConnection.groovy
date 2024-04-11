@@ -2,53 +2,38 @@ package org.linketinder.DatabaseConnection
 
 import org.linketinder.Menus.CompanyRegistrationMenu
 import org.linketinder.Entities.Company
-
-
 import org.linketinder.Menus.ChooseMenuOptions
-import groovy.sql.Sql
-import org.linketinder.Utilities.RegistrationNumberValidation
+import org.linketinder.Utilities.idValidation
 
 
 class CompanyConnection {
 
-    static String[] companyTableHeader = ['company_name', 'company_email', 'company_country', 'company_cep', 'company_state', 'company_description', 'company_cnpj', 'company_password']
+    static def sql = Conexao.connectDataBase()
+
+    static String[] companyTableHeader = ['company_name', 'company_email', 'company_country', 'company_cep',
+                                          'company_state', 'company_description', 'company_cnpj', 'company_password']
+
     static List<String> companyMenuOptions = ["Nome da Empresa", "Email", "País", "CEP", "Estado", "Descrição", "CNPJ", "Senha"]
-
-    static def url = 'jdbc:postgresql://localhost:5432/linketinder_banco'
-    static def user = 'postgres'
-    static def password = 'postgres'
-    static def driver = 'org.postgresql.Driver'
-    static def sql
-
-    static connectDataBase() {
-
-        try {
-            sql = Sql.newInstance url, user, password, driver
-        }
-        catch (Exception e){
-            println(e)
-            println('Não foi possível se conectar ao banco de dados')
-        }
-    }
 
 
     static listAllCompanies(){
 
         try {
-            connectDataBase()
-            def x
-
-            sql.eachRow('SELECT company_description FROM company;') { resultSet ->
+            sql.eachRow("""
+                            SELECT company_description 
+                            FROM company;
+                            """) { resultSet ->
 
                 while (resultSet.next()) {
 
-                    def description = resultSet.getString(1)
+                    String description = resultSet.getString(1)
 
                     println('DESCRIÇÃO: '+ description)
-                    println('\n---- \n')
+                    println('\n----\n')
                 }
             }
         }catch (Exception e){
+
             println("\nNão foi possível realizar a operação. Erro: $e")
         }
         finally {
@@ -57,30 +42,34 @@ class CompanyConnection {
     }
 
 
-    static companyExists(Integer numberCompany){
+    static companyExists(Integer companyId){
 
         try {
-            connectDataBase()
-
-            sql.rows("SELECT id FROM company WHERE id = $numberCompany;".toString()){ resultSet ->} //se não existir o id da empresa, retorna false
+            sql.rows("SELECT id FROM company WHERE id = $companyId;".toString()){ resultSet ->}
         }
         catch (Exception e){
+
             println("\nNão foi possível realizar a operação. Erro: $e")
         }
     }
 
 
-    static insertInformations(){
+    static registerCompanies(){
 
         try {
-            connectDataBase()
+            Company newCompany = CompanyRegistrationMenu.register()
 
-            Company newCompany = CompanyRegistrationMenu.registration()
+            sql.executeInsert("""
+                                INSERT INTO company (company_name, company_email, company_country, company_cep, 
+                                                    company_state, company_description, company_cnpj, company_password) 
+                                VALUES ($newCompany.name, $newCompany.email, $newCompany.country, $newCompany.cep, 
+                                        $newCompany.state, $newCompany.description, $newCompany.cnpj, $newCompany.password)
+                                """)
 
-            sql.executeInsert("INSERT INTO company (company_name, company_email, company_country, company_cep, company_state, company_description, company_cnpj, company_password) VALUES ($newCompany.name, $newCompany.email, $newCompany.country, $newCompany.cep, $newCompany.state, $newCompany.description, $newCompany.cnpj, $newCompany.password)")
             println("\nCadastro realizado com sucesso.")
         }
         catch (Exception e){
+
             println("Não foi possível inserir os dados no sistema. Erro: $e")
         }
         finally {
@@ -89,24 +78,24 @@ class CompanyConnection {
     }
 
 
-    static updateInformations(){
+    static updateCompaniesInformations(){
 
         try {
-            connectDataBase()
-
-            Integer idCompany = (Integer) RegistrationNumberValidation.registrationNumber("company")
-
+            Integer companyId = (Integer) idValidation.validateId("company")
             Integer chosenOption = ChooseMenuOptions.selecMenuOption(companyMenuOptions, "Atualizar Dados")
-
             String updatedInformation = (String) ChooseMenuOptions.addUpdatedInformation()
-
             String textChosenOption = (String) companyTableHeader[chosenOption - 1]
 
-            sql.execute("UPDATE company SET $textChosenOption = '$updatedInformation' WHERE id = $idCompany;".toString())
+            sql.execute("""
+                        UPDATE company 
+                        SET $textChosenOption = '$updatedInformation' 
+                        WHERE id = $companyId;
+                        """.toString())
 
             println("\nAtualização realizada com sucesso.\n")
         }
         catch(Exception e){
+
             println("\não foi possível atualizar os dados. Erro: $e")
         }
         finally {
@@ -115,23 +104,24 @@ class CompanyConnection {
     }
 
 
-    static deleteInformations(){
+    static deleteCompaniesInformations(){
 
         try {
-            connectDataBase()
-
-            Integer idCompany = (Integer) RegistrationNumberValidation.registrationNumber("company")
-
+            Integer idCompany = (Integer) idValidation.validateId("company")
             Integer chosenOption = ChooseMenuOptions.selecMenuOption(companyMenuOptions, "Deletar Dados")
-
             String textChosenOption = (String) companyTableHeader[chosenOption - 1]
 
-            sql.execute("UPDATE company SET $textChosenOption = '' WHERE id = $idCompany".toString())
+            sql.execute("""
+                        UPDATE company 
+                        SET $textChosenOption = '' 
+                        WHERE id = $idCompany
+                        """.toString())
 
             println("Dado deletado com sucesso.")
 
         }
         catch(Exception e){
+
             println("\nOcorreu um erro: $e")
         }
         finally {

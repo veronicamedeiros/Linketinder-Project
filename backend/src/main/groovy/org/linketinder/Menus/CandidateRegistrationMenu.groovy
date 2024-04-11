@@ -4,7 +4,7 @@ package org.linketinder.Menus
 import org.linketinder.Entities.Candidate
 
 
-static Candidate registration(){
+static Candidate register(){
 
     List<Integer> skills = new ArrayList<>()
     Scanner scanner = new Scanner(System.in)
@@ -49,6 +49,7 @@ static Candidate registration(){
         skills = ChooseSkills.chooseSkills()
 
         Candidate newCandidate = new Candidate(name, surname, birth, email, country, cep, state, description, age, cpf, skills, password)
+
         return newCandidate
     }
     catch (Exception e){
