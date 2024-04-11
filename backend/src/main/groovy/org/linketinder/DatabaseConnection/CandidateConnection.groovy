@@ -1,13 +1,16 @@
 package org.linketinder.DatabaseConnection
 import org.linketinder.Entities.Candidate
-import org.linketinder.Menus.CandidateDeleteMenu
-import org.linketinder.Menus.CandidateUpdateMenu
+
 import org.linketinder.Menus.CandidateRegistrationMenu
+import org.linketinder.Menus.ChooseMenuOptions
 import groovy.sql.Sql
+import org.linketinder.Menus.ChooseSkills
+import org.linketinder.Utilities.RegistrationNumberValidation
 
 class CandidateConnection {
 
-    static String[] candidateInformation = ['candidate_name', 'candidate_surname', 'candidate_birth', 'candidate_email', 'candidate_country', 'candidate_cep', 'candidate_state', 'candidate_description', 'candidate_age', 'candidate_cpf', 'candidate_password']
+    static String[] candidateTableHeader = ['candidate_name', 'candidate_surname', 'candidate_birth', 'candidate_email', 'candidate_country', 'candidate_cep', 'candidate_state', 'candidate_description', 'candidate_age', 'candidate_cpf', 'candidate_password']
+    static List<String> candidateMenuOptions = ["Nome", "Sobrenome", "Data de Nascimento", "Email", "País", "CEP", "Estado", "Descrição", "Idade", "CPF", "Senha", "Habilidades"]
 
     static def url = 'jdbc:postgresql://localhost:5432/linketinder_banco'
     static def user = 'postgres'
@@ -28,7 +31,7 @@ class CandidateConnection {
 
     static listAllCandidates(){
 
-        def x
+        def previousDescription
 
         try {
             connectDataBase()
@@ -38,7 +41,7 @@ class CandidateConnection {
 
                     def description = resultSet.getString(1)
 
-                    if (x != description){
+                    if (previousDescription != description){
                         println('\n---- \n')
                         println('DESCRIÇÃO: '+ description + '\n')
                         println('HABIDADES: ')
@@ -48,7 +51,7 @@ class CandidateConnection {
 
                     println(skills)
 
-                    x = description
+                    previousDescription = description
                 }
             }
             println()
@@ -103,17 +106,15 @@ class CandidateConnection {
         try {
             connectDataBase()
 
-            Integer idCandidate = (Integer) CandidateUpdateMenu.candidateRegistrationNumber()
+            Integer idCandidate = (Integer) RegistrationNumberValidation.registrationNumber("candidate")
 
-            Integer chosenOption = CandidateUpdateMenu.chosenOption()
+            Integer chosenOption = ChooseMenuOptions.selecMenuOption(candidateMenuOptions, "Atualizar dados")
 
 
             if (chosenOption < 12) {
 
-                chosenOption -=  1
-
-                String textChosenOption = (String) candidateInformation[chosenOption]
-                String updatedInformation = (String) CandidateUpdateMenu.updatedInformation()
+                String textChosenOption = (String) candidateTableHeader[chosenOption - 1]
+                String updatedInformation = (String) ChooseMenuOptions.addUpdatedInformation()
 
                 sql.execute("UPDATE candidates SET $textChosenOption = '$updatedInformation' WHERE id = $idCandidate;".toString())
 
@@ -132,11 +133,11 @@ class CandidateConnection {
                     }
                 }
 
-                Integer changeSKill = (Integer) CandidateUpdateMenu.changeSKill()
-                String updatedInformation = (String) CandidateUpdateMenu.updatedSkill()
+                Integer oldSkill = (Integer) ChooseSkills.chooseOldSKill()
+                String newSkill = (String) ChooseSkills.chooseNewSkill()
 
 
-                sql.execute("UPDATE candidate_skills SET id_skill = ${updatedInformation} WHERE id_skill = ${changeSKill} AND candidate_skills.id_candidate = ${idCandidate};".toString())
+                sql.execute("UPDATE candidate_skills SET id_skill = ${newSkill} WHERE id_skill = ${oldSkill} AND candidate_skills.id_candidate = ${idCandidate};".toString())
 
                 println('\nOperação realizada com sucesso.')
             }
@@ -157,15 +158,13 @@ class CandidateConnection {
         try {
             connectDataBase()
 
-            Integer idCandidate = (Integer) CandidateUpdateMenu.candidateRegistrationNumber()
+            Integer idCandidate = (Integer) RegistrationNumberValidation.registrationNumber("candidate")
 
-            Integer chosenOption = CandidateDeleteMenu.chosenOption()
+            Integer chosenOption = ChooseMenuOptions.selecMenuOption(candidateMenuOptions, "Deletar dados")
 
             if (chosenOption < 12) {
 
-                chosenOption -=  1
-
-                String textChosenOption = (String) candidateInformation[chosenOption]
+                String textChosenOption = (String) candidateTableHeader[chosenOption - 1]
 
                 sql.execute("UPDATE candidates SET $textChosenOption = '' WHERE id = $idCandidate;".toString())
 
@@ -184,9 +183,9 @@ class CandidateConnection {
                     }
                 }
 
-                Integer changeSKill = (Integer) CandidateUpdateMenu.changeSKill()
+                Integer oldSkill = (Integer) ChooseSkills.chooseOldSKill()
 
-                sql.execute("DELETE FROM candidate_skills WHERE id_skill = $changeSKill AND candidate_skills.id_candidate = ${idCandidate}".toString())
+                sql.execute("DELETE FROM candidate_skills WHERE id_skill = $oldSkill AND candidate_skills.id_candidate = ${idCandidate}".toString())
 
                 println("\nInformação excluída com sucesso")
             }

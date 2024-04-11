@@ -1,14 +1,17 @@
 package org.linketinder.DatabaseConnection
 
 import org.linketinder.Entities.Vacancy
-import org.linketinder.Menus.VacancyDeleteMenu
+import org.linketinder.Menus.ChooseSkills
 import org.linketinder.Menus.VacancyRegistrationMenu
-import org.linketinder.Menus.VacancyUpdateMenu
+
+import org.linketinder.Menus.ChooseMenuOptions
 import groovy.sql.Sql
+import org.linketinder.Utilities.RegistrationNumberValidation
 
 class VacancyConnection {
 
     static String[] vacancyInformation = ['vacancy_position', 'vacancy_level', 'vacancy_shift', 'vacancy_model', 'vacancy_city', 'vacancy_state', 'job_description', 'id_company']
+    static List<String> vacancyMenuOptions = ["Nome ", "Nível", "Turno", "Modelo", "Cidade", "Estado", "Descrição", "Competências"]
 
     static def url = 'jdbc:postgresql://localhost:5432/linketinder_banco'
     static def user = 'postgres'
@@ -118,16 +121,17 @@ class VacancyConnection {
         try {
             connectDataBase()
 
-            Integer idVacancy = (Integer) VacancyUpdateMenu.vacancyRegistrationNumber()
+            Integer idVacancy = (Integer) RegistrationNumberValidation.registrationNumber("vacancy")
 
-            Integer chosenOption = VacancyUpdateMenu.chosenOption()
+            Integer chosenOption = ChooseMenuOptions.selecMenuOption(vacancyMenuOptions, "Atualizar dados")
+
 
 
             if (chosenOption < 8) {
 
                 chosenOption -=  1
 
-                String updatedInformation = (String) VacancyUpdateMenu.updatedInformation()
+                String updatedInformation = (String) ChooseMenuOptions.addUpdatedInformation()
 
                 String textChosenOption = (String) vacancyInformation[chosenOption]
 
@@ -148,10 +152,10 @@ class VacancyConnection {
                     }
                 }
 
-                Integer changeSKill = (Integer) VacancyUpdateMenu.changeSKill()
-                Integer updatedSkill = (Integer) VacancyUpdateMenu.updatedSkill()
+                Integer oldSkill = (Integer) ChooseSkills.chooseOldSKill()
+                Integer newSkill = (Integer) ChooseSkills.chooseNewSkill()
 
-                sql.execute("UPDATE vacancy_skills SET id_skill = ${updatedSkill} WHERE id_skill = ${changeSKill} AND id_vacancy = ${idVacancy};".toString())
+                sql.execute("UPDATE vacancy_skills SET id_skill = ${newSkill} WHERE id_skill = ${oldSkill} AND id_vacancy = ${idVacancy};".toString())
 
                 println("\nOperação realizada com sucesso")
             }
@@ -170,9 +174,9 @@ class VacancyConnection {
         try {
             connectDataBase()
 
-            Integer idVacancy = (Integer) VacancyUpdateMenu.vacancyRegistrationNumber()
+            Integer idVacancy = (Integer) RegistrationNumberValidation.registrationNumber("vacancy")
 
-            Integer chosenOption = VacancyDeleteMenu.chosenOption()
+            Integer chosenOption = ChooseMenuOptions.selecMenuOption(vacancyMenuOptions, "Deletar Dados")
 
 
             if (chosenOption < 8) {
@@ -199,9 +203,9 @@ class VacancyConnection {
                     }
                 }
 
-                Integer changeSKill = (Integer) VacancyUpdateMenu.changeSKill()
+                Integer oldSkill = (Integer) ChooseSkills.chooseOldSKill()
 
-                sql.execute("DELETE FROM vacancy_skills WHERE id_skill = $changeSKill AND vacancy_skills.id_vacancy = ${idVacancy}".toString())
+                sql.execute("DELETE FROM vacancy_skills WHERE id_skill = $oldSkill AND vacancy_skills.id_vacancy = ${idVacancy}".toString())
 
                 println("\nInformação excluída com sucesso")
             }

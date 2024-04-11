@@ -2,14 +2,17 @@ package org.linketinder.DatabaseConnection
 
 import org.linketinder.Menus.CompanyRegistrationMenu
 import org.linketinder.Entities.Company
-import org.linketinder.Menus.CompanyDeleteMenu
-import org.linketinder.Menus.CompanyUpdateMenu
+
+
+import org.linketinder.Menus.ChooseMenuOptions
 import groovy.sql.Sql
+import org.linketinder.Utilities.RegistrationNumberValidation
 
 
 class CompanyConnection {
 
-    static String[] companyInformation = ['company_name', 'company_email', 'company_country', 'company_cep', 'company_state', 'company_description', 'company_cnpj', 'company_password']
+    static String[] companyTableHeader = ['company_name', 'company_email', 'company_country', 'company_cep', 'company_state', 'company_description', 'company_cnpj', 'company_password']
+    static List<String> companyMenuOptions = ["Nome da Empresa", "Email", "País", "CEP", "Estado", "Descrição", "CNPJ", "Senha"]
 
     static def url = 'jdbc:postgresql://localhost:5432/linketinder_banco'
     static def user = 'postgres'
@@ -91,13 +94,13 @@ class CompanyConnection {
         try {
             connectDataBase()
 
-            Integer idCompany = (Integer) CompanyUpdateMenu.companyRegistrationNumber()
+            Integer idCompany = (Integer) RegistrationNumberValidation.registrationNumber("company")
 
-            Integer chosenOption = CompanyUpdateMenu.chosenOption() - 1
+            Integer chosenOption = ChooseMenuOptions.selecMenuOption(companyMenuOptions, "Atualizar Dados")
 
-            String updatedInformation = (String) CompanyUpdateMenu.updatedInformation()
+            String updatedInformation = (String) ChooseMenuOptions.addUpdatedInformation()
 
-            String textChosenOption = (String) companyInformation[chosenOption]
+            String textChosenOption = (String) companyTableHeader[chosenOption - 1]
 
             sql.execute("UPDATE company SET $textChosenOption = '$updatedInformation' WHERE id = $idCompany;".toString())
 
@@ -117,11 +120,11 @@ class CompanyConnection {
         try {
             connectDataBase()
 
-            Integer idCompany = (Integer) CompanyUpdateMenu.companyRegistrationNumber()
+            Integer idCompany = (Integer) RegistrationNumberValidation.registrationNumber("company")
 
-            Integer chosenOption = CompanyDeleteMenu.chosenOption() - 1
+            Integer chosenOption = ChooseMenuOptions.selecMenuOption(companyMenuOptions, "Deletar Dados")
 
-            String textChosenOption = (String) companyInformation[chosenOption]
+            String textChosenOption = (String) companyTableHeader[chosenOption - 1]
 
             sql.execute("UPDATE company SET $textChosenOption = '' WHERE id = $idCompany".toString())
 

@@ -1,6 +1,5 @@
 package org.linketinder.Menus
 
-import org.linketinder.DatabaseConnection.SkillsConnection
 import org.linketinder.Entities.Vacancy
 
 class VacancyRegistrationMenu {
@@ -9,7 +8,6 @@ class VacancyRegistrationMenu {
 
         List<Integer> desiredSkills = new ArrayList<>()
         Scanner scanner = new Scanner(System.in)
-        Integer skill
 
 
         try {
@@ -38,47 +36,14 @@ class VacancyRegistrationMenu {
             String jobDescription = scanner.nextLine()
 
 
-            while (skill != 0){
-
-                print("*" * 40 + "\n")
-                println " " * 15 + "Habilidades"
-                print("*" * 40 +"\n")
-
-                SkillsConnection.listAllSkills()
-                println "\nDigite o número referente à habilidade desejada para a vaga e pressione enter."
-                println "Caso não deseje informar mais nenhuma, pressione 0.\n"
-
-                print("Habilidade: ")
-                skill = (Integer) scanner.nextInt()
-
-
-                if(skill < 0 | skill > 21) {
-                    println("Opção inválida.")
-                }
-                else{
-                    if (skill == 0) {
-                        break
-                    }else{
-                        desiredSkills.add(skill)
-                    }
-                }
-            }
+            desiredSkills = ChooseSkills.chooseSkills()
 
             Vacancy newVacancy = new Vacancy(position, level, shift, model, city, state, jobDescription, desiredSkills, idCompany)
-        }
-        catch (Exception e){
-            println "\nOcorreu um erro: $e \n"
-        }
-    }
 
-    static addVacancy(Vacancy newVacancy){
-
-        try {
             return newVacancy
         }
         catch (Exception e){
             println "\nOcorreu um erro: $e \n"
-            return false
         }
     }
 }

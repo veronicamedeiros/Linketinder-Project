@@ -35,21 +35,11 @@ class CompanyRegistrationMenu {
 
 
             Company newCompany= new Company(name, email, country, cep, state, description, cnpj, password)
-        }
-        catch (Exception e){
-            println "\nOcorreu um erro: $e \n"
-        }
-    }
 
-
-    static addCompany(Company newCompany, List CompanyList){
-
-        try {
             return newCompany
         }
         catch (Exception e){
             println "\nOcorreu um erro: $e \n"
-            return false
         }
     }
 }

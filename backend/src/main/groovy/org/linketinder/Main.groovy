@@ -1,9 +1,11 @@
 package org.linketinder
 
+
 import org.linketinder.Menus.Menu
 import org.linketinder.DatabaseConnection.CandidateConnection
 import org.linketinder.DatabaseConnection.CompanyConnection
 import org.linketinder.DatabaseConnection.VacancyConnection
+
 
 
 class Main{
@@ -11,7 +13,8 @@ class Main{
 
         String resp;
 
-        while (resp != "0"){
+        while (resp != "13"){
+
             resp = Menu.mainMenu()
 
             switch (resp){
@@ -21,53 +24,55 @@ class Main{
                 break
 
             case("2"):
-                CompanyConnection.listAllCompanies()
-                break
-
-            case("3"):
-                VacancyConnection.listAllVacancies()
-                break
-
-            case("4"):
                 CandidateConnection.insertInformations()
                 break
 
-            case("5"):
-                CompanyConnection.insertInformations()
-                break
-
-            case("6"):
-                VacancyConnection.insertInformations()
-                break
-
-            case("7"):
-                VacancyConnection.updateInformations()
-                break
-
-            case("8"):
+            case("3"):
                 CandidateConnection.updateInformations()
                 break
 
-            case("9"):
+            case("4"):
+                CandidateConnection.deleteInformations()
+                break
+
+            case("5"):
+                CompanyConnection.listAllCompanies()
+                break
+
+            case("6"):
+                CompanyConnection.insertInformations()
+                break
+
+            case("7"):
                 CompanyConnection.updateInformations()
                 break
 
-            case("10"):
+            case("8"):
                 CompanyConnection.deleteInformations()
                 break
 
+            case("9"):
+                VacancyConnection.listAllVacancies()
+                break
+
+            case("10"):
+                VacancyConnection.insertInformations()
+                break
+
             case("11"):
-                 CandidateConnection.deleteInformations()
+                VacancyConnection.updateInformations()
                 break
 
             case("12"):
                 VacancyConnection.deleteInformations()
                 break
 
-            case("0"):
+            case("13"):
                 println "Encerrando..."
                 break
             }
         }
     }
 }
+
+

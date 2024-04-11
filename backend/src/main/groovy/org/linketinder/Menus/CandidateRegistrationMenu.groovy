@@ -1,95 +1,59 @@
 package org.linketinder.Menus
 
-import org.linketinder.DatabaseConnection.SkillsConnection
+
 import org.linketinder.Entities.Candidate
 
 
-class CandidateRegistrationMenu {
+static Candidate registration(){
 
-     static Candidate registration(){
-
-        List<Integer> skills = new ArrayList<>()
-        Scanner scanner = new Scanner(System.in)
-        Integer skill
+    List<Integer> skills = new ArrayList<>()
+    Scanner scanner = new Scanner(System.in)
 
 
-        try {
-            print "Informe seu primeiro nome: "
-            String name = scanner.nextLine()
+    try {
+        print "Informe seu primeiro nome: "
+        String name = scanner.nextLine()
 
-            print "Informe seu sobrenome: "
-            String surname = scanner.nextLine()
+        print "Informe seu sobrenome: "
+        String surname = scanner.nextLine()
 
-            print "Informe sua data de nascimento (\"yyyy-MM-dd\"): "
-            String birth = scanner.next()
-            String y = scanner.nextLine()
+        print "Informe sua data de nascimento (\"yyyy-MM-dd\"): "
+        String birth = scanner.next()
+        String fixBug = scanner.nextLine()
 
-            print "Crie uma senha de pelo menos 6 dígitos: "
-            String password = scanner.nextLine()
+        print "Crie uma senha de pelo menos 6 dígitos: "
+        String password = scanner.nextLine()
 
-            print "Informe sua idade: "
-            Integer age = scanner.nextInt()
+        print "Informe sua idade: "
+        Integer age = scanner.nextInt()
 
-            print "Informe seu CPF: "
-            String x = scanner.nextLine()
-            String cpf = scanner.nextLine()
+        print "Informe seu CPF: "
+        String fixBug2 = scanner.nextLine()
+        String cpf = scanner.nextLine()
 
-            print "Informe seu melhor e-mail: "
-            String email = scanner.nextLine()
+        print "Informe seu melhor e-mail: "
+        String email = scanner.nextLine()
 
-            print "Informe o País: "
-            String country = scanner.nextLine()
+        print "Informe o País: "
+        String country = scanner.nextLine()
 
-            print "Informe o Estado: "
-            String state = scanner.nextLine()
+        print "Informe o Estado: "
+        String state = scanner.nextLine()
 
-            print "Informe o CEP: "
-            String cep = scanner.nextLine()
+        print "Informe o CEP: "
+        String cep = scanner.nextLine()
 
-            print "Escreva uma breve descrição sobre seu perfil profissional: "
-            String description = scanner.nextLine()
+        print "Escreva uma breve descrição sobre seu perfil profissional: "
+        String description = scanner.nextLine()
 
-            while (skill != 0){
+        skills = ChooseSkills.chooseSkills()
 
-                print("\n" +"*" * 40 + "\n")
-                println " " * 15 + "Habilidades"
-                print("*" * 40 +"\n")
-
-                SkillsConnection.listAllSkills()
-                println "\nDigite o número referente à habilidade desejada e pressione enter."
-                println "Caso não deseje informar mais nenhuma, pressione 0.\n"
-
-                print("Habilidade: ")
-                skill = (Integer) scanner.nextInt()
-
-
-                if(skill < 0 | skill > 21) {
-                    println("Opção inválida.")
-                }
-                else{
-                    if (skill == 0) {
-                        break
-                    }else{
-                        skills.add(skill)
-                    }
-                }
-            }
-
-            Candidate newCandidate = new Candidate(name, surname, birth, email, country, cep, state, description, age, cpf, skills as List<String>, password)
-        }
-        catch (Exception e){
-            println "\nOcorreu um erro: $e \n"
-        }
+        Candidate newCandidate = new Candidate(name, surname, birth, email, country, cep, state, description, age, cpf, skills, password)
+        return newCandidate
     }
+    catch (Exception e){
 
-    static addCandidate(Candidate newCandidate){
-
-        try {
-            return newCandidate
-        }
-        catch (Exception e){
-            println "\nOcorreu um erro: $e \n"
-            return false
-        }
+        println "\nNão foi possível realizar o cadastro. Erro: $e \n"
     }
 }
+
