@@ -3,7 +3,7 @@ package org.linketinder.Menus
 import org.linketinder.DatabaseConnection.SkillsConnection
 
 
-static List chooseSkills(){
+static List<Integer> chooseSkills(){
 
     Integer skill
     List<Integer> skills = new ArrayList<>()

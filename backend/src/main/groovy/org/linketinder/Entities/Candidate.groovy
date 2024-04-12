@@ -6,9 +6,9 @@ class Candidate extends Person {
     private String birth
     private Integer age
     private String cpf
-    private List<String> skills
+    private List<Integer> skills
 
-    Candidate(String name, String surname, String birth, String email, String country, String cep, String state, String description, Integer age, String cpf, List<String> skills, String password) {
+    Candidate(String name, String surname, String birth, String email, String country, String cep, String state, String description, Integer age, String cpf, List<Integer> skills, String password) {
         super(name, email, country, cep, state, description, password)
         setSurname(surname)
         setBirth(birth)
@@ -33,11 +33,11 @@ class Candidate extends Person {
         this.cpf = cpf
     }
 
-    List<String> getSkills() {
+    List<Integer> getSkills() {
         return skills
     }
 
-    void setSkills(List<String> skills) {
+    void setSkills(List<Integer> skills) {
         this.skills = skills
     }
 
@@ -57,5 +57,3 @@ class Candidate extends Person {
         this.birth = birth
     }
 }
-
-
