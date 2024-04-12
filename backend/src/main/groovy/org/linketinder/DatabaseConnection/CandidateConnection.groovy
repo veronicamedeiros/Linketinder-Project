@@ -8,7 +8,7 @@ import org.linketinder.Utilities.idValidation
 
 class CandidateConnection {
 
-    static def sql = Conexao.connectDataBase()
+    static Object sql = Connection.connectDataBase()
 
     static String[] candidateTableHeader = ['candidate_name', 'candidate_surname', 'candidate_birth', 'candidate_email', 'candidate_country',
                                             'candidate_cep', 'candidate_state', 'candidate_description', 'candidate_age', 'candidate_cpf', 'candidate_password']
@@ -67,7 +67,7 @@ class CandidateConnection {
                                             VALUES ($newCandidate.name, $newCandidate.surname, TO_DATE($newCandidate.birth, 'YYYY-MM-DD'), $newCandidate.email, $newCandidate.country, 
                                                     $newCandidate.cep, $newCandidate.state, $newCandidate.description, $newCandidate.age, $newCandidate.cpf, $newCandidate.password) 
                                             RETURNING id""")
-            Integer generatedId = result[0][0]
+            Integer generatedId = result[0][0] as Integer
 
             for (newSkill in newCandidate.skills){
 
@@ -144,7 +144,7 @@ class CandidateConnection {
                 }
 
                 Integer oldSkill = (Integer) ChooseSkills.chooseOldSKill()
-                String newSkill = (String) ChooseSkills.chooseNewSkill()
+                Integer newSkill = (Integer) ChooseSkills.chooseNewSkill()
 
 
                 sql.execute("""

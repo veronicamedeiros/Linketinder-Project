@@ -8,7 +8,7 @@ import org.linketinder.Utilities.idValidation
 
 class CompanyConnection {
 
-    static def sql = Conexao.connectDataBase()
+    static Object sql = Connection.connectDataBase()
 
     static String[] companyTableHeader = ['company_name', 'company_email', 'company_country', 'company_cep',
                                           'company_state', 'company_description', 'company_cnpj', 'company_password']
@@ -35,9 +35,6 @@ class CompanyConnection {
         }catch (Exception e){
 
             println("\nNão foi possível realizar a operação. Erro: $e")
-        }
-        finally {
-            sql.close()
         }
     }
 
@@ -97,9 +94,6 @@ class CompanyConnection {
         catch(Exception e){
 
             println("\não foi possível atualizar os dados. Erro: $e")
-        }
-        finally {
-            sql.close()
         }
     }
 

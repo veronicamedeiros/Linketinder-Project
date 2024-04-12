@@ -27,7 +27,7 @@ static validateId(String personType){
                 idExists = CompanyConnection.companyExists(id)
                 break
             case("vacancy"):
-                idExists = VacancyConnection.idExists(id)
+                idExists = VacancyConnection.vacancyExists(id)
                 break
         }
 

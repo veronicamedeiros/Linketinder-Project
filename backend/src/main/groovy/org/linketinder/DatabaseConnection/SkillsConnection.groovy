@@ -2,7 +2,7 @@ package org.linketinder.DatabaseConnection
 
 class SkillsConnection {
 
-    static def sql = Conexao.connectDataBase()
+    static Object sql = Connection.connectDataBase()
 
     static listAllSkills(){
 

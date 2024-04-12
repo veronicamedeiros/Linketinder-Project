@@ -8,7 +8,7 @@ import org.linketinder.Utilities.idValidation
 
 class VacancyConnection {
 
-    static def sql = Conexao.connectDataBase()
+    static Object sql = Connection.connectDataBase()
 
     static String[] vacancyTableHeader = ['vacancy_position', 'vacancy_level', 'vacancy_shift', 'vacancy_model',
                                           'vacancy_city', 'vacancy_state', 'job_description', 'id_company']
@@ -63,14 +63,11 @@ class VacancyConnection {
 
             println("Ocorreu um erro: $e")
         }
-        finally {
-            sql.close()
-        }
         println()
     }
 
 
-    static idExists(Integer vacancyId){
+    static vacancyExists(Integer vacancyId){
 
         try {
             sql.rows("""
@@ -197,7 +194,6 @@ class VacancyConnection {
                             """.toString())
 
                 println("\nInformação excluÍda com sucesso")
-
             }
 
             if (chosenOption == 8){

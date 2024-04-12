@@ -2,7 +2,7 @@ package org.linketinder.DatabaseConnection
 
 import groovy.sql.Sql
 
-class Conexao {
+class Connection {
 
      protected static connectDataBase() {
 
