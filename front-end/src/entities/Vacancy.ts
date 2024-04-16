@@ -3,7 +3,7 @@ export class Vacancy{
     constructor(
         protected _position: string,
         protected _level: string, //estágio, júnior, pleno, sênior
-        protected _shift: string, //manhã, tarde, noite
+        protected _shift: string,
         protected _model: string, //remoto, híbrido, presencial
         protected _jobDescription: string,
         protected _companyDescription: string,

@@ -18,7 +18,7 @@
     <form action="#" name="formulario" method="get" id="companyForm">  
         <fieldset>
             <legend>Dados empresariais</legend>
-                <label for="name">Nome fantasia:</label>
+                <label for="name">Razão social:</label>
                     <input name="name" type="text" size="25" id="companyName" required>
 
                 <label for="cpf">CNPJ:</label>
@@ -42,18 +42,11 @@
                 <label for="description">Descrição da empresa:</label>
                     <textarea name="description" id="companyDescription" cols="80" rows="10" required></textarea>
                 
-                <br>
-                <br>            
-                    <label for="skills" >Informe as 5 principais habilidades que a empresa espera de um candidato:</label>
-                    <br>              
-                        <input name="skills" type="text" size="15" class="desiredSkills" required> 
-                        <input name="skills" type="text" size="15" class="desiredSkills" required> <br>                        
-                        <input name="skills" type="text" size="15" class="desiredSkills" required>                       
-                        <input name="skills" type="text" size="15" class="desiredSkills" required> <br> 
-                        <input name="skills" type="text" size="15" class="desiredSkills" required> 
-                <br>               
+                <br>             
             
         </fieldset>
+                <br>
+                <div id="formError"></div>
                 <br>
                 <button type="submit" value="Enviar" id="submitForm2">Enviar</button>       
     </form> 

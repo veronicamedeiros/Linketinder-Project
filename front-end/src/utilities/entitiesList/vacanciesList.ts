@@ -1,4 +1,4 @@
-import { Vacancy } from "../entities/Vacancy";
+import { Vacancy } from "../../entities/Vacancy";
 
 export let vacanciesList: Array<Vacancy> = [
     

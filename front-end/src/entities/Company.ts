@@ -9,11 +9,10 @@ export class Company extends Person{
         protected _cep: string, 
         protected _state: string, 
         public _description: string,
-        public _skills: Array<string>,
         protected _cnpj: string
         )
         {
-            super(_name, _email, _country, _cep, _state, _description, _skills)
+            super(_name, _email, _country, _cep, _state, _description)
         }
 
     get cnpj(): string {

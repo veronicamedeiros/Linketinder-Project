@@ -1,60 +1,60 @@
-import { candidateList } from './utilities/candidateList'
-import listPerson from "./utilities/listPerson"
+import { candidateList } from './utilities/entitiesList/candidateList'
+import listCandidates from "./utilities/listCandidates"
 import {registerCandidate} from "./utilities/registerCandidate"
-import { vacanciesList } from './utilities/vacanciesList'
+import { vacanciesList } from './utilities/entitiesList/vacanciesList'
 import listVacancies from './utilities/listVacancies'
 import { registerCompany } from './utilities/registerCompany'
-import { companyFormValidation } from './utilities/companyFormValidation'
-import { candidateFormValidation } from './utilities/candidateFormValidation'
+import { companyFormValidation } from './utilities/regexValidation/companyFormValidation'
+import { candidateFormValidation } from './utilities/regexValidation/candidateFormValidation' 
 
 
-let submitForm: any = document.getElementById("submitForm");
-let submitFormTwo: any = document.getElementById("submitForm2");
+let candidateFormSubmitButton: any = document.getElementById("submitForm");
+let companyFormSubmitButton: any = document.getElementById("submitForm2");
 
-let listCandidatesInformations: any = document.getElementById("listCandidatesInformations");
-let candidatesInformations: any = document.getElementById("candidatesInformations");
+let candidatesListDisplayButton: any = document.getElementById("listCandidatesInformations");
+let candidatesDisplayField: any = document.getElementById("candidatesInformations");
 
-let listJobOpportunity:any = document.getElementById("listJobOpportunity");
-let jobOpportunity:any = document.getElementById("jobOpportunity");
+let jobOpportunityListDisplayButton:any = document.getElementById("listJobOpportunity");
+let jobOpportunitiesDisplayField:any = document.getElementById("jobOpportunity");
 
 
-if(listCandidatesInformations){ //listar candidatos
+if(candidatesListDisplayButton){ //listar candidatos
 
-    listCandidatesInformations.onclick = function(){
+    candidatesListDisplayButton.onclick = function(){
         
-        candidatesInformations.innerHTML = listPerson(candidateList);
+        candidatesDisplayField.innerHTML = listCandidates(candidateList);
 
-        candidatesInformations.style.display = "block"; //exibe espaço para informação do candidato
+        candidatesDisplayField.style.display = "block"; //exibe espaço para informação do candidato
     }
 }
 
 
-if(listJobOpportunity){ //listar vagas
+if(jobOpportunityListDisplayButton){ //listar vagas
 
-    listJobOpportunity.onclick = function(){
+    jobOpportunityListDisplayButton.onclick = function(){
 
-        jobOpportunity.innerHTML = listVacancies(vacanciesList); //chama função de listagem de vagas
+        jobOpportunitiesDisplayField.innerHTML = listVacancies(vacanciesList); //chama função de listagem de vagas
 
-        jobOpportunity.style.display = "block";
+        jobOpportunitiesDisplayField.style.display = "block";
     }
 }
 
 
-if(submitForm){ //cadastrar candidatos
+if(candidateFormSubmitButton){ //cadastrar candidatos
 
     candidateFormValidation(); //validação formulário
 
-    submitForm.onclick = function(){
+    candidateFormSubmitButton.onclick = function(){
         registerCandidate();
     }
 }
 
 
-if(submitFormTwo){ //cadastrar empresas
+if(companyFormSubmitButton){ //cadastrar empresas
 
     companyFormValidation(); //validação formulário
 
-    submitFormTwo.onclick = function(){
+    companyFormSubmitButton.onclick = function(){
 
         registerCompany();
     }
