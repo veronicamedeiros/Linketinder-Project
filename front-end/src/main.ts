@@ -18,31 +18,31 @@ let jobOpportunityListDisplayButton:any = document.getElementById("listJobOpport
 let jobOpportunitiesDisplayField:any = document.getElementById("jobOpportunity");
 
 
-if(candidatesListDisplayButton){ //listar candidatos
+if(candidatesListDisplayButton){
 
     candidatesListDisplayButton.onclick = function(){
         
         candidatesDisplayField.innerHTML = listCandidates(candidateList);
 
-        candidatesDisplayField.style.display = "block"; //exibe espaço para informação do candidato
+        candidatesDisplayField.style.display = "block";
     }
 }
 
 
-if(jobOpportunityListDisplayButton){ //listar vagas
+if(jobOpportunityListDisplayButton){
 
     jobOpportunityListDisplayButton.onclick = function(){
 
-        jobOpportunitiesDisplayField.innerHTML = listVacancies(vacanciesList); //chama função de listagem de vagas
+        jobOpportunitiesDisplayField.innerHTML = listVacancies(vacanciesList);
 
         jobOpportunitiesDisplayField.style.display = "block";
     }
 }
 
 
-if(candidateFormSubmitButton){ //cadastrar candidatos
+if(candidateFormSubmitButton){ 
 
-    candidateFormValidation(); //validação formulário
+    candidateFormValidation();
 
     candidateFormSubmitButton.onclick = function(){
         registerCandidate();
@@ -50,9 +50,9 @@ if(candidateFormSubmitButton){ //cadastrar candidatos
 }
 
 
-if(companyFormSubmitButton){ //cadastrar empresas
+if(companyFormSubmitButton){
 
-    companyFormValidation(); //validação formulário
+    companyFormValidation();
 
     companyFormSubmitButton.onclick = function(){
 
