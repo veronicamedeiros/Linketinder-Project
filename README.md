@@ -23,11 +23,22 @@ Funcionalidades:
  - Cadastrar, listar, atualizar e deletar Habilidades (estas funcionalidade são acessível dentro das funcionalidades anteriores)
  - Sair
 
-_O arquivo que deve ser executado é o Main.groovy, localizado no caminho backend/src/main/groovy/org/linketinder, que iniciará com um menu._
     
-_Pre-requisitos - para rodar o projeto, é necessário instalar e configurar:_
-- Groovy;
-- JVM (Java Virtual Machine);
+_Pre-requisitos - para rodar o backend do projeto, é necessário:_
+
+
+ - Clonar o repositório atual com o comando abaixo:
+ ```
+ git clone https://github.com/veronicamedeiros/Linketinder-Project
+ ```
+ - Possuir o Gradle instalado e, na pasta principal do arquivo clonado, dar o seguinte:
+ ```
+ ./gradlew build
+ ```
+ - Para executar a aplicação, utilize uma IDE e rode com o Gradle ou dê o comando abaixo:
+ ```
+ ./gradlew run
+ ```
 - IDE (sugerida: IntelliJ IDEA; aqui é necessário alterar as informações de conexão para se conectar ao servidor local);
 - PostgreSQL e arquivo sql do banco.<br/>
   
