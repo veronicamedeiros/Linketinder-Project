@@ -1,11 +1,9 @@
-import { candidateList } from './utilities/entitiesList/candidateList'
-import listCandidates from "./utilities/listCandidates"
-import {registerCandidate} from "./utilities/registerCandidate"
-import { vacanciesList } from './utilities/entitiesList/vacanciesList'
-import listVacancies from './utilities/listVacancies'
-import { registerCompany } from './utilities/registerCompany'
-import { companyFormValidation } from './utilities/regexValidation/companyFormValidation'
-import { candidateFormValidation } from './utilities/regexValidation/candidateFormValidation' 
+import {CandidatesDisplay} from "./utilities/CandidatesDisplay"
+import {CandidateRegistration} from "./utilities/CandidateRegistration"
+import {VacanciesDisplay} from './utilities/VacanciesDisplay'
+import {CompanyFormValidation} from './utilities/regexValidation/CompanyFormValidation'
+import { CandidateFormValidation } from './utilities/regexValidation/CandidateFormValidation'
+import { CompanyRegistration } from './utilities/CompanyRegistration'
 
 
 let candidateFormSubmitButton: any = document.getElementById("submitForm");
@@ -22,7 +20,7 @@ if(candidatesListDisplayButton){
 
     candidatesListDisplayButton.onclick = function(){
         
-        candidatesDisplayField.innerHTML = listCandidates(candidateList);
+        candidatesDisplayField.innerHTML = CandidatesDisplay.listCandidates();
 
         candidatesDisplayField.style.display = "block";
     }
@@ -33,7 +31,7 @@ if(jobOpportunityListDisplayButton){
 
     jobOpportunityListDisplayButton.onclick = function(){
 
-        jobOpportunitiesDisplayField.innerHTML = listVacancies(vacanciesList);
+        jobOpportunitiesDisplayField.innerHTML = VacanciesDisplay.listVacancies();
 
         jobOpportunitiesDisplayField.style.display = "block";
     }
@@ -42,20 +40,21 @@ if(jobOpportunityListDisplayButton){
 
 if(candidateFormSubmitButton){ 
 
-    candidateFormValidation();
+    CandidateFormValidation.execute();
 
     candidateFormSubmitButton.onclick = function(){
-        registerCandidate();
+        
+        CandidateRegistration.registerCandidate();
     }
 }
 
 
 if(companyFormSubmitButton){
 
-    companyFormValidation();
+    CompanyFormValidation.execute();
 
     companyFormSubmitButton.onclick = function(){
 
-        registerCompany();
+        CompanyRegistration.registerCompany();
     }
 }

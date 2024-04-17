@@ -1,6 +1,6 @@
 import { Candidate } from "../../entities/Candidate";
 
-export let candidateList: Array<Candidate> = [
+export let candidatesList: Array<Candidate> = [
 
     new Candidate("Ana Júlia da Silva", "ana.silva@gmail.com", "Brasil", "098169-726", "São Paulo",
         "Formada em Análise e Desenvolvimento de Sistemas. Sou uma profissional que acredita no poder da colaboração para impulsionar o sucesso. ", 39, "323.331.333-01", ["Python", "Java", "Spring", "Framework", "Angular"]),
