@@ -13,23 +13,29 @@ export class CompanyRegistration{
 
     
     static registerCompany(){
+
+        try{
             
-        const newCompany = new Company(
-            companyName.value,
-            companyEmail.value,
-            companyCountry.value,
-            companyCep.value,
-            companyState.value,
-            companyDescription.value,
-            companyCnpj.value
-        )
+            const newCompany = new Company(
+                companyName.value,
+                companyEmail.value,
+                companyCountry.value,
+                companyCep.value,
+                companyState.value,
+                companyDescription.value,
+                companyCnpj.value
+            )
 
-        companyList.push(newCompany);
+            companyList.push(newCompany);
 
 
-        //mostra a array de empresas com o novo item no console:
-        console.log() //para 'resolver' bug com a array
+            //mostra a array de empresas com o novo item no console:
+            console.log() //para 'resolver' bug com a array
 
-        companyList.forEach((company) => console.log(company))
-    }    
+            companyList.forEach((company) => console.log(company))
+        }
+        catch(e){
+            console.error(e)
+        }
+    }   
 }

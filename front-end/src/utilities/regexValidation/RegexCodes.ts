@@ -49,27 +49,33 @@ export class RegexCodes{
 
     showValidationError(field: HTMLElement, msg?: string): void{
 
-        let formError: any = (document.getElementById('formError')as HTMLElement);
-    
-        let errorMsg: Array<String> = []
-    
-    
-        if (msg && !errorMsg.includes(msg)){
-    
-            errorMsg.push(msg)
-    
-            formError.innerHTML = `<p>${msg}</p>`
-            formError.style.color = "red"
-            field.style.borderColor= "red"
-            field.style.borderWidth= "3px"
+        
+        try{
+
+            let formError: any = (document.getElementById('formError')as HTMLElement);
+        
+            let errorMsg: Array<String> = []
+        
+        
+            if (msg && !errorMsg.includes(msg)){
+        
+                errorMsg.push(msg)
+        
+                formError.innerHTML = `<p>${msg}</p>`
+                formError.style.color = "red"
+                field.style.borderColor= "red"
+                field.style.borderWidth= "3px"
+            }
+            else{
+                
+                formError.innerHTML = ""
+                field.style.borderColor= "black"
+                field.style.borderWidth= "1px" 
+            }
         }
-        else{
-            
-            formError.innerHTML = ""
-            field.style.borderColor= "black"
-            field.style.borderWidth= "1px" 
-        }
-    
+        catch(e){
+            console.error(e)
+        }    
     }
 }
 

@@ -16,31 +16,37 @@ export class CandidateRegistration{
     static registerCandidate(): void{
         
         let skillsList: Array<string> = [];
+
+        try{
         
-        for(let pos = 0; pos <= 4; pos++){
-            let newSkill:any = (document.getElementsByClassName('candidateSkills')[pos]as HTMLElement);
-            skillsList.push(newSkill.value)
-        }
+            for(let pos = 0; pos <= 4; pos++){
+                let newSkill:any = (document.getElementsByClassName('candidateSkills')[pos]as HTMLElement);
+                skillsList.push(newSkill.value)
+            }
+
+                
+            const newCandidate = new Candidate(
+                candidateName.value,
+                candidateEmail.value,
+                candidateCountry.value,
+                candidateCEP.value,
+                candidateState.value,
+                candidateDescription.value,
+                candidateAge.value,
+                candidateCpf.value,
+                skillsList
+            )
+            
+            candidatesList.push(newCandidate);
 
             
-        const newCandidate = new Candidate(
-            candidateName.value,
-            candidateEmail.value,
-            candidateCountry.value,
-            candidateCEP.value,
-            candidateState.value,
-            candidateDescription.value,
-            candidateAge.value,
-            candidateCpf.value,
-            skillsList
-        )
-        
-        candidatesList.push(newCandidate);
+            //mostra a array de candidatos com o novo item no console:
+            console.log(); //para 'resolver' bug com a array
 
-        
-        //mostra a array de candidatos com o novo item no console:
-        console.log(); //para 'resolver' bug com a array
-
-        candidatesList.forEach((candidate) => console.log(candidate))
+            candidatesList.forEach((candidate) => console.log(candidate))
+    }
+        catch(e){
+            console.error(e)
+        }
     }
 }
