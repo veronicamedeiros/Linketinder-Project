@@ -2,9 +2,9 @@ package org.linketinder.DBDAO
 
 import org.linketinder.entities.Candidate
 import org.linketinder.menus.CandidateRegistrationMenu
-import org.linketinder.menus.ChooseMenuOptions
-import org.linketinder.menus.ChooseSkills
-import org.linketinder.utilities.idValidation
+import org.linketinder.menus.MenuOptionsSelection
+import org.linketinder.menus.SkillsSelection
+import org.linketinder.utilities.IdValidation
 
 
 class CandidateDAO {
@@ -109,15 +109,15 @@ class CandidateDAO {
     static updateCandidatesInformations(){
 
         try {
-            Integer candidateId = (Integer) idValidation.validateId("candidate")
+            Integer candidateId = (Integer) IdValidation.validateId("candidate")
 
-            Integer chosenOption = ChooseMenuOptions.selecMenuOption(candidateMenuOptions, "Atualizar Dados")
+            Integer chosenOption = MenuOptionsSelection.selecMenuOption(candidateMenuOptions, "Atualizar Dados")
 
 
             if (chosenOption < 12) {
 
                 String stringChosenOption = (String) candidateTableHeader[chosenOption - 1]
-                String updatedInformation = (String) ChooseMenuOptions.addUpdatedInformation()
+                String updatedInformation = (String) MenuOptionsSelection.addUpdatedInformation()
 
                 sql.execute("""
                             UPDATE candidates 
@@ -144,8 +144,8 @@ class CandidateDAO {
                     }
                 }
 
-                Integer oldSkill = (Integer) ChooseSkills.chooseOldSKill()
-                Integer newSkill = (Integer) ChooseSkills.chooseNewSkill()
+                Integer oldSkill = (Integer) SkillsSelection.chooseOldSKill()
+                Integer newSkill = (Integer) SkillsSelection.chooseNewSkill()
 
 
                 sql.execute("""
@@ -171,9 +171,9 @@ class CandidateDAO {
 
         try {
 
-            Integer candidateId = (Integer) idValidation.validateId("candidate")
+            Integer candidateId = (Integer) IdValidation.validateId("candidate")
 
-            Integer chosenOption = ChooseMenuOptions.selecMenuOption(candidateMenuOptions, "Deletar dados")
+            Integer chosenOption = MenuOptionsSelection.selecMenuOption(candidateMenuOptions, "Deletar dados")
 
             if (chosenOption < 12) {
 
@@ -203,7 +203,7 @@ class CandidateDAO {
                     }
                 }
 
-                Integer oldSkill = (Integer) ChooseSkills.chooseOldSKill()
+                Integer oldSkill = (Integer) SkillsSelection.chooseOldSKill()
 
                 sql.execute("""
                             DELETE FROM candidate_skills 

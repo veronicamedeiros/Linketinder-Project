@@ -3,56 +3,59 @@ package org.linketinder.menus
 import org.linketinder.DBDAO.SkillsDAO
 
 
-static List<Integer> chooseSkills(){
+class SkillsSelection{
 
-    Integer skill
-    List<Integer> skills = new ArrayList<>()
+    static List<Integer> chooseSkills(){
 
-    while (skill != 0){
+        Integer skill
+        List<Integer> skills = new ArrayList<>()
 
-        print("\n" +"*" * 40 + "\n" + " " * 15 + "HABILIDADES" + "\n" + "*" * 40 +"\n")
+        while (skill != 0){
 
-        println "\nDigite o número referente à habilidade desejada e pressione enter."
-        println "Caso não deseje informar mais nenhuma, pressione 0.\n"
+            print("\n" +"*" * 40 + "\n" + " " * 15 + "HABILIDADES" + "\n" + "*" * 40 +"\n")
 
-        skill = chooseNewSkill("Habilidade: ")
+            println "\nDigite o número referente à habilidade desejada e pressione enter."
+            println "Caso não deseje informar mais nenhuma, pressione 0.\n"
+
+            skill = chooseNewSkill("Habilidade: ")
 
 
-        if(skill < 0 | skill > 21) {
-            println("Opção inválida.")
-        }
-        else{
-            if (skill == 0) {
-                return skills
+            if(skill < 0 | skill > 21) {
+                println("Opção inválida.")
             }
             else{
-                skills.add(skill)
+                if (skill == 0) {
+                    return skills
+                }
+                else{
+                    skills.add(skill)
+                }
             }
+
         }
-
     }
-}
 
 
-static Integer chooseOldSKill(){
+    static Integer chooseOldSKill(){
 
-    Scanner scanner = new Scanner(System.in)
+        Scanner scanner = new Scanner(System.in)
 
-    print("\nInforme o número da habilidade que deseja selecionar: ")
-    Integer oldSkill = (Integer) scanner.nextInt()
+        print("\nInforme o número da habilidade que deseja selecionar: ")
+        Integer oldSkill = (Integer) scanner.nextInt()
 
-    return oldSkill
-}
+        return oldSkill
+    }
 
 
-static chooseNewSkill(String msg = "Insira o número da nova habilidade e pressione enter: "){
+    static chooseNewSkill(String msg = "Insira o número da nova habilidade e pressione enter: "){
 
-    SkillsDAO.listAllSkills()
+        SkillsDAO.listAllSkills()
 
-    print("\n $msg")
+        print("\n $msg")
 
-    Scanner scanner = new Scanner(System.in)
-    Integer newSkill = (Integer) scanner.nextInt()
+        Scanner scanner = new Scanner(System.in)
+        Integer newSkill = (Integer) scanner.nextInt()
 
-    return newSkill
+        return newSkill
+    }
 }

@@ -36,7 +36,7 @@ class VacancyRegistrationMenu {
             String jobDescription = scanner.nextLine()
 
 
-            desiredSkills = ChooseSkills.chooseSkills()
+            desiredSkills = SkillsSelection.chooseSkills()
 
             Vacancy newVacancy = new Vacancy(position, level, shift, model, city, state, jobDescription, desiredSkills, idCompany)
 

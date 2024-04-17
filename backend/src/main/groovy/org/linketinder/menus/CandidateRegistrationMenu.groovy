@@ -3,58 +3,60 @@ package org.linketinder.menus
 
 import org.linketinder.entities.Candidate
 
-
-static Candidate register(){
-
-    List<Integer> skills = new ArrayList<>()
-    Scanner scanner = new Scanner(System.in)
+class CandidateRegistrationMenu{
 
 
-    try {
-        print "Informe seu primeiro nome: "
-        String name = scanner.nextLine()
+    static Candidate register(){
 
-        print "Informe seu sobrenome: "
-        String surname = scanner.nextLine()
+        List<Integer> skills = new ArrayList<>()
+        Scanner scanner = new Scanner(System.in)
 
-        print "Informe sua data de nascimento (\"yyyy-MM-dd\"): "
-        String birth = scanner.next()
-        String fixBug = scanner.nextLine()
 
-        print "Crie uma senha de pelo menos 6 dígitos: "
-        String password = scanner.nextLine()
+        try {
+            print "Informe seu primeiro nome: "
+            String name = scanner.nextLine()
 
-        print "Informe sua idade: "
-        Integer age = scanner.nextInt()
+            print "Informe seu sobrenome: "
+            String surname = scanner.nextLine()
 
-        print "Informe seu CPF: "
-        String fixBug2 = scanner.nextLine()
-        String cpf = scanner.nextLine()
+            print "Informe sua data de nascimento (\"yyyy-MM-dd\"): "
+            String birth = scanner.next()
+            String fixBug = scanner.nextLine()
 
-        print "Informe seu melhor e-mail: "
-        String email = scanner.nextLine()
+            print "Crie uma senha de pelo menos 6 dígitos: "
+            String password = scanner.nextLine()
 
-        print "Informe o País: "
-        String country = scanner.nextLine()
+            print "Informe sua idade: "
+            Integer age = scanner.nextInt()
 
-        print "Informe o Estado: "
-        String state = scanner.nextLine()
+            print "Informe seu CPF: "
+            String fixBug2 = scanner.nextLine()
+            String cpf = scanner.nextLine()
 
-        print "Informe o CEP: "
-        String cep = scanner.nextLine()
+            print "Informe seu melhor e-mail: "
+            String email = scanner.nextLine()
 
-        print "Escreva uma breve descrição sobre seu perfil profissional: "
-        String description = scanner.nextLine()
+            print "Informe o País: "
+            String country = scanner.nextLine()
 
-        skills = ChooseSkills.chooseSkills()
+            print "Informe o Estado: "
+            String state = scanner.nextLine()
 
-        Candidate newCandidate = new Candidate(name, surname, birth, email, country, cep, state, description, age, cpf, skills, password)
+            print "Informe o CEP: "
+            String cep = scanner.nextLine()
 
-        return newCandidate
-    }
-    catch (Exception e){
+            print "Escreva uma breve descrição sobre seu perfil profissional: "
+            String description = scanner.nextLine()
 
-        e.printStackTrace()
+            skills = SkillsSelection.chooseSkills()
+
+            Candidate newCandidate = new Candidate(name, surname, birth, email, country, cep, state, description, age, cpf, skills, password)
+
+            return newCandidate
+        }
+        catch (Exception e){
+
+            e.printStackTrace()
+        }
     }
 }
-

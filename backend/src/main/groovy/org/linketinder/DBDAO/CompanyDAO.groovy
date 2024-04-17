@@ -2,8 +2,8 @@ package org.linketinder.DBDAO
 
 import org.linketinder.menus.CompanyRegistrationMenu
 import org.linketinder.entities.Company
-import org.linketinder.menus.ChooseMenuOptions
-import org.linketinder.utilities.idValidation
+import org.linketinder.menus.MenuOptionsSelection
+import org.linketinder.utilities.IdValidation
 
 class CompanyDAO {
 
@@ -77,9 +77,9 @@ class CompanyDAO {
     static updateCompaniesInformations(){
 
         try {
-            Integer companyId = (Integer) idValidation.validateId("company")
-            Integer chosenOption = ChooseMenuOptions.selecMenuOption(companyMenuOptions, "Atualizar Dados")
-            String updatedInformation = (String) ChooseMenuOptions.addUpdatedInformation()
+            Integer companyId = (Integer) IdValidation.validateId("company")
+            Integer chosenOption = MenuOptionsSelection.selecMenuOption(companyMenuOptions, "Atualizar Dados")
+            String updatedInformation = (String) MenuOptionsSelection.addUpdatedInformation()
             String textChosenOption = (String) companyTableHeader[chosenOption - 1]
 
             sql.execute("""
@@ -100,8 +100,8 @@ class CompanyDAO {
     static deleteCompaniesInformations(){
 
         try {
-            Integer idCompany = (Integer) idValidation.validateId("company")
-            Integer chosenOption = ChooseMenuOptions.selecMenuOption(companyMenuOptions, "Deletar Dados")
+            Integer idCompany = (Integer) IdValidation.validateId("company")
+            Integer chosenOption = MenuOptionsSelection.selecMenuOption(companyMenuOptions, "Deletar Dados")
             String textChosenOption = (String) companyTableHeader[chosenOption - 1]
 
             sql.execute("""

@@ -9,7 +9,7 @@ class Menu {
                                         "Listar Vagas", "Cadastrar Vagas", "Atualizar Vaga", "Excluir dados da Vaga", "Sair"]
 
 
-        Integer manuChoosenOption = ChooseMenuOptions.selecMenuOption(mainMenuOptions, "Menu")
+        Integer manuChoosenOption = MenuOptionsSelection.selecMenuOption(mainMenuOptions, "Menu")
 
         return manuChoosenOption
     }

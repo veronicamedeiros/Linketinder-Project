@@ -1,10 +1,10 @@
 package org.linketinder.DBDAO
 
 import org.linketinder.entities.Vacancy
-import org.linketinder.menus.ChooseSkills
+import org.linketinder.menus.SkillsSelection
 import org.linketinder.menus.VacancyRegistrationMenu
-import org.linketinder.menus.ChooseMenuOptions
-import org.linketinder.utilities.idValidation
+import org.linketinder.menus.MenuOptionsSelection
+import org.linketinder.utilities.IdValidation
 
 class VacancyDAO {
 
@@ -119,15 +119,15 @@ class VacancyDAO {
 
         try {
 
-            Integer idVacancy = (Integer) idValidation.validateId("vacancy")
-            Integer chosenOption = ChooseMenuOptions.selecMenuOption(vacancyMenuOptions, "Atualizar dados")
+            Integer idVacancy = (Integer) IdValidation.validateId("vacancy")
+            Integer chosenOption = MenuOptionsSelection.selecMenuOption(vacancyMenuOptions, "Atualizar dados")
 
 
             if (chosenOption < 8) {
 
                 chosenOption -=  1
 
-                String updatedInformation = (String) ChooseMenuOptions.addUpdatedInformation()
+                String updatedInformation = (String) MenuOptionsSelection.addUpdatedInformation()
                 String textChosenOption = (String) vacancyTableHeader[chosenOption]
 
                 sql.execute("""
@@ -155,8 +155,8 @@ class VacancyDAO {
                     }
                 }
 
-                Integer oldSkill = (Integer) ChooseSkills.chooseOldSKill()
-                Integer newSkill = (Integer) ChooseSkills.chooseNewSkill()
+                Integer oldSkill = (Integer) SkillsSelection.chooseOldSKill()
+                Integer newSkill = (Integer) SkillsSelection.chooseNewSkill()
 
                 sql.execute("""
                             UPDATE vacancy_skills SET id_skill = ${newSkill} 
@@ -179,8 +179,8 @@ class VacancyDAO {
 
         try {
 
-            Integer idVacancy = (Integer) idValidation.validateId("vacancy")
-            Integer chosenOption = ChooseMenuOptions.selecMenuOption(vacancyMenuOptions, "Deletar Dados")
+            Integer idVacancy = (Integer) IdValidation.validateId("vacancy")
+            Integer chosenOption = MenuOptionsSelection.selecMenuOption(vacancyMenuOptions, "Deletar Dados")
 
 
             if (chosenOption < 8) {
@@ -212,7 +212,7 @@ class VacancyDAO {
                     }
                 }
 
-                Integer oldSkill = (Integer) ChooseSkills.chooseOldSKill()
+                Integer oldSkill = (Integer) SkillsSelection.chooseOldSKill()
 
                 sql.execute("""
                             DELETE FROM vacancy_skills 

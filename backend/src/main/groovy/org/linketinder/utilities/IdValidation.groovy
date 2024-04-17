@@ -4,40 +4,42 @@ import org.linketinder.DBDAO.CandidateDAO
 import org.linketinder.DBDAO.CompanyDAO
 import org.linketinder.DBDAO.VacancyDAO
 
+class IdValidation{
 
-static validateId(String personType){
+    static validateId(String personType){
 
-    Scanner scanner = new Scanner(System.in)
+        Scanner scanner = new Scanner(System.in)
 
-    while (true){
+        while (true){
 
-        print('Informe o número de cadastro: ')
+            print('Informe o número de cadastro: ')
 
-        Integer id = scanner.nextInt()
+            Integer id = scanner.nextInt()
 
-        boolean idExists
-
-
-        switch (personType){
-
-            case("candidate"):
-                idExists = CandidateDAO.candidateExists(id)
-                break
-            case("company"):
-                idExists = CompanyDAO.companyExists(id)
-                break
-            case("vacancy"):
-                idExists = VacancyDAO.vacancyExists(id)
-                break
-        }
+            boolean idExists
 
 
-        if (idExists){
+            switch (personType){
 
-            return id
-        }
-        else{
-            println("\nCadastro não encontrada.\n")
+                case("candidate"):
+                    idExists = CandidateDAO.candidateExists(id)
+                    break
+                case("company"):
+                    idExists = CompanyDAO.companyExists(id)
+                    break
+                case("vacancy"):
+                    idExists = VacancyDAO.vacancyExists(id)
+                    break
+            }
+
+
+            if (idExists){
+
+                return id
+            }
+            else{
+                println("\nCadastro não encontrada.\n")
+            }
         }
     }
 }
