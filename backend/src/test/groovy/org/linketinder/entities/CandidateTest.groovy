@@ -1,4 +1,4 @@
-package org.linketinder.Entities;
+package org.linketinder.entities;
 
 import org.junit.jupiter.api.Test;
 

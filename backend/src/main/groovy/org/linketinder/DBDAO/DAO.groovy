@@ -1,8 +1,8 @@
-package org.linketinder.DatabaseConnection
+package org.linketinder.DBDAO
 
 import groovy.sql.Sql
 
-class Connection {
+class DAO {
 
      protected static connectDataBase() {
 

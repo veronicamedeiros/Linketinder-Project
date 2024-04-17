@@ -1,7 +1,7 @@
-package org.linketinder.Menus
+package org.linketinder.menus
 
 
-import org.linketinder.Entities.Candidate
+import org.linketinder.entities.Candidate
 
 
 static Candidate register(){
@@ -54,7 +54,7 @@ static Candidate register(){
     }
     catch (Exception e){
 
-        println "\nNão foi possível realizar o cadastro. Erro: $e \n"
+        e.printStackTrace()
     }
 }
 

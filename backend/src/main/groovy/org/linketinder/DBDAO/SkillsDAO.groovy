@@ -1,8 +1,8 @@
-package org.linketinder.DatabaseConnection
+package org.linketinder.DBDAO
 
-class SkillsConnection {
+class SkillsDAO {
 
-    static Object sql = Connection.connectDataBase()
+    static Object sql = DAO.connectDataBase()
 
     static listAllSkills(){
 
@@ -19,7 +19,8 @@ class SkillsConnection {
             }
         }
         catch (Exception e){
-            println("\nNão foi possível realizar a operação. Erro: $e")
+
+            e.printStackTrace()
         }
     }
 }

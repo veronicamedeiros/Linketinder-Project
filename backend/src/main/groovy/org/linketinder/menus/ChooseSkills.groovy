@@ -1,6 +1,6 @@
-package org.linketinder.Menus
+package org.linketinder.menus
 
-import org.linketinder.DatabaseConnection.SkillsConnection
+import org.linketinder.DBDAO.SkillsDAO
 
 
 static List<Integer> chooseSkills(){
@@ -47,7 +47,7 @@ static Integer chooseOldSKill(){
 
 static chooseNewSkill(String msg = "Insira o número da nova habilidade e pressione enter: "){
 
-    SkillsConnection.listAllSkills()
+    SkillsDAO.listAllSkills()
 
     print("\n $msg")
 

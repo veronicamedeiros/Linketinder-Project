@@ -1,8 +1,8 @@
-package org.linketinder.Utilities
+package org.linketinder.utilities
 
-import org.linketinder.DatabaseConnection.CandidateConnection
-import org.linketinder.DatabaseConnection.CompanyConnection
-import org.linketinder.DatabaseConnection.VacancyConnection
+import org.linketinder.DBDAO.CandidateDAO
+import org.linketinder.DBDAO.CompanyDAO
+import org.linketinder.DBDAO.VacancyDAO
 
 
 static validateId(String personType){
@@ -21,13 +21,13 @@ static validateId(String personType){
         switch (personType){
 
             case("candidate"):
-                idExists = CandidateConnection.candidateExists(id)
+                idExists = CandidateDAO.candidateExists(id)
                 break
             case("company"):
-                idExists = CompanyConnection.companyExists(id)
+                idExists = CompanyDAO.companyExists(id)
                 break
             case("vacancy"):
-                idExists = VacancyConnection.vacancyExists(id)
+                idExists = VacancyDAO.vacancyExists(id)
                 break
         }
 

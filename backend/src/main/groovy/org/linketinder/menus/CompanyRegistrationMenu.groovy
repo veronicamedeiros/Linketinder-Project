@@ -1,5 +1,5 @@
-package org.linketinder.Menus
-import org.linketinder.Entities.Company
+package org.linketinder.menus
+import org.linketinder.entities.Company
 
 
 class CompanyRegistrationMenu {
@@ -39,7 +39,7 @@ class CompanyRegistrationMenu {
             return newCompany
         }
         catch (Exception e){
-            println "\nOcorreu um erro: $e \n"
+            e.printStackTrace()
         }
     }
 }

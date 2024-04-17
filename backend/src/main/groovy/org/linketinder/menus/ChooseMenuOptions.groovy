@@ -1,4 +1,4 @@
-package org.linketinder.Menus
+package org.linketinder.menus
 
 
 static Integer selecMenuOption(ArrayList<String> menuOptions, String menuHeaderMsg) {

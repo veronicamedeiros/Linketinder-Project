@@ -1,6 +1,6 @@
-package org.linketinder.Menus
+package org.linketinder.menus
 
-import org.linketinder.Entities.Vacancy
+import org.linketinder.entities.Vacancy
 
 class VacancyRegistrationMenu {
 
@@ -43,7 +43,8 @@ class VacancyRegistrationMenu {
             return newVacancy
         }
         catch (Exception e){
-            println "\nOcorreu um erro: $e \n"
+
+            e.printStackTrace()
         }
     }
 }

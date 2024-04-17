@@ -1,4 +1,4 @@
-package org.linketinder.Entities
+package org.linketinder.entities
 
 class Person{
     private String name

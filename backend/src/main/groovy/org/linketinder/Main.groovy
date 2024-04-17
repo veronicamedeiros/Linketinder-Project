@@ -1,10 +1,10 @@
 package org.linketinder
 
 
-import org.linketinder.Menus.Menu
-import org.linketinder.DatabaseConnection.CandidateConnection
-import org.linketinder.DatabaseConnection.CompanyConnection
-import org.linketinder.DatabaseConnection.VacancyConnection
+import org.linketinder.menus.Menu
+import org.linketinder.DBDAO.CandidateDAO
+import org.linketinder.DBDAO.CompanyDAO
+import org.linketinder.DBDAO.VacancyDAO
 
 
 
@@ -20,51 +20,51 @@ class Main{
             switch (resp){
 
             case("1"):
-                CandidateConnection.listAllCandidates()
+                CandidateDAO.listAllCandidates()
                 break
 
             case("2"):
-                CandidateConnection.registerCandidates()
+                CandidateDAO.registerCandidates()
                 break
 
             case("3"):
-                CandidateConnection.updateCandidatesInformations()
+                CandidateDAO.updateCandidatesInformations()
                 break
 
             case("4"):
-                CandidateConnection.deleteCandidatesInformations()
+                CandidateDAO.deleteCandidatesInformations()
                 break
 
             case("5"):
-                CompanyConnection.listAllCompanies()
+                CompanyDAO.listAllCompanies()
                 break
 
             case("6"):
-                CompanyConnection.registerCompanies()
+                CompanyDAO.registerCompanies()
                 break
 
             case("7"):
-                CompanyConnection.updateCompaniesInformations()
+                CompanyDAO.updateCompaniesInformations()
                 break
 
             case("8"):
-                CompanyConnection.deleteCompaniesInformations()
+                CompanyDAO.deleteCompaniesInformations()
                 break
 
             case("9"):
-                VacancyConnection.listAllVacancies()
+                VacancyDAO.listAllVacancies()
                 break
 
             case("10"):
-                VacancyConnection.registerVacancies()
+                VacancyDAO.registerVacancies()
                 break
 
             case("11"):
-                VacancyConnection.updateVacanciesInformations()
+                VacancyDAO.updateVacanciesInformations()
                 break
 
             case("12"):
-                VacancyConnection.deleteVacanciesInformations()
+                VacancyDAO.deleteVacanciesInformations()
                 break
 
             case("13"):

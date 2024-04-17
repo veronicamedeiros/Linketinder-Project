@@ -1,14 +1,14 @@
-package org.linketinder.DatabaseConnection
+package org.linketinder.DBDAO
 
-import org.linketinder.Entities.Vacancy
-import org.linketinder.Menus.ChooseSkills
-import org.linketinder.Menus.VacancyRegistrationMenu
-import org.linketinder.Menus.ChooseMenuOptions
-import org.linketinder.Utilities.idValidation
+import org.linketinder.entities.Vacancy
+import org.linketinder.menus.ChooseSkills
+import org.linketinder.menus.VacancyRegistrationMenu
+import org.linketinder.menus.ChooseMenuOptions
+import org.linketinder.utilities.idValidation
 
-class VacancyConnection {
+class VacancyDAO {
 
-    static Object sql = Connection.connectDataBase()
+    static Object sql = DAO.connectDataBase()
 
     static String[] vacancyTableHeader = ['vacancy_position', 'vacancy_level', 'vacancy_shift', 'vacancy_model',
                                           'vacancy_city', 'vacancy_state', 'job_description', 'id_company']
@@ -61,7 +61,7 @@ class VacancyConnection {
         }
         catch (Exception e){
 
-            println("Ocorreu um erro: $e")
+            e.printStackTrace()
         }
         println()
     }
@@ -78,7 +78,7 @@ class VacancyConnection {
         }
         catch (Exception e){
 
-            println("Ocorreu um erro: $e")
+            e.printStackTrace()
         }
     }
 
@@ -107,7 +107,7 @@ class VacancyConnection {
         }
         catch (Exception e){
 
-            println("Ocorreu um erro ao cadastrar a vaga: $e")
+            e.printStackTrace()
         }
         finally {
             sql.close()
@@ -167,7 +167,7 @@ class VacancyConnection {
             }
         }
         catch(Exception e){
-            println("\não foi possível atualizar os dados. Erro: $e")
+            e.printStackTrace()
         }
         finally {
             sql.close()
@@ -224,7 +224,7 @@ class VacancyConnection {
         }
         catch(Exception e){
 
-            println("\nNão foi possível excluir os dados. Erro: $e")
+            e.printStackTrace()
         }
         finally {
             sql.close()

@@ -1,14 +1,13 @@
-package org.linketinder.DatabaseConnection
+package org.linketinder.DBDAO
 
-import org.linketinder.Menus.CompanyRegistrationMenu
-import org.linketinder.Entities.Company
-import org.linketinder.Menus.ChooseMenuOptions
-import org.linketinder.Utilities.idValidation
+import org.linketinder.menus.CompanyRegistrationMenu
+import org.linketinder.entities.Company
+import org.linketinder.menus.ChooseMenuOptions
+import org.linketinder.utilities.idValidation
 
+class CompanyDAO {
 
-class CompanyConnection {
-
-    static Object sql = Connection.connectDataBase()
+    static Object sql = DAO.connectDataBase()
 
     static String[] companyTableHeader = ['company_name', 'company_email', 'company_country', 'company_cep',
                                           'company_state', 'company_description', 'company_cnpj', 'company_password']
@@ -34,7 +33,7 @@ class CompanyConnection {
             }
         }catch (Exception e){
 
-            println("\nNão foi possível realizar a operação. Erro: $e")
+            e.printStackTrace()
         }
     }
 
@@ -46,7 +45,7 @@ class CompanyConnection {
         }
         catch (Exception e){
 
-            println("\nNão foi possível realizar a operação. Erro: $e")
+            e.printStackTrace()
         }
     }
 
@@ -67,7 +66,7 @@ class CompanyConnection {
         }
         catch (Exception e){
 
-            println("Não foi possível inserir os dados no sistema. Erro: $e")
+            e.printStackTrace()
         }
         finally {
             sql.close()
@@ -93,7 +92,7 @@ class CompanyConnection {
         }
         catch(Exception e){
 
-            println("\não foi possível atualizar os dados. Erro: $e")
+            e.printStackTrace()
         }
     }
 
@@ -116,7 +115,7 @@ class CompanyConnection {
         }
         catch(Exception e){
 
-            println("\nOcorreu um erro: $e")
+            e.printStackTrace()
         }
         finally {
             sql.close()
