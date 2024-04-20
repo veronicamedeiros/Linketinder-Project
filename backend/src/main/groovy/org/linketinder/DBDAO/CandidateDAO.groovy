@@ -9,45 +9,56 @@ import org.linketinder.utilities.IdValidation
 
 class CandidateDAO {
 
+    Candidate newCandidate
+    
+    CandidateDAO(newCandidate){
+        this.newCandidate = newCandidate
+    }
+
     static Object sql = DAO.connectDataBase()
 
     static String[] candidateTableHeader = ['candidate_name', 'candidate_surname', 'candidate_birth', 'candidate_email', 'candidate_country',
                                             'candidate_cep', 'candidate_state', 'candidate_description', 'candidate_age', 'candidate_cpf', 'candidate_password']
-    static List<String> candidateMenuOptions = ["Nome", "Sobrenome", "Data de Nascimento", "Email", "País", "CEP", "Estado", "Descrição", "Idade", "CPF", "Senha", "Habilidades"]
 
 
-    static listAllCandidates(){
+    static list(){
 
-        String previousCandidateId
+        ArrayList<Map> allCandidates = []
 
         try {
+            ArrayList<Integer> ids = []
 
             sql.eachRow("""
-                        SELECT candidate_description, skills.skill, candidates.id
-                        FROM candidates, candidate_skills, skills
-                        WHERE candidate_skills.id_candidate = candidates.id AND candidate_skills.id_skill = skills.id
-                        ORDER BY candidates;
-                        """) { resultSet ->
+                            SELECT candidate_skills.id_candidate
+                            FROM candidate_skills
+                            Group BY id_candidate
+                            ORDER BY id_candidate
+                            """){ row ->
 
-                while (resultSet.next()) {
-
-                    String description = resultSet.getString(1)
-                    String candidateId = resultSet.getString(3)
-
-                    if (previousCandidateId != candidateId){
-                        println('\n----\n')
-                        println("DESCRIÇÃO:\n$description")
-                        println('\nHABIDADES:')
-                    }
-
-                    String skills = resultSet.getString(2)
-
-                    println(skills)
-
-                    previousCandidateId = candidateId
-                }
+                ids.add(row.getInt(1))
             }
-            println()
+
+            for(identification in ids) {
+
+                ArrayList candidateSkills = []
+                String description
+
+                sql.eachRow("""
+                        SELECT candidate_skills.id_candidate, skills.skill, candidate_description
+                        FROM candidates, candidate_skills, skills
+                        WHERE candidate_skills.id_candidate = candidates.id AND candidate_skills.id_skill = skills.id AND id_candidate = CAST (${identification} AS INT)
+                        ORDER BY candidate_skills.id_candidate
+                        """)
+                        { row ->
+                            candidateSkills.add(row.getString(2))
+
+                            if (!description){
+                                description = row.getString(3)
+                            }
+                        }
+                allCandidates.add([description: description, skills:candidateSkills])
+            }
+            return allCandidates
         }
         catch (Exception e){
 
@@ -56,29 +67,25 @@ class CandidateDAO {
     }
 
 
-    static registerCandidates(){
+     void register(){
 
         try {
 
-            Candidate newCandidate = CandidateRegistrationMenu.register()
-
             List<List<Object>> result = sql.executeInsert("""
-                                            INSERT INTO candidates (candidate_name, candidate_surname, candidate_birth, candidate_email, candidate_country, 
-                                                                    candidate_cep, candidate_state, candidate_description, candidate_age, candidate_cpf, candidate_password) 
-                                            VALUES ($newCandidate.name, $newCandidate.surname, TO_DATE($newCandidate.birth, 'YYYY-MM-DD'), $newCandidate.email, $newCandidate.country, 
-                                                    $newCandidate.cep, $newCandidate.state, $newCandidate.description, $newCandidate.age, $newCandidate.cpf, $newCandidate.password) 
+                                            INSERT INTO candidates (candidate_name, candidate_surname, candidate_birth, candidate_email, candidate_country,
+                                                                    candidate_cep, candidate_state, candidate_description, candidate_age, candidate_cpf, candidate_password)
+                                            VALUES ($newCandidate.name, $newCandidate.surname, TO_DATE($newCandidate.birth, 'YYYY-MM-DD'), $newCandidate.email, $newCandidate.country,
+                                                    $newCandidate.cep, $newCandidate.state, $newCandidate.description, $newCandidate.age, $newCandidate.cpf, $newCandidate.password)
                                             RETURNING id""")
             Integer generatedId = result[0][0] as Integer
 
             for (newSkill in newCandidate.skills){
 
                 sql.execute("""
-                            INSERT INTO candidate_skills (id_candidate, id_skill) 
+                            INSERT INTO candidate_skills (id_candidate, id_skill)
                             VALUES ($generatedId, $newSkill)
                             """)
             }
-
-            println('Operação realizada com sucesso.')
         }
         catch (Exception e){
 
@@ -91,22 +98,8 @@ class CandidateDAO {
     }
 
 
-    static candidateExists(Integer candidateId){
 
-        try {
-            sql.rows("""
-                        SELECT id FROM candidates 
-                        WHERE id = $candidateId;
-                        """.toString()){ resultSet ->}
-        }
-        catch (Exception e){
-
-            e.printStackTrace()
-        }
-    }
-
-
-    static updateCandidatesInformations(){
+    /*static updateCandidatesInformations(){
 
         try {
             Integer candidateId = (Integer) IdValidation.validateId("candidate")
@@ -165,8 +158,8 @@ class CandidateDAO {
             sql.close()
         }
     }
-
-
+*/
+/*
     static deleteCandidatesInformations(){
 
         try {
@@ -220,6 +213,6 @@ class CandidateDAO {
         finally {
             sql.close()
         }
-    }
+    }*/
 }
 

@@ -18,4 +18,5 @@ class DAO {
             println("Não foi possível se conectar ao banco de dados: $e")
         }
     }
+
 }

@@ -38,17 +38,6 @@ class CompanyDAO {
     }
 
 
-    static companyExists(Integer companyId){
-
-        try {
-            sql.rows("SELECT id FROM company WHERE id = $companyId;".toString()){ resultSet ->}
-        }
-        catch (Exception e){
-
-            e.printStackTrace()
-        }
-    }
-
 
     static registerCompanies(){
 

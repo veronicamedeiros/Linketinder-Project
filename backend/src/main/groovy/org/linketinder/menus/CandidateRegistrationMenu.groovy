@@ -6,7 +6,7 @@ import org.linketinder.entities.Candidate
 class CandidateRegistrationMenu{
 
 
-    static Candidate register(){
+    Candidate registerCandidateInformations(){
 
         List<Integer> skills = new ArrayList<>()
         Scanner scanner = new Scanner(System.in)
@@ -48,7 +48,9 @@ class CandidateRegistrationMenu{
             print "Escreva uma breve descrição sobre seu perfil profissional: "
             String description = scanner.nextLine()
 
-            skills = SkillsSelection.chooseSkills()
+            SkillsSelection selection = new SkillsSelection()
+
+            skills = selection.chooseSkills()
 
             Candidate newCandidate = new Candidate(name, surname, birth, email, country, cep, state, description, age, cpf, skills, password)
 

@@ -1,8 +1,17 @@
 package org.linketinder.menus
 
-class MenuOptionsSelection{
 
-    static Integer selecMenuOption(ArrayList<String> menuOptions, String menuHeaderMsg) {
+class MenuOptionsSelection {
+
+    ArrayList<String> menuOptions
+    String menuHeaderMsg
+
+    MenuOptionsSelection(menuOptions, menuHeaderMsg){
+        this.menuOptions = menuOptions
+        this.menuHeaderMsg = menuHeaderMsg
+    }
+
+    Integer selecMenuOption() {
 
         Scanner scanner = new Scanner(System.in)
 
@@ -17,9 +26,12 @@ class MenuOptionsSelection{
                 }
 
                 print('\n\nDigite o número da opção que você deseja selecionar: ')
-                Integer answer = (Integer) scanner.nextInt()
+                Integer answer = scanner.nextInt()
 
-                if (answer <= menuOptions.size() & answer >= 0){
+                print(" ANSWER: " + answer)
+
+                if (answer <= this.menuOptions.size() && answer >= 0){
+                    print(" ANSWER: " + answer)
                     return answer
                 }else{
                     println("\nOpção inválida.\n")
@@ -32,7 +44,7 @@ class MenuOptionsSelection{
     }
 
 
-    static addUpdatedInformation(){
+/*    protected String addUpdatedInformation(){
 
         Scanner scanner = new Scanner(System.in)
 
@@ -40,5 +52,6 @@ class MenuOptionsSelection{
         String updatedInformation = scanner.nextLine()
 
         return updatedInformation
-    }
+    }*/
 }
+
