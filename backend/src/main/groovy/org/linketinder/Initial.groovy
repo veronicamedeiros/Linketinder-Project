@@ -3,11 +3,15 @@ package org.linketinder
 import org.linketinder.menus.CandidateRegistrationMenu
 import org.linketinder.model.CandidatesDisplay
 import org.linketinder.menus.Menu
-import org.linketinder.model.IdValidation
+import org.linketinder.model.CandidateProfileRegistration
+import org.linketinder.model.CandidateInformationsUpdate
 
 class Initial {
 
+     List<String> candidateInformations = ["Nome da Empresa", "Email", "País", "CEP", "Estado", "Descrição", "CNPJ", "Senha"]
+
     Initial(){}
+
 
      void execute() {
 
@@ -36,15 +40,17 @@ class Initial {
 
                     case("2"):
                         try {
-                            CandidateRegistrationMenu candidateRegistration = new CandidateRegistrationMenu()
-                            candidateRegistration.registerCandidateInformations()
-                        }catch (Exception e){
+                            CandidateProfileRegistration candidateRegistration = new CandidateProfileRegistration()
+                            candidateRegistration.registerCandidate()
+                            print("Cadastro realizado com sucesso.")
+                        }
+                        catch (Exception e){
                             e.printStackTrace()
                         }
-                        //Registrar Candidatos
                         break
 
                     case("3"):
+                        CandidateInformationsUpdate update = new CandidateInformationsUpdate(candidateInformations)
                         //Atualizar informações candidatos
                         break
 

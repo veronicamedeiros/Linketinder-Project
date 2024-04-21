@@ -4,7 +4,7 @@ import org.linketinder.entities.Candidate
 import org.linketinder.menus.CandidateRegistrationMenu
 import org.linketinder.DBDAO.CandidateDAO
 
-class candidateProfileRegistration {
+class CandidateProfileRegistration {
 
     void registerCandidate(){
 

@@ -1,18 +1,25 @@
 package org.linketinder.DBDAO
 
 import org.linketinder.entities.Candidate
-import org.linketinder.menus.CandidateRegistrationMenu
-import org.linketinder.menus.MenuOptionsSelection
-import org.linketinder.menus.SkillsSelection
 import org.linketinder.utilities.IdValidation
+import org.linketinder.menus.MenuOptionsSelection
+
 
 
 class CandidateDAO {
 
     Candidate newCandidate
+    Integer idCandidate
+    Integer chosenOption
+
     
     CandidateDAO(newCandidate){
         this.newCandidate = newCandidate
+    }
+
+    CandidateDAO(idCandidate, chosenOption){
+        this.idCandidate = idCandidate
+        this.chosenOption = chosenOption
     }
 
     static Object sql = DAO.connectDataBase()
@@ -99,26 +106,20 @@ class CandidateDAO {
 
 
 
-    /*static updateCandidatesInformations(){
+     update(){
 
         try {
-            Integer candidateId = (Integer) IdValidation.validateId("candidate")
-
-            Integer chosenOption = MenuOptionsSelection.selecMenuOption(candidateMenuOptions, "Atualizar Dados")
-
 
             if (chosenOption < 12) {
 
                 String stringChosenOption = (String) candidateTableHeader[chosenOption - 1]
-                String updatedInformation = (String) MenuOptionsSelection.addUpdatedInformation()
+                //String updatedInformation = (String) MenuOptionsSelection.addUpdatedInformation()
 
                 sql.execute("""
                             UPDATE candidates 
                             SET $stringChosenOption = '$updatedInformation' 
                             WHERE id = $candidateId;
                             """.toString())
-
-                println('\nOperação realizada com sucesso.')
             }
 
             if (chosenOption == 12){
@@ -158,7 +159,6 @@ class CandidateDAO {
             sql.close()
         }
     }
-*/
 /*
     static deleteCandidatesInformations(){
 
