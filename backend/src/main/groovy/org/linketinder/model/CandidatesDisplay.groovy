@@ -6,9 +6,11 @@ class CandidatesDisplay {
     static execute(){
 
         try {
-            def resposta = CandidateDAO.list()
 
-            resposta.forEach({
+            CandidateDAO candidateDao = new CandidateDAO()
+            List<Map> skills = candidateDao.list()
+
+            skills.forEach({
                 println("\nDESCRIÇÃO: " + it.description)
                 println("HABILIDADES: " + it.skills)})
         }

@@ -1,11 +1,42 @@
 package org.linketinder.DBDAO
 
+import org.linketinder.interfaces.Ientities
 import org.linketinder.menus.CompanyRegistrationMenu
 import org.linketinder.entities.Company
 import org.linketinder.menus.MenuOptionsSelection
-import org.linketinder.utilities.IdValidation
 
-class CompanyDAO {
+class CompanyDAO implements Ientities {
+
+    Integer companyId
+    Integer chosenOption
+    Integer oldSkill
+    Integer newSkill
+    String updatedInformation
+    Company newCompany
+
+    CompanyDAO(){}
+
+    CompanyDAO(newCompany){
+        this.newCompany = newCompany
+    }
+
+    CompanyDAO(companyId, chosenOption){
+        this.companyId = companyId
+        this.chosenOption = chosenOption
+    }
+
+    CompanyDAO(companyId, chosenOption, updatedInformation){
+        this.companyId = companyId
+        this.chosenOption = chosenOption
+        this.updatedInformation = updatedInformation
+    }
+
+    CompanyDAO(companyId, chosenOption, oldSkill, newSkill){
+        this.companyId = companyId
+        this.chosenOption = chosenOption
+        this.oldSkill = oldSkill
+        this.newSkill = newSkill
+    }
 
     static Object sql = DAO.connectDataBase()
 
@@ -13,7 +44,9 @@ class CompanyDAO {
                                           'company_state', 'company_description', 'company_cnpj', 'company_password']
 
 
-    static listAllCompanies(){
+    List<Map> list(){
+
+        List<Map> allCompanies= []
 
         try {
             sql.eachRow("""
@@ -25,9 +58,9 @@ class CompanyDAO {
 
                     String description = resultSet.getString(1)
 
-                    println('DESCRIÇÃO: '+ description)
-                    println('\n----\n')
+                    allCompanies.add([description: description])
                 }
+            return allCompanies
             }
         }catch (Exception e){
 
@@ -36,11 +69,9 @@ class CompanyDAO {
     }
 
 
-
-    static registerCompanies(){
+    void register(){
 
         try {
-            Company newCompany = CompanyRegistrationMenu.register()
 
             sql.executeInsert("""
                                 INSERT INTO company (company_name, company_email, company_country, company_cep, 
@@ -48,8 +79,6 @@ class CompanyDAO {
                                 VALUES ($newCompany.name, $newCompany.email, $newCompany.country, $newCompany.cep, 
                                         $newCompany.state, $newCompany.description, $newCompany.cnpj, $newCompany.password)
                                 """)
-
-            println("\nCadastro realizado com sucesso.")
         }
         catch (Exception e){
 
@@ -61,21 +90,17 @@ class CompanyDAO {
     }
 
 
-    static updateCompaniesInformations(){
+     void update(){
 
         try {
-            Integer companyId = (Integer) IdValidation.validateId("company")
-            Integer chosenOption = MenuOptionsSelection.selecMenuOption(companyMenuOptions, "Atualizar Dados")
-            String updatedInformation = (String) MenuOptionsSelection.addUpdatedInformation()
+
             String textChosenOption = (String) companyTableHeader[chosenOption - 1]
 
             sql.execute("""
                         UPDATE company 
-                        SET $textChosenOption = '$updatedInformation' 
+                        SET $textChosenOption = '$updatedInformation'
                         WHERE id = $companyId;
                         """.toString())
-
-            println("\nAtualização realizada com sucesso.\n")
         }
         catch(Exception e){
 
@@ -84,11 +109,9 @@ class CompanyDAO {
     }
 
 
-    static deleteCompaniesInformations(){
+    void delete(){
 
         try {
-            Integer idCompany = (Integer) IdValidation.validateId("company")
-            Integer chosenOption = MenuOptionsSelection.selecMenuOption(companyMenuOptions, "Deletar Dados")
             String textChosenOption = (String) companyTableHeader[chosenOption - 1]
 
             sql.execute("""

@@ -1,9 +1,6 @@
 package org.linketinder.model
 
-import org.linketinder.DBDAO.CandidateDAO
-import org.linketinder.DBDAO.CompanyDAO
-import org.linketinder.DBDAO.DAO
-import org.linketinder.DBDAO.VacancyDAO
+
 import org.linketinder.DBDAO.IdValidationDAO
 
 
@@ -22,6 +19,10 @@ class IdValidation{
 
         IdValidationDAO validation = new IdValidationDAO(id, tableName)
         boolean validationId = validation.idExists()
+
+        if(!validationId){
+            print("Cadastro não encontrado.")
+        }
 
         return validationId
     }

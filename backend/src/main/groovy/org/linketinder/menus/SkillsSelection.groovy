@@ -49,8 +49,6 @@ class SkillsSelection{
 
     static chooseNewSkill(String msg = "Insira o número da nova habilidade e pressione enter: "){
 
-        SkillsDAO.listAllSkills()
-
         print("\n $msg")
 
         Scanner scanner = new Scanner(System.in)

@@ -1,26 +1,41 @@
 package org.linketinder.DBDAO
 
 import org.linketinder.entities.Candidate
-import org.linketinder.utilities.IdValidation
-import org.linketinder.menus.MenuOptionsSelection
+import org.linketinder.interfaces.Ientities
 
 
+class CandidateDAO implements Ientities{
 
-class CandidateDAO {
-
-    Candidate newCandidate
-    Integer idCandidate
+    Integer candidateId
     Integer chosenOption
+    Integer oldSkill
+    Integer newSkill
+    String updatedInformation
+    Candidate newCandidate
 
-    
+
     CandidateDAO(newCandidate){
         this.newCandidate = newCandidate
     }
 
-    CandidateDAO(idCandidate, chosenOption){
-        this.idCandidate = idCandidate
+    CandidateDAO(candidateId, chosenOption){
+        this.candidateId = candidateId
         this.chosenOption = chosenOption
     }
+
+    CandidateDAO(candidateId, chosenOption, updatedInformation){
+        this.candidateId = candidateId
+        this.chosenOption = chosenOption
+        this.updatedInformation = updatedInformation
+    }
+
+    CandidateDAO(candidateId, chosenOption, oldSkill, newSkill){
+        this.candidateId = candidateId
+        this.chosenOption = chosenOption
+        this.oldSkill = oldSkill
+        this.newSkill = newSkill
+    }
+
 
     static Object sql = DAO.connectDataBase()
 
@@ -28,9 +43,9 @@ class CandidateDAO {
                                             'candidate_cep', 'candidate_state', 'candidate_description', 'candidate_age', 'candidate_cpf', 'candidate_password']
 
 
-    static list(){
+    List<Map> list(){
 
-        ArrayList<Map> allCandidates = []
+        List<Map> allCandidates = []
 
         try {
             ArrayList<Integer> ids = []
@@ -74,7 +89,7 @@ class CandidateDAO {
     }
 
 
-     void register(){
+    void register(){
 
         try {
 
@@ -105,15 +120,13 @@ class CandidateDAO {
     }
 
 
-
-     update(){
+    void update(){
 
         try {
 
             if (chosenOption < 12) {
 
                 String stringChosenOption = (String) candidateTableHeader[chosenOption - 1]
-                //String updatedInformation = (String) MenuOptionsSelection.addUpdatedInformation()
 
                 sql.execute("""
                             UPDATE candidates 
@@ -124,30 +137,10 @@ class CandidateDAO {
 
             if (chosenOption == 12){
 
-                sql.query("""
-                            SELECT skills.id, skills.skill 
-                            FROM candidates, candidate_skills, skills 
-                            WHERE candidate_skills.id_candidate = candidates.id AND candidate_skills.id_skill = skills.id AND id_candidate = ${candidateId};
-                            """.toString()) { resultSet ->
-
-                    while (resultSet.next()) {
-
-                        String candidateNumber = resultSet.getString(1)
-                        String candidateSkill = resultSet.getString(2)
-                        println(candidateNumber + " - " + candidateSkill)
-                    }
-                }
-
-                Integer oldSkill = (Integer) SkillsSelection.chooseOldSKill()
-                Integer newSkill = (Integer) SkillsSelection.chooseNewSkill()
-
-
                 sql.execute("""
                             UPDATE candidate_skills SET id_skill = ${newSkill} 
                             WHERE id_skill = ${oldSkill} AND candidate_skills.id_candidate = ${candidateId};
                             """.toString())
-
-                println('\nOperação realizada com sucesso.')
             }
         }
         catch (Exception e){
@@ -159,51 +152,29 @@ class CandidateDAO {
             sql.close()
         }
     }
-/*
-    static deleteCandidatesInformations(){
+
+
+    void delete(){
 
         try {
 
-            Integer candidateId = (Integer) IdValidation.validateId("candidate")
-
-            Integer chosenOption = MenuOptionsSelection.selecMenuOption(candidateMenuOptions, "Deletar dados")
-
             if (chosenOption < 12) {
 
-                String textChosenOption = (String) candidateTableHeader[chosenOption - 1]
+                String stringChosenOption = (String) candidateTableHeader[chosenOption - 1]
 
                 sql.execute("""
-                            UPDATE candidates 
-                            SET $textChosenOption = '' 
-                            WHERE id = $candidateId;
-                            """.toString())
-
-                println("\nInformação excluída com sucesso.")
+                                UPDATE candidates 
+                                SET $stringChosenOption = '' 
+                                WHERE id = $candidateId;
+                                """.toString())
             }
 
             if (chosenOption == 12){
 
-                sql.query("""
-                        SELECT skills.id, skills.skill FROM candidates, candidate_skills, skills 
-                        WHERE candidate_skills.id_candidate = candidates.id AND candidate_skills.id_skill = skills.id AND id_candidate = ${candidateId};
-                        """.toString()) { resultSet ->
-
-                    while (resultSet.next()) {
-
-                        String candidateNumber = resultSet.getString(1)
-                        String candidateSkill = resultSet.getString(2)
-                        println(candidateNumber + " - " + candidateSkill)
-                    }
-                }
-
-                Integer oldSkill = (Integer) SkillsSelection.chooseOldSKill()
-
                 sql.execute("""
-                            DELETE FROM candidate_skills 
-                            WHERE id_skill = $oldSkill AND candidate_skills.id_candidate = ${candidateId}
-                            """.toString())
-
-                println("\nInformação excluída com sucesso")
+                                DELETE FROM candidate_skills 
+                                WHERE id_skill = $oldSkill AND candidate_skills.id_candidate = ${candidateId}
+                                """.toString())
             }
         }
         catch(Exception e){
@@ -213,6 +184,5 @@ class CandidateDAO {
         finally {
             sql.close()
         }
-    }*/
+    }
 }
-

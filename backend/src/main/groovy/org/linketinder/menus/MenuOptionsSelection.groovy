@@ -28,10 +28,8 @@ class MenuOptionsSelection {
                 print('\n\nDigite o número da opção que você deseja selecionar: ')
                 Integer answer = scanner.nextInt()
 
-                print(" ANSWER: " + answer)
 
                 if (answer <= this.menuOptions.size() && answer >= 0) {
-                    print(" ANSWER: " + answer)
                     return answer
                 } else {
                     println("\nOpção inválida.\n")
@@ -41,16 +39,5 @@ class MenuOptionsSelection {
                 e.getMessage()
             }
         }
-    }
-
-
-    protected String addUpdatedInformation() {
-
-        Scanner scanner = new Scanner(System.in)
-
-        print("\nInsira a nova informação e pressione enter: ")
-        String updatedInformation = scanner.nextLine()
-
-        return updatedInformation
     }
 }

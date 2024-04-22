@@ -1,39 +1,59 @@
 package org.linketinder.model
 
 import org.linketinder.DBDAO.CandidateDAO
-import org.linketinder.menus.MenuOptionsSelection
-import org.linketinder.model.IdValidation
+import org.linketinder.DBDAO.SkillsDAO
+import org.linketinder.menus.SkillsSelection
 
-class CandidateInformationsUpdate {
 
-    List<String> candidateMenuOptions
+class CandidateInformationsUpdate{
 
-    CandidateInformationsUpdate() {}
+    String tableName
+    Integer id
+    Integer chosenOption
+    String updatedInformation
 
-    List<String> menuOptions
 
-    execute() {
+    CandidateInformationsUpdate(tableName, id, chosenOption) {
+        this.tableName = tableName
+        this.id = id
+        this.chosenOption = chosenOption
+    }
 
-        print("Informe o número de cadastro de usuário")
-        Scanner scanner = new Scanner(System.in)
-        Integer id = scanner.nextInt()
+    CandidateInformationsUpdate(tableName, id, chosenOption, updatedInformation) {
+        this.tableName = tableName
+        this.id = id
+        this.chosenOption = chosenOption
+        this.updatedInformation = updatedInformation
+    }
 
-        IdValidation validation = new IdValidation(id, "candidates")
 
+    void execute() {
+
+        IdValidation validation = new IdValidation(id, tableName)
         validation.execute()
 
-        MenuOptionsSelection menu = new MenuOptionsSelection(candidateMenuOptions, "Atualizar Dados")
-
-        Integer chosenOption = menu.selecMenuOption()
-
-        if (chosenOption < 12){
-            String updatedInformation = (String) MenuOptionsSelection.addUpdatedInformation()
-            //adicionar no construtor do CandidateDAO
+        if(chosenOption < 12){
+            CandidateDAO candidateDao = new CandidateDAO(id, chosenOption, updatedInformation)
+            candidateDao.update()
         }
+        else {
 
+            SkillsDAO skillsDao = new SkillsDAO(id)
 
-        CandidateDAO candidate = new CandidateDAO(id, chosenOption)
+            List<Map> candidateCurrentSkills = skillsDao.getCandidateSkills()
+            EntitiesSkillsDisplay candidateSkillsDisplay = new EntitiesSkillsDisplay(candidateCurrentSkills)
+            candidateSkillsDisplay.display()
 
-        candidate.update()
+            Integer oldSkill = (Integer) SkillsSelection.chooseOldSKill()
+
+            List<Map> allSkills = skillsDao.getAllSkills()
+            EntitiesSkillsDisplay allSkillsDisplay = new EntitiesSkillsDisplay(allSkills)
+            allSkillsDisplay.display()
+
+            Integer newSkill = (Integer) SkillsSelection.chooseNewSkill()
+            CandidateDAO candidateDao= new CandidateDAO(id, chosenOption, oldSkill, newSkill)
+            candidateDao.update()
+
+        }
     }
 }

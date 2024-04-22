@@ -9,7 +9,7 @@ class Person{
     private String description
     private String password
 
-    Person (String name, String email, String country, String cep, String state, String description, password){
+    Person (String name, String email, String country, String cep, String state, String description, String password){
         setName(name)
         setEmail(email)
         setCountry(country)
