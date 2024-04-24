@@ -14,7 +14,6 @@ class Menu {
 
         MenuOptionsSelection menuChoosenOption = new MenuOptionsSelection(mainMenuOptions, "Menu")
         Integer choosen = menuChoosenOption.selecMenuOption()
-        print(" CHOOSEN: " + choosen)
         return choosen
     }
 }

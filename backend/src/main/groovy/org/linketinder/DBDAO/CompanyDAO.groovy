@@ -1,42 +1,32 @@
 package org.linketinder.DBDAO
 
 import org.linketinder.interfaces.Ientities
-import org.linketinder.menus.CompanyRegistrationMenu
 import org.linketinder.entities.Company
-import org.linketinder.menus.MenuOptionsSelection
 
 class CompanyDAO implements Ientities {
 
-    Integer companyId
-    Integer chosenOption
-    Integer oldSkill
-    Integer newSkill
-    String updatedInformation
-    Company newCompany
+    private Integer companyId
+    private Integer chosenOption
+    private String updatedInformation
+    private Company newCompany
 
     CompanyDAO(){}
 
     CompanyDAO(newCompany){
-        this.newCompany = newCompany
+        setNewCompany(newCompany)
     }
 
     CompanyDAO(companyId, chosenOption){
-        this.companyId = companyId
-        this.chosenOption = chosenOption
+        setCompanyId(companyId)
+        setChosenOption(chosenOption)
     }
 
     CompanyDAO(companyId, chosenOption, updatedInformation){
-        this.companyId = companyId
-        this.chosenOption = chosenOption
-        this.updatedInformation = updatedInformation
+        setCompanyId(companyId)
+        setChosenOption(chosenOption)
+        setUpdatedInformation(updatedInformation)
     }
 
-    CompanyDAO(companyId, chosenOption, oldSkill, newSkill){
-        this.companyId = companyId
-        this.chosenOption = chosenOption
-        this.oldSkill = oldSkill
-        this.newSkill = newSkill
-    }
 
     static Object sql = DAO.connectDataBase()
 
@@ -46,9 +36,9 @@ class CompanyDAO implements Ientities {
 
     List<Map> list(){
 
-        List<Map> allCompanies= []
-
         try {
+            List<Map> allCompanies= []
+
             sql.eachRow("""
                             SELECT company_description 
                             FROM company;
@@ -60,9 +50,10 @@ class CompanyDAO implements Ientities {
 
                     allCompanies.add([description: description])
                 }
-            return allCompanies
             }
-        }catch (Exception e){
+            return allCompanies
+        }
+        catch (Exception e){
 
             e.printStackTrace()
         }
@@ -72,7 +63,6 @@ class CompanyDAO implements Ientities {
     void register(){
 
         try {
-
             sql.executeInsert("""
                                 INSERT INTO company (company_name, company_email, company_country, company_cep, 
                                                     company_state, company_description, company_cnpj, company_password) 
@@ -117,11 +107,8 @@ class CompanyDAO implements Ientities {
             sql.execute("""
                         UPDATE company 
                         SET $textChosenOption = '' 
-                        WHERE id = $idCompany
+                        WHERE id = $companyId
                         """.toString())
-
-            println("Dado deletado com sucesso.")
-
         }
         catch(Exception e){
 
@@ -130,5 +117,37 @@ class CompanyDAO implements Ientities {
         finally {
             sql.close()
         }
+    }
+
+    Integer getCompanyId() {
+        return companyId
+    }
+
+    void setCompanyId(Integer companyId) {
+        this.companyId = companyId
+    }
+
+    Integer getChosenOption() {
+        return chosenOption
+    }
+
+    void setChosenOption(Integer chosenOption) {
+        this.chosenOption = chosenOption
+    }
+
+    String getUpdatedInformation() {
+        return updatedInformation
+    }
+
+    void setUpdatedInformation(String updatedInformation) {
+        this.updatedInformation = updatedInformation
+    }
+
+    Company getNewCompany() {
+        return newCompany
+    }
+
+    void setNewCompany(Company newCompany) {
+        this.newCompany = newCompany
     }
 }

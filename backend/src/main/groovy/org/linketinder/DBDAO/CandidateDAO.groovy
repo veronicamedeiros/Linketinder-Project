@@ -6,13 +6,14 @@ import org.linketinder.interfaces.Ientities
 
 class CandidateDAO implements Ientities{
 
-    Integer candidateId
-    Integer chosenOption
-    Integer oldSkill
-    Integer newSkill
-    String updatedInformation
-    Candidate newCandidate
+    private Integer candidateId
+    private Integer chosenOption
+    private Integer oldSkill
+    private Integer newSkill
+    private String updatedInformation
+    private Candidate newCandidate
 
+    CandidateDAO(){}
 
     CandidateDAO(newCandidate){
         this.newCandidate = newCandidate
@@ -51,10 +52,7 @@ class CandidateDAO implements Ientities{
             ArrayList<Integer> ids = []
 
             sql.eachRow("""
-                            SELECT candidate_skills.id_candidate
-                            FROM candidate_skills
-                            Group BY id_candidate
-                            ORDER BY id_candidate
+                            SELECT id FROM candidates
                             """){ row ->
 
                 ids.add(row.getInt(1))
@@ -110,11 +108,9 @@ class CandidateDAO implements Ientities{
             }
         }
         catch (Exception e){
-
             e.printStackTrace()
         }
         finally {
-
             sql.close()
         }
     }

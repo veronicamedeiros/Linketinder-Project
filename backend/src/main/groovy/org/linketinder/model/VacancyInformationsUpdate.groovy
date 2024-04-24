@@ -1,12 +1,11 @@
 package org.linketinder.model
 
-import org.linketinder.DBDAO.CandidateDAO
+import org.linketinder.DBDAO.VacancyDAO
 import org.linketinder.DBDAO.SkillsDAO
 import org.linketinder.menus.SkillsSelection
 import org.linketinder.traits.display
 
-
-class CandidateInformationsUpdate implements display{
+class VacancyInformationsUpdate implements display{
 
     private String tableName
     private Integer id
@@ -14,13 +13,13 @@ class CandidateInformationsUpdate implements display{
     private String updatedInformation
 
 
-    CandidateInformationsUpdate(String tableName, Integer id, Integer chosenOption) {
+    VacancyInformationsUpdate(String tableName, Integer id, Integer chosenOption) {
         setTableName(tableName)
         setId(id)
         setChosenOption(chosenOption)
     }
 
-    CandidateInformationsUpdate(String tableName, Integer id, Integer chosenOption, String updatedInformation) {
+    VacancyInformationsUpdate(String tableName, Integer id, Integer chosenOption, String updatedInformation) {
         setTableName(tableName)
         setId(id)
         setChosenOption(chosenOption)
@@ -30,16 +29,16 @@ class CandidateInformationsUpdate implements display{
 
     void execute() {
 
-        if(chosenOption < 12){
-            CandidateDAO candidateDao = new CandidateDAO(id, chosenOption, updatedInformation)
-            candidateDao.update()
+        if(chosenOption < 8){
+            VacancyDAO vacancyDao = new VacancyDAO(id, chosenOption, updatedInformation)
+            vacancyDao.update()
         }
         else {
 
             SkillsDAO skillsDao = new SkillsDAO(id)
 
-            List<Map> candidateCurrentSkills = skillsDao.getCandidateSkills()
-            entitiesSkills.skills = candidateCurrentSkills
+            List<Map> vacancyCurrentSkills = skillsDao.getVacancySkills()
+            entitiesSkills.skills = vacancyCurrentSkills
             entitiesSkills.display()
 
             Integer oldSkill = (Integer) SkillsSelection.chooseOldSKill()
@@ -50,8 +49,8 @@ class CandidateInformationsUpdate implements display{
 
             Integer newSkill = (Integer) SkillsSelection.chooseNewSkill()
 
-            CandidateDAO candidateDao= new CandidateDAO(id, chosenOption, oldSkill, newSkill)
-            candidateDao.update()
+            VacancyDAO vacancyDao= new VacancyDAO(id, chosenOption, oldSkill, newSkill)
+            vacancyDao.update()
         }
     }
 

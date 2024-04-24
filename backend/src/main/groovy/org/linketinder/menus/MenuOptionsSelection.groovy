@@ -1,7 +1,7 @@
 package org.linketinder.menus
 
 
-class MenuOptionsSelection {
+class MenuOptionsSelection{
 
     ArrayList<String> menuOptions
     String menuHeaderMsg

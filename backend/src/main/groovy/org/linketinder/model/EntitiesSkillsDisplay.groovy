@@ -2,19 +2,27 @@ package org.linketinder.model
 
 class EntitiesSkillsDisplay {
 
-    List<Map> skills
+    private List<Map> skills
 
-    EntitiesSkillsDisplay(skills){
-        this.skills = skills
-    }
+    EntitiesSkillsDisplay(){}
+
 
      void display(){
         try {
             skills.forEach({
                 print(it.skillCode + " - " + it.skillName + "\n")
             })
-        }catch (Exception e){
+        }
+        catch (Exception e){
             e.printStackTrace()
         }
+    }
+
+    List<Map> getSkills() {
+        return skills
+    }
+
+    void setSkills(List<Map> skills) {
+        this.skills = skills
     }
 }

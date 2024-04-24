@@ -2,18 +2,17 @@ package org.linketinder.DBDAO
 
 import org.linketinder.entities.Vacancy
 import org.linketinder.interfaces.Ientities
-import org.linketinder.menus.SkillsSelection
-import org.linketinder.menus.MenuOptionsSelection
 
 class VacancyDAO implements Ientities{
 
-    Integer vacancyId
-    Integer chosenOption
-    Integer oldSkill
-    Integer newSkill
-    String updatedInformation
-    Vacancy newVacancy
+    private Integer vacancyId
+    private Integer chosenOption
+    private Integer oldSkill
+    private Integer newSkill
+    private String updatedInformation
+    private Vacancy newVacancy
 
+    VacancyDAO(){}
 
     VacancyDAO(newVacancy){
         this.newVacancy = newVacancy
@@ -46,48 +45,57 @@ class VacancyDAO implements Ientities{
     List<Map> list(){
 
         try {
-
             List<Map> allVacancies = []
-
-            Integer previousVacancyId
+            ArrayList<Integer> ids = []
 
             sql.eachRow("""
-                        SELECT vacancy.id, vacancy_position, vacancy_level, vacancy_shift, vacancy_model, 
-                        vacancy_state, vacancy_city, job_description, skills.skill, company_description
-                        FROM vacancy, vacancy_skills, skills, company 
-                        WHERE vacancy_skills.id_vacancy = vacancy.id AND vacancy_skills.id_skill = skills.id AND vacancy.id_company = company.id 
-                        ORDER BY vacancy;
-                        """) { resultSet ->
+                            SELECT vacancy.id FROM vacancy
+                            """){ row ->
 
-                while (resultSet.next()) {
+                ids.add(row.getInt(1))
+            }
 
-                    String vacancyId = resultSet.getString(1)
-                    String vacancy_position = resultSet.getString(2)
-                    String vacancy_level = resultSet.getString(3)
-                    String vacancy_shift = resultSet.getString(4)
-                    String vacancy_model = resultSet.getString(5)
-                    String vacancy_state = resultSet.getString(6)
-                    String vacancy_city = resultSet.getString(7)
-                    String job_description = resultSet.getString(8)
-                    String company_description = resultSet.getString(10)
+            for(id in ids){
 
-                    if (previousVacancyId != vacancyId){
-                        
-                        println('\n----')
-                        println("\nCargo: $vacancy_position \nNível: $vacancy_level \nTurno: $vacancy_shift \nModelo de Trabalho: $vacancy_model")
-                        println("Local: $vacancy_city - $vacancy_state")
-                        println("\nSobre a empresa: $company_description")
-                        println("\nDescrição do Cargo: $job_description\n")
-                        println('Habilidades desejadas para a vaga:')
-                    }
+                ArrayList<String> skills = []
 
-                    String skills = resultSet.getString(9)
+                sql.eachRow("""
+                            SELECT vacancy_position, vacancy_level, vacancy_shift, vacancy_model, 
+                            vacancy_state, vacancy_city, job_description, company_description
+                            FROM vacancy, company 
+                            WHERE vacancy.id_company = company.id AND vacancy.id = $id
+                            """)
+                { row ->
 
-                    println(skills)
+                    String position = row.getString(1)
+                    String level = row.getString(2)
+                    String shift = row.getString(3)
+                    String model = row.getString(4)
+                    String state = row.getString(5)
+                    String city = row.getString(6)
+                    String job_description = row.getString(7)
+                    String company_description = row.getString(8)
 
-                    previousVacancyId = vacancyId
+
+                    sql.eachRow("""
+                                SELECT skill FROM vacancy_skills, skills
+                                WHERE vacancy_skills.id_skill = skills.id AND id_vacancy = $id;
+                                """) {rows ->
+
+                                    String skill = rows.getString(1)
+                                    skills.add(skill)
+                                }
+
+                        allVacancies.add([position: position,
+                                          level: level,
+                                          shift: shift,
+                                          model: model,
+                                          city: city,
+                                          state: state,
+                                          job_description: job_description,
+                                          company_description: company_description,
+                                          skills: skills])
                 }
-                allVacancies.add([vacancy_position: vacancy_position, vacancy_level: vacancy_level, vacancy_shift: vacancy_shift, vacancy_model:vacancy_model])
             }
             return allVacancies
         }
@@ -134,10 +142,7 @@ class VacancyDAO implements Ientities{
 
             if (chosenOption < 8) {
 
-                chosenOption -=  1
-
-                String updatedInformation = (String) MenuOptionsSelection.addUpdatedInformation()
-                String textChosenOption = (String) vacancyTableHeader[chosenOption]
+                String textChosenOption = (String) vacancyTableHeader[chosenOption - 1]
 
                 sql.execute("""
                             UPDATE vacancy 
@@ -148,26 +153,10 @@ class VacancyDAO implements Ientities{
 
             if (chosenOption == 8){
 
-                sql.query("""
-                            SELECT skills.id, skills.skill 
-                            FROM vacancy, vacancy_skills, skills 
-                            WHERE vacancy_skills.id_vacancy = vacancy.id AND vacancy_skills.id_skill = skills.id AND id_vacancy = ${vacancyId};
-                            """.toString()) { resultSet ->
-
-                    while (resultSet.next()) {
-
-                        String vacancyNumber = resultSet.getString(1)
-                        String vacancySkill = resultSet.getString(2)
-                        println(vacancyNumber + " - " + vacancySkill)
-                    }
-                }
-
-
                 sql.execute("""
                             UPDATE vacancy_skills SET id_skill = ${newSkill} 
                             WHERE id_skill = ${oldSkill} AND id_vacancy = ${vacancyId};
                             """.toString())
-
             }
         }
         catch(Exception e){
@@ -185,33 +174,15 @@ class VacancyDAO implements Ientities{
 
             if (chosenOption < 8) {
 
-                chosenOption -=  1
-                String textChosenOption = (String) vacancyTableHeader[chosenOption]
+                String textChosenOption = (String) vacancyTableHeader[chosenOption - 1]
 
                 sql.execute("""
                             UPDATE vacancy SET $textChosenOption = '' 
                             WHERE id = $vacancyId;
                             """.toString())
-
             }
 
             if (chosenOption == 8){
-
-                sql.query("""
-                            SELECT skills.id, skills.skill 
-                            FROM vacancy, vacancy_skills, skills 
-                            WHERE vacancy_skills.id_vacancy = vacancy.id AND vacancy_skills.id_skill = skills.id AND id_vacancy = ${vacancyId};
-                            """.toString()) { resultSet ->
-
-                    while (resultSet.next()) {
-
-                        String vacancyNumber = resultSet.getString(1)
-                        String vacancySkill = resultSet.getString(2)
-                        println(vacancyNumber + " - " + vacancySkill)
-                    }
-                }
-
-                Integer oldSkill = (Integer) SkillsSelection.chooseOldSKill()
 
                 sql.execute("""
                             DELETE FROM vacancy_skills 

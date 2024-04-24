@@ -21,7 +21,7 @@ class IdValidation{
         boolean validationId = validation.idExists()
 
         if(!validationId){
-            print("Cadastro não encontrado.")
+            println("\nCadastro não encontrado.")
         }
 
         return validationId

@@ -4,7 +4,7 @@ import org.linketinder.entities.Vacancy
 
 class VacancyRegistrationMenu {
 
-    static Vacancy register(){
+    static Vacancy registerVacancyInformations(){
 
         List<Integer> desiredSkills = new ArrayList<>()
         Scanner scanner = new Scanner(System.in)
@@ -13,6 +13,8 @@ class VacancyRegistrationMenu {
         try {
             print "Informe o número de cadastro da empresa: "
             int  idCompany = scanner.nextInt()
+
+            String fixBug = scanner.nextLine()
 
             print "Informe o nome do cargo: "
             String position = scanner.nextLine()
