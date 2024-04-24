@@ -3,8 +3,9 @@ package org.linketinder.model
 import org.linketinder.DBDAO.VacancyDAO
 import org.linketinder.DBDAO.SkillsDAO
 import org.linketinder.menus.SkillsSelection
+import org.linketinder.traits.display
 
-class VacancyInformationsDeletion {
+class VacancyInformationsDeletion implements display {
 
     private String tableName
     private Integer id
@@ -31,16 +32,15 @@ class VacancyInformationsDeletion {
             SkillsDAO skillsDao = new SkillsDAO(id)
 
             List<Map> vacancyCurrentSkills = skillsDao.getVacancySkills()
-            EntitiesSkillsDisplay vacancySkillsDisplay = new EntitiesSkillsDisplay(vacancyCurrentSkills)
-            vacancySkillsDisplay.display()
+            entitiesSkills.skills = vacancyCurrentSkills
+            entitiesSkills.display()
 
             Integer oldSkill = (Integer) SkillsSelection.chooseOldSKill()
 
-            VacancyDAO vacancyDao = new VacancyDAO(id, chosenOption, oldSkill)
+            VacancyDAO vacancyDao = new VacancyDAO(id, chosenOption, oldSkill, 0)
             vacancyDao.delete()
         }
     }
-
 
 
     String getTableName() {

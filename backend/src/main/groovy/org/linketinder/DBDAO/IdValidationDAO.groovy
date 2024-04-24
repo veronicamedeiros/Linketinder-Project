@@ -2,8 +2,8 @@ package org.linketinder.DBDAO
 
 class IdValidationDAO {
 
-    Integer id
-    String tableName
+    private Integer id
+    private String tableName
 
     IdValidationDAO(id, tableName){
         setId(id)

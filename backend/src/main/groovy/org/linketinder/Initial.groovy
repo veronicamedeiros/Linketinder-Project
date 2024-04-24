@@ -20,7 +20,7 @@ import org.linketinder.model.VacancyRegistration
 
 class Initial{
 
-    List<String> candidateInformations = ["Nome", "Sobrenome", "Ano de Nascimento", "Email", "País", "CEP", "Estado", "Descrição", "Idade", "CPF", "Senha", "Habilidades", ]
+    List<String> candidateInformations = ["Nome", "Sobrenome", "Ano de Nascimento", "Email", "País", "CEP", "Estado", "Descrição", "Idade", "CPF", "Senha", "Habilidades"]
     List<String> companyInformations = ["Nome da Empresa", "Email", "País", "CEP", "Estado", "Descrição", "CNPJ", "Senha"]
     List<String> vacancyInformations = ["Nome ", "Nível", "Turno", "Modelo", "Cidade", "Estado", "Descrição", "Competências"]
 
@@ -126,26 +126,37 @@ class Initial{
                     break
 
                 case("7"):
-                    Integer id = InformationRequest.requestId()
-                    IdValidation validation = new IdValidation(id, companyTable)
-                    validation.execute()
 
-                    MenuOptionsSelection menuOptions = new MenuOptionsSelection(companyInformations, "Atualizar Dados")
-                    Integer chosenOption = menuOptions.selecMenuOption()
+                    try {
+                        Integer id = InformationRequest.requestId()
+                        IdValidation validation = new IdValidation(id, companyTable)
+                        validation.execute()
 
-                    String updatedInformation = (String) InformationRequest.addUpdatedInformation()
-                    CompanyInformationsUpdate update = new CompanyInformationsUpdate(companyTable, id, chosenOption, updatedInformation)
-                    update.execute()
+                        MenuOptionsSelection menuOptions = new MenuOptionsSelection(companyInformations, "Atualizar Dados")
+                        Integer chosenOption = menuOptions.selecMenuOption()
 
+                        String updatedInformation = (String) InformationRequest.addUpdatedInformation()
+                        CompanyInformationsUpdate update = new CompanyInformationsUpdate(companyTable, id, chosenOption, updatedInformation)
+                        update.execute()
+                    }
+                    catch (Exception e){
+                        e.printStackTrace()
+                    }
                     break
 
                 case("8"):
-                    Integer id = InformationRequest.requestId()
-                    MenuOptionsSelection menuOptions = new MenuOptionsSelection(companyInformations, "Deletar Dados")
-                    Integer chosenOption = menuOptions.selecMenuOption()
+                    try {
+                        Integer id = InformationRequest.requestId()
+                        MenuOptionsSelection menuOptions = new MenuOptionsSelection(companyInformations, "Deletar Dados")
+                        Integer chosenOption = menuOptions.selecMenuOption()
 
-                    CompanyInformationsDeletion deletion = new CompanyInformationsDeletion(companyTable, id, chosenOption)
-                    deletion.execute()
+                        CompanyInformationsDeletion deletion = new CompanyInformationsDeletion(companyTable, id, chosenOption)
+                        deletion.execute()
+                    }
+                    catch (Exception e){
+                        e.printStackTrace()
+                    }
+
                     break
 
                 case("9"):
@@ -188,13 +199,18 @@ class Initial{
                     break
 
                 case("12"):
-                    Integer id = InformationRequest.requestId()
+                    try {
+                        Integer id = InformationRequest.requestId()
 
-                    MenuOptionsSelection menuOptions = new MenuOptionsSelection(vacancyInformations, "Deletar Dados")
-                    Integer chosenOption = menuOptions.selecMenuOption()
+                        MenuOptionsSelection menuOptions = new MenuOptionsSelection(vacancyInformations, "Deletar Dados")
+                        Integer chosenOption = menuOptions.selecMenuOption()
 
-                    VacancyInformationsDeletion deletion = new VacancyInformationsDeletion(vacancyTable, id, chosenOption)
-                    deletion.execute()
+                        VacancyInformationsDeletion deletion = new VacancyInformationsDeletion(vacancyTable, id, chosenOption)
+                        deletion.execute()
+                    }
+                    catch (Exception e){
+                        e.printStackTrace()
+                    }
                     break
 
                 case("13"):

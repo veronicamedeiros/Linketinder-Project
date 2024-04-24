@@ -15,25 +15,25 @@ class VacancyDAO implements Ientities{
     VacancyDAO(){}
 
     VacancyDAO(newVacancy){
-        this.newVacancy = newVacancy
+        setNewVacancy(newVacancy)
     }
 
     VacancyDAO(vacancyId, chosenOption){
-        this.vacancyId = vacancyId
-        this.chosenOption = chosenOption
+        setVacancyId(vacancyId)
+        setChosenOption(chosenOption)
     }
 
     VacancyDAO(vacancyId, chosenOption, updatedInformation){
-        this.vacancyId = vacancyId
-        this.chosenOption = chosenOption
-        this.updatedInformation = updatedInformation
+        setVacancyId(vacancyId)
+        setChosenOption(chosenOption)
+        setUpdatedInformation(updatedInformation)
     }
 
     VacancyDAO(vacancyId, chosenOption, oldSkill, newSkill){
-        this.vacancyId = vacancyId
-        this.chosenOption = chosenOption
-        this.oldSkill = oldSkill
-        this.newSkill = newSkill
+        setVacancyId(vacancyId)
+        setChosenOption(chosenOption)
+        setOldSkill(oldSkill)
+        setNewSkill(newSkill)
     }
 
     static Object sql = DAO.connectDataBase()
@@ -154,8 +154,8 @@ class VacancyDAO implements Ientities{
             if (chosenOption == 8){
 
                 sql.execute("""
-                            UPDATE vacancy_skills SET id_skill = ${newSkill} 
-                            WHERE id_skill = ${oldSkill} AND id_vacancy = ${vacancyId};
+                            UPDATE vacancy_skills SET id_skill = $newSkill
+                            WHERE id_skill = $oldSkill AND id_vacancy = $vacancyId;
                             """.toString())
             }
         }
@@ -171,7 +171,6 @@ class VacancyDAO implements Ientities{
     void delete(){
 
         try {
-
             if (chosenOption < 8) {
 
                 String textChosenOption = (String) vacancyTableHeader[chosenOption - 1]
@@ -197,5 +196,54 @@ class VacancyDAO implements Ientities{
         finally {
             sql.close()
         }
+    }
+
+
+    Integer getVacancyId() {
+        return vacancyId
+    }
+
+    void setVacancyId(Integer vacancyId) {
+        this.vacancyId = vacancyId
+    }
+
+    Integer getChosenOption() {
+        return chosenOption
+    }
+
+    void setChosenOption(Integer chosenOption) {
+        this.chosenOption = chosenOption
+    }
+
+    Integer getOldSkill() {
+        return oldSkill
+    }
+
+    void setOldSkill(Integer oldSkill) {
+        this.oldSkill = oldSkill
+    }
+
+    Integer getNewSkill() {
+        return newSkill
+    }
+
+    void setNewSkill(Integer newSkill) {
+        this.newSkill = newSkill
+    }
+
+    String getUpdatedInformation() {
+        return updatedInformation
+    }
+
+    void setUpdatedInformation(String updatedInformation) {
+        this.updatedInformation = updatedInformation
+    }
+
+    Vacancy getNewVacancy() {
+        return newVacancy
+    }
+
+    void setNewVacancy(Vacancy newVacancy) {
+        this.newVacancy = newVacancy
     }
 }

@@ -16,25 +16,25 @@ class CandidateDAO implements Ientities{
     CandidateDAO(){}
 
     CandidateDAO(newCandidate){
-        this.newCandidate = newCandidate
+        setNewCandidate(newCandidate)
     }
 
     CandidateDAO(candidateId, chosenOption){
-        this.candidateId = candidateId
-        this.chosenOption = chosenOption
+        setCandidateId( candidateId)
+        setChosenOption(chosenOption)
     }
 
     CandidateDAO(candidateId, chosenOption, updatedInformation){
-        this.candidateId = candidateId
-        this.chosenOption = chosenOption
-        this.updatedInformation = updatedInformation
+        setCandidateId( candidateId)
+        setChosenOption(chosenOption)
+        setUpdatedInformation(updatedInformation)
     }
 
     CandidateDAO(candidateId, chosenOption, oldSkill, newSkill){
-        this.candidateId = candidateId
-        this.chosenOption = chosenOption
-        this.oldSkill = oldSkill
-        this.newSkill = newSkill
+        setCandidateId( candidateId)
+        setChosenOption(chosenOption)
+        setOldSkill(oldSkill)
+        setNewSkill(newSkill)
     }
 
 
@@ -153,7 +153,6 @@ class CandidateDAO implements Ientities{
     void delete(){
 
         try {
-
             if (chosenOption < 12) {
 
                 String stringChosenOption = (String) candidateTableHeader[chosenOption - 1]
@@ -169,7 +168,7 @@ class CandidateDAO implements Ientities{
 
                 sql.execute("""
                                 DELETE FROM candidate_skills 
-                                WHERE id_skill = $oldSkill AND candidate_skills.id_candidate = ${candidateId}
+                                WHERE id_skill = $oldSkill AND candidate_skills.id_candidate = ${candidateId};
                                 """.toString())
             }
         }
@@ -180,5 +179,53 @@ class CandidateDAO implements Ientities{
         finally {
             sql.close()
         }
+    }
+
+    Integer getCandidateId() {
+        return candidateId
+    }
+
+    void setCandidateId(Integer candidateId) {
+        this.candidateId = candidateId
+    }
+
+    Integer getChosenOption() {
+        return chosenOption
+    }
+
+    void setChosenOption(Integer chosenOption) {
+        this.chosenOption = chosenOption
+    }
+
+    Integer getOldSkill() {
+        return oldSkill
+    }
+
+    void setOldSkill(Integer oldSkill) {
+        this.oldSkill = oldSkill
+    }
+
+    Integer getNewSkill() {
+        return newSkill
+    }
+
+    void setNewSkill(Integer newSkill) {
+        this.newSkill = newSkill
+    }
+
+    String getUpdatedInformation() {
+        return updatedInformation
+    }
+
+    void setUpdatedInformation(String updatedInformation) {
+        this.updatedInformation = updatedInformation
+    }
+
+    Candidate getNewCandidate() {
+        return newCandidate
+    }
+
+    void setNewCandidate(Candidate newCandidate) {
+        this.newCandidate = newCandidate
     }
 }

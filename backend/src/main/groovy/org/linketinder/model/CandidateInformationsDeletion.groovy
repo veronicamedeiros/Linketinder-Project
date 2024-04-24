@@ -3,9 +3,10 @@ package org.linketinder.model
 import org.linketinder.DBDAO.CandidateDAO
 import org.linketinder.DBDAO.SkillsDAO
 import org.linketinder.menus.SkillsSelection
+import org.linketinder.traits.display
 
 
-class CandidateInformationsDeletion {
+class CandidateInformationsDeletion implements display{
 
     private String tableName
     private Integer id
@@ -33,12 +34,12 @@ class CandidateInformationsDeletion {
             SkillsDAO skillsDao = new SkillsDAO(id)
 
             List<Map> candidateCurrentSkills = skillsDao.getCandidateSkills()
-            EntitiesSkillsDisplay candidateSkillsDisplay = new EntitiesSkillsDisplay(candidateCurrentSkills)
-            candidateSkillsDisplay.display()
+            entitiesSkills.skills = candidateCurrentSkills
+            entitiesSkills.display()
 
             Integer oldSkill = (Integer) SkillsSelection.chooseOldSKill()
 
-            CandidateDAO candidateDao = new CandidateDAO(id, chosenOption, oldSkill)
+            CandidateDAO candidateDao = new CandidateDAO(id, chosenOption, oldSkill, 0)
             candidateDao.delete()
         }
     }

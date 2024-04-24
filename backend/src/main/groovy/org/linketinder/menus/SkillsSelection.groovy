@@ -1,7 +1,5 @@
 package org.linketinder.menus
 
-import org.linketinder.DBDAO.SkillsDAO
-
 
 class SkillsSelection{
 

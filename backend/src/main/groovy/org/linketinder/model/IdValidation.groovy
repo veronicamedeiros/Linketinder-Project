@@ -6,8 +6,8 @@ import org.linketinder.DBDAO.IdValidationDAO
 
 class IdValidation{
 
-    protected Integer id
-    protected String tableName
+    private Integer id
+    private String tableName
 
     IdValidation(id, tableName){
         setId(id)

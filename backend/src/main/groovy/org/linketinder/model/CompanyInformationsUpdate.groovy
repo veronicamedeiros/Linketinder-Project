@@ -5,10 +5,10 @@ import org.linketinder.DBDAO.CompanyDAO
 
 class CompanyInformationsUpdate {
 
-    String tableName
-    Integer id
-    Integer chosenOption
-    String updatedInformation
+    private String tableName
+    private Integer id
+    private Integer chosenOption
+    private String updatedInformation
 
 
     CompanyInformationsUpdate(String tableName, Integer id, Integer chosenOption, String updatedInformation) {

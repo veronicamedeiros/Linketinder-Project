@@ -49,7 +49,6 @@ class SkillsDAO {
                     String skillName = rows.getString(2)
 
                     candidateSkills.add([skillCode: skillCode, skillName: skillName])
-
             }
             return candidateSkills
         }
