@@ -1,11 +1,9 @@
 package org.linketinder.menus
-import org.linketinder.menus.MenuOptionsSelection
+
 
 class Menu {
 
     String mainMenu(){
-
-
 
         List<String> mainMenuOptions = ["Listar Candidatos", "Cadastrar Candidatos", "Atualizar Candidato", "Excluir dados do Candidato",
                                         "Listar Empresas", "Cadastrar Empresas", "Atualizar Empresas", "Excluir dados da Empresa",

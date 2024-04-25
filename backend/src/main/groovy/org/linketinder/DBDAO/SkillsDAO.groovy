@@ -4,6 +4,8 @@ class SkillsDAO {
 
     private Integer id
 
+    SkillsDAO(){}
+
     SkillsDAO(id){
         setId(id)
     }

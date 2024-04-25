@@ -1,9 +1,11 @@
 package org.linketinder.menus
 
+import org.linketinder.traits.SkillsCatalogInvoke
 
-class SkillsSelection{
 
-    static List<Integer> chooseSkills(){
+class SkillsSelection implements SkillsCatalogInvoke{
+
+     List<Integer> chooseSkills() {
 
         Integer skill
         List<Integer> skills = new ArrayList<>()
@@ -14,6 +16,7 @@ class SkillsSelection{
 
             println "\nDigite o número referente à habilidade desejada e pressione enter."
             println "Caso não deseje informar mais nenhuma, pressione 0.\n"
+
 
             skill = chooseNewSkill("Habilidade: ")
 
@@ -29,25 +32,26 @@ class SkillsSelection{
                     skills.add(skill)
                 }
             }
-
         }
     }
 
 
-    static Integer chooseOldSKill(){
-
-        Scanner scanner = new Scanner(System.in)
+     Integer chooseOldSKill(){
 
         print("\nInforme o número da habilidade que deseja selecionar: ")
+
+        Scanner scanner = new Scanner(System.in)
         Integer oldSkill = (Integer) scanner.nextInt()
 
         return oldSkill
     }
 
 
-    static chooseNewSkill(String msg = "Insira o número da nova habilidade e pressione enter: "){
+     Integer chooseNewSkill(String msg = "Insira o número da nova habilidade e pressione enter: "){
 
-        print("\n $msg")
+        showSkillsCatalog()
+
+        print("\n$msg")
 
         Scanner scanner = new Scanner(System.in)
         Integer newSkill = (Integer) scanner.nextInt()

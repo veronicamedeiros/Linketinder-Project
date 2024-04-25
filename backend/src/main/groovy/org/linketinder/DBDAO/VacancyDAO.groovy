@@ -1,6 +1,7 @@
 package org.linketinder.DBDAO
 
 import org.linketinder.entities.Vacancy
+import org.linketinder.interfaces.Idao
 import org.linketinder.interfaces.Ientities
 
 class VacancyDAO implements Ientities{
@@ -36,7 +37,7 @@ class VacancyDAO implements Ientities{
         setNewSkill(newSkill)
     }
 
-    static Object sql = DAO.connectDataBase()
+    Object sql = DAO.connectDataBase()
 
     static String[] vacancyTableHeader = ['vacancy_position', 'vacancy_level', 'vacancy_shift', 'vacancy_model',
                                           'vacancy_city', 'vacancy_state', 'job_description', 'id_company']

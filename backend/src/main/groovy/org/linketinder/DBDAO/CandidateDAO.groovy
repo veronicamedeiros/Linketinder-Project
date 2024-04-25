@@ -13,6 +13,7 @@ class CandidateDAO implements Ientities{
     private String updatedInformation
     private Candidate newCandidate
 
+
     CandidateDAO(){}
 
     CandidateDAO(newCandidate){
@@ -20,18 +21,18 @@ class CandidateDAO implements Ientities{
     }
 
     CandidateDAO(candidateId, chosenOption){
-        setCandidateId( candidateId)
+        setCandidateId(candidateId)
         setChosenOption(chosenOption)
     }
 
     CandidateDAO(candidateId, chosenOption, updatedInformation){
-        setCandidateId( candidateId)
+        setCandidateId(candidateId)
         setChosenOption(chosenOption)
         setUpdatedInformation(updatedInformation)
     }
 
     CandidateDAO(candidateId, chosenOption, oldSkill, newSkill){
-        setCandidateId( candidateId)
+        setCandidateId(candidateId)
         setChosenOption(chosenOption)
         setOldSkill(oldSkill)
         setNewSkill(newSkill)
@@ -180,6 +181,7 @@ class CandidateDAO implements Ientities{
             sql.close()
         }
     }
+
 
     Integer getCandidateId() {
         return candidateId

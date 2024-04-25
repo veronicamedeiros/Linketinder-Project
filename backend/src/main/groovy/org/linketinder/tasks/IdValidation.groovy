@@ -1,4 +1,4 @@
-package org.linketinder.model
+package org.linketinder.tasks
 
 
 import org.linketinder.DBDAO.IdValidationDAO
@@ -26,6 +26,7 @@ class IdValidation{
 
         return validationId
     }
+
 
     Integer getId() {
         return id

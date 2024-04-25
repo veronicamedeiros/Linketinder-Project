@@ -1,6 +1,7 @@
-package org.linketinder.model
+package org.linketinder.tasks.company
 
 import org.linketinder.DBDAO.CompanyDAO
+import org.linketinder.tasks.IdValidation
 
 
 class CompanyInformationsDeletion {

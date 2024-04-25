@@ -4,7 +4,7 @@ import org.linketinder.entities.Vacancy
 
 class VacancyRegistrationMenu {
 
-    static Vacancy registerVacancyInformations(){
+     Vacancy registerVacancyInformations(){
 
         List<Integer> desiredSkills = new ArrayList<>()
         Scanner scanner = new Scanner(System.in)
@@ -37,8 +37,8 @@ class VacancyRegistrationMenu {
             print "Descreva o cargo: "
             String jobDescription = scanner.nextLine()
 
-
-            desiredSkills = SkillsSelection.chooseSkills()
+            SkillsSelection selection = new SkillsSelection()
+            desiredSkills = selection.chooseSkills()
 
             Vacancy newVacancy = new Vacancy(position, level, shift, model, city, state, jobDescription, desiredSkills, idCompany)
 

@@ -1,4 +1,4 @@
-package org.linketinder.model
+package org.linketinder.tasks.company
 
 import org.linketinder.DBDAO.CompanyDAO
 

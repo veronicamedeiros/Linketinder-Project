@@ -3,13 +3,15 @@ package org.linketinder.menus
 
 class MenuOptionsSelection{
 
-    ArrayList<String> menuOptions
-    String menuHeaderMsg
+    private ArrayList<String> menuOptions
+    private String menuHeaderMsg
+
 
     MenuOptionsSelection(menuOptions, menuHeaderMsg) {
-        this.menuOptions = menuOptions
-        this.menuHeaderMsg = menuHeaderMsg
+        setMenuOptions(menuOptions)
+        setMenuHeaderMsg(menuHeaderMsg)
     }
+
 
     Integer selecMenuOption() {
 
@@ -39,5 +41,22 @@ class MenuOptionsSelection{
                 e.getMessage()
             }
         }
+    }
+
+
+    ArrayList<String> getMenuOptions() {
+        return menuOptions
+    }
+
+    void setMenuOptions(ArrayList<String> menuOptions) {
+        this.menuOptions = menuOptions
+    }
+
+    String getMenuHeaderMsg() {
+        return menuHeaderMsg
+    }
+
+    void setMenuHeaderMsg(String menuHeaderMsg) {
+        this.menuHeaderMsg = menuHeaderMsg
     }
 }

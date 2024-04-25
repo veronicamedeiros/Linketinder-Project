@@ -1,11 +1,13 @@
-package org.linketinder.model
+package org.linketinder.tasks.vacancy
 
 import org.linketinder.DBDAO.VacancyDAO
 import org.linketinder.DBDAO.SkillsDAO
+import org.linketinder.display.EntitiesSkillsDisplay
 import org.linketinder.menus.SkillsSelection
-import org.linketinder.traits.display
+import org.linketinder.tasks.IdValidation
 
-class VacancyInformationsDeletion implements display {
+
+class VacancyInformationsDeletion {
 
     private String tableName
     private Integer id
@@ -30,6 +32,8 @@ class VacancyInformationsDeletion implements display {
         }
         else {
             SkillsDAO skillsDao = new SkillsDAO(id)
+
+            EntitiesSkillsDisplay entitiesSkills = new EntitiesSkillsDisplay()
 
             List<Map> vacancyCurrentSkills = skillsDao.getVacancySkills()
             entitiesSkills.skills = vacancyCurrentSkills

@@ -1,4 +1,4 @@
-package org.linketinder.model
+package org.linketinder.display
 
 class EntitiesSkillsDisplay {
 
@@ -17,6 +17,7 @@ class EntitiesSkillsDisplay {
             e.printStackTrace()
         }
     }
+
 
     List<Map> getSkills() {
         return skills

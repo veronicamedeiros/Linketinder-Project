@@ -1,4 +1,4 @@
-package org.linketinder.model
+package org.linketinder.tasks.candidate
 
 import org.linketinder.entities.Candidate
 import org.linketinder.menus.CandidateRegistrationMenu
@@ -11,7 +11,7 @@ class CandidateProfileRegistration {
         try {
             CandidateRegistrationMenu newRegistration = new CandidateRegistrationMenu()
             Candidate newCandidate = newRegistration.registerCandidateInformations()
-            
+
             CandidateDAO dbRegistration = new CandidateDAO(newCandidate)
             dbRegistration.register()
         }

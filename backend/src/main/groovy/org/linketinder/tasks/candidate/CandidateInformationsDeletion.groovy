@@ -1,12 +1,13 @@
-package org.linketinder.model
+package org.linketinder.tasks.candidate
 
 import org.linketinder.DBDAO.CandidateDAO
 import org.linketinder.DBDAO.SkillsDAO
+import org.linketinder.display.EntitiesSkillsDisplay
 import org.linketinder.menus.SkillsSelection
-import org.linketinder.traits.display
+import org.linketinder.tasks.IdValidation
 
 
-class CandidateInformationsDeletion implements display{
+class CandidateInformationsDeletion{
 
     private String tableName
     private Integer id
@@ -34,6 +35,7 @@ class CandidateInformationsDeletion implements display{
             SkillsDAO skillsDao = new SkillsDAO(id)
 
             List<Map> candidateCurrentSkills = skillsDao.getCandidateSkills()
+            EntitiesSkillsDisplay entitiesSkills = new EntitiesSkillsDisplay()
             entitiesSkills.skills = candidateCurrentSkills
             entitiesSkills.display()
 

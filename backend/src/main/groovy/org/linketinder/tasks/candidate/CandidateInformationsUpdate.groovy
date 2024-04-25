@@ -1,12 +1,12 @@
-package org.linketinder.model
+package org.linketinder.tasks.candidate
 
 import org.linketinder.DBDAO.CandidateDAO
 import org.linketinder.DBDAO.SkillsDAO
 import org.linketinder.menus.SkillsSelection
-import org.linketinder.traits.display
+import org.linketinder.traits.SkillsCatalogInvoke
 
 
-class CandidateInformationsUpdate implements display{
+class CandidateInformationsUpdate implements SkillsCatalogInvoke {
 
     private String tableName
     private Integer id
@@ -44,9 +44,7 @@ class CandidateInformationsUpdate implements display{
 
             Integer oldSkill = (Integer) SkillsSelection.chooseOldSKill()
 
-            List<Map> allSkills = skillsDao.getAllSkills()
-            skillsCatalog.skills = allSkills
-            skillsCatalog.display()
+            showSkillsCatalog()
 
             Integer newSkill = (Integer) SkillsSelection.chooseNewSkill()
 

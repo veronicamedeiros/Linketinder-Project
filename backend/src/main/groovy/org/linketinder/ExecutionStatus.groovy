@@ -1,4 +1,4 @@
-package org.linketinder.model
+package org.linketinder
 
 class ExecutionStatus {
 

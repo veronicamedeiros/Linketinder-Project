@@ -1,4 +1,4 @@
-package org.linketinder.model
+package org.linketinder.tasks.vacancy
 
 import org.linketinder.DBDAO.VacancyDAO
 import org.linketinder.entities.Vacancy

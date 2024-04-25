@@ -1,16 +1,17 @@
-package org.linketinder.model
+package org.linketinder.display
 
-import org.linketinder.DBDAO.VacancyDAO
 
 class VacancyDisplay {
 
-    static execute(){
+    private List<Map> skills
+
+    VacancyDisplay(List<Map> skills) {
+        setSkills(skills)
+    }
+
+    void display(){
 
         try {
-
-            VacancyDAO vacancyDao = new VacancyDAO()
-            List<Map> skills = vacancyDao.list()
-
             skills.forEach({
                 println"""
                 Cargo: $it.position
@@ -29,5 +30,13 @@ class VacancyDisplay {
             e.printStackTrace()
         }
     }
-}
 
+
+    List<Map> getSkills() {
+        return skills
+    }
+
+    void setSkills(List<Map> skills) {
+        this.skills = skills
+    }
+}

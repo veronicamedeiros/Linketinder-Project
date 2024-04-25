@@ -1,7 +1,7 @@
 package org.linketinder.menus
 
-
 import org.linketinder.entities.Candidate
+
 
 class CandidateRegistrationMenu{
 
@@ -49,7 +49,6 @@ class CandidateRegistrationMenu{
             String description = scanner.nextLine()
 
             SkillsSelection selection = new SkillsSelection()
-
             skills = selection.chooseSkills()
 
             Candidate newCandidate = new Candidate(name, surname, birth, email, country, cep, state, description, age, cpf, skills, password)

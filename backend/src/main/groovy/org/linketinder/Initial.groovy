@@ -2,23 +2,20 @@ package org.linketinder
 
 import org.linketinder.menus.InformationRequest
 import org.linketinder.menus.MenuOptionsSelection
-import org.linketinder.model.CandidateInformationsDeletion
-import org.linketinder.model.CompanyDisplay
-import org.linketinder.model.CandidatesDisplay
-import org.linketinder.model.VacancyDisplay
-
+import org.linketinder.tasks.candidate.CandidateInformationsDeletion
 import org.linketinder.menus.Menu
-import org.linketinder.model.CandidateProfileRegistration
-import org.linketinder.model.CandidateInformationsUpdate
-import org.linketinder.model.CompanyInformationsDeletion
-import org.linketinder.model.CompanyInformationsUpdate
-import org.linketinder.model.CompanyProfileRegistration
-import org.linketinder.model.IdValidation
-import org.linketinder.model.VacancyInformationsDeletion
-import org.linketinder.model.VacancyInformationsUpdate
-import org.linketinder.model.VacancyRegistration
+import org.linketinder.tasks.candidate.CandidateProfileRegistration
+import org.linketinder.tasks.candidate.CandidateInformationsUpdate
+import org.linketinder.tasks.company.CompanyInformationsDeletion
+import org.linketinder.tasks.company.CompanyInformationsUpdate
+import org.linketinder.tasks.company.CompanyProfileRegistration
+import org.linketinder.tasks.IdValidation
+import org.linketinder.tasks.vacancy.VacancyInformationsDeletion
+import org.linketinder.tasks.vacancy.VacancyInformationsUpdate
+import org.linketinder.tasks.vacancy.VacancyRegistration
+import org.linketinder.traits.EntitiesDisplayInvoke
 
-class Initial{
+class Initial implements EntitiesDisplayInvoke {
 
     List<String> candidateInformations = ["Nome", "Sobrenome", "Ano de Nascimento", "Email", "País", "CEP", "Estado", "Descrição", "Idade", "CPF", "Senha", "Habilidades"]
     List<String> companyInformations = ["Nome da Empresa", "Email", "País", "CEP", "Estado", "Descrição", "CNPJ", "Senha"]
@@ -45,7 +42,7 @@ class Initial{
 
                 case("1"):
                     try {
-                        CandidatesDisplay.execute()
+                        showCandidates()
                     }
                     catch (Exception e){
                         e.printStackTrace()
@@ -56,7 +53,6 @@ class Initial{
                     try {
                         CandidateProfileRegistration candidateRegistration = new CandidateProfileRegistration()
                         candidateRegistration.registerCandidate()
-                        print("Cadastro realizado com sucesso.")
                     }
                     catch (Exception e){
                         e.printStackTrace()
@@ -106,7 +102,7 @@ class Initial{
 
                 case("5"):
                     try {
-                        CompanyDisplay.execute()
+                        showCompanies()
                     }
                     catch (Exception e){
 
@@ -118,7 +114,6 @@ class Initial{
                     try {
                         CompanyProfileRegistration companyRegistration = new CompanyProfileRegistration()
                         companyRegistration.registerCompany()
-                        print("Cadastro realizado com sucesso.")
                     }
                     catch (Exception e){
                         e.printStackTrace()
@@ -160,14 +155,19 @@ class Initial{
                     break
 
                 case("9"):
-                    VacancyDisplay.execute()
+                    try {
+                        showVacancies()
+                    }
+                    catch (Exception e){
+                        e.printStackTrace()
+                    }
+
                     break
 
                 case("10"):
                     try {
                         VacancyRegistration vacancyRegistration = new VacancyRegistration()
                         vacancyRegistration.registerVacancy()
-                        print("Cadastro realizado com sucesso.")
                     }
                     catch (Exception e){
                         e.printStackTrace()
@@ -217,8 +217,6 @@ class Initial{
                     println "Encerrando..."
                     break
             }
-
         }
     }
 }
-
