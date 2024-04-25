@@ -36,7 +36,7 @@ class SkillsSelection implements SkillsCatalogInvoke{
     }
 
 
-     Integer chooseOldSKill(){
+    static Integer chooseOldSKill(){
 
         print("\nInforme o número da habilidade que deseja selecionar: ")
 
@@ -47,9 +47,7 @@ class SkillsSelection implements SkillsCatalogInvoke{
     }
 
 
-     Integer chooseNewSkill(String msg = "Insira o número da nova habilidade e pressione enter: "){
-
-        showSkillsCatalog()
+    static Integer chooseNewSkill(String msg = "Insira o número da nova habilidade e pressione enter: "){
 
         print("\n$msg")
 

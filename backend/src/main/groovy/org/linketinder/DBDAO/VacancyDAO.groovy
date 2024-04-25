@@ -1,8 +1,9 @@
 package org.linketinder.DBDAO
 
+import groovy.sql.Sql
 import org.linketinder.entities.Vacancy
-import org.linketinder.interfaces.Idao
 import org.linketinder.interfaces.Ientities
+
 
 class VacancyDAO implements Ientities{
 
@@ -37,7 +38,8 @@ class VacancyDAO implements Ientities{
         setNewSkill(newSkill)
     }
 
-    Object sql = DAO.connectDataBase()
+
+    static Sql sql = DAO.connectDataBase()
 
     static String[] vacancyTableHeader = ['vacancy_position', 'vacancy_level', 'vacancy_shift', 'vacancy_model',
                                           'vacancy_city', 'vacancy_state', 'job_description', 'id_company']
@@ -131,9 +133,6 @@ class VacancyDAO implements Ientities{
 
             e.printStackTrace()
         }
-        finally {
-            sql.close()
-        }
     }
 
 
@@ -163,9 +162,6 @@ class VacancyDAO implements Ientities{
         catch(Exception e){
             e.printStackTrace()
         }
-        finally {
-            sql.close()
-        }
     }
 
 
@@ -193,9 +189,6 @@ class VacancyDAO implements Ientities{
         catch(Exception e){
 
             e.printStackTrace()
-        }
-        finally {
-            sql.close()
         }
     }
 

@@ -1,5 +1,6 @@
 package org.linketinder.DBDAO
 
+import groovy.sql.Sql
 import org.linketinder.entities.Candidate
 import org.linketinder.interfaces.Ientities
 
@@ -39,7 +40,7 @@ class CandidateDAO implements Ientities{
     }
 
 
-    static Object sql = DAO.connectDataBase()
+    static Sql sql = DAO.connectDataBase()
 
     static String[] candidateTableHeader = ['candidate_name', 'candidate_surname', 'candidate_birth', 'candidate_email', 'candidate_country',
                                             'candidate_cep', 'candidate_state', 'candidate_description', 'candidate_age', 'candidate_cpf', 'candidate_password']
@@ -111,9 +112,6 @@ class CandidateDAO implements Ientities{
         catch (Exception e){
             e.printStackTrace()
         }
-        finally {
-            sql.close()
-        }
     }
 
 
@@ -144,10 +142,6 @@ class CandidateDAO implements Ientities{
 
             e.printStackTrace()
         }
-        finally {
-
-            sql.close()
-        }
     }
 
 
@@ -176,9 +170,6 @@ class CandidateDAO implements Ientities{
         catch(Exception e){
 
             e.printStackTrace()
-        }
-        finally {
-            sql.close()
         }
     }
 

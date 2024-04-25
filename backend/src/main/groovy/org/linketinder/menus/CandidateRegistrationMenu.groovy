@@ -5,7 +5,6 @@ import org.linketinder.entities.Candidate
 
 class CandidateRegistrationMenu{
 
-
     Candidate registerCandidateInformations(){
 
         List<Integer> skills = new ArrayList<>()

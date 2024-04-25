@@ -1,5 +1,7 @@
 package org.linketinder.DBDAO
 
+import groovy.sql.Sql
+
 class IdValidationDAO {
 
     private Integer id
@@ -10,7 +12,8 @@ class IdValidationDAO {
         setTableName(tableName)
     }
 
-    static Object sql = DAO.connectDataBase()
+    static Sql sql = DAO.connectDataBase()
+
 
      boolean idExists(){
 

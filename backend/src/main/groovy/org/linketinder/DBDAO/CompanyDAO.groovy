@@ -1,5 +1,6 @@
 package org.linketinder.DBDAO
 
+import groovy.sql.Sql
 import org.linketinder.interfaces.Ientities
 import org.linketinder.entities.Company
 
@@ -28,7 +29,7 @@ class CompanyDAO implements Ientities {
     }
 
 
-    static Object sql = DAO.connectDataBase()
+    static Sql sql = DAO.connectDataBase()
 
     static String[] companyTableHeader = ['company_name', 'company_email', 'company_country', 'company_cep',
                                           'company_state', 'company_description', 'company_cnpj', 'company_password']
@@ -74,9 +75,6 @@ class CompanyDAO implements Ientities {
 
             e.printStackTrace()
         }
-        finally {
-            sql.close()
-        }
     }
 
 
@@ -114,10 +112,8 @@ class CompanyDAO implements Ientities {
 
             e.printStackTrace()
         }
-        finally {
-            sql.close()
-        }
     }
+
 
     Integer getCompanyId() {
         return companyId

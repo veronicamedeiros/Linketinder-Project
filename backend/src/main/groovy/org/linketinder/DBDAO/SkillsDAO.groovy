@@ -1,5 +1,7 @@
 package org.linketinder.DBDAO
 
+import groovy.sql.Sql
+
 class SkillsDAO {
 
     private Integer id
@@ -10,7 +12,7 @@ class SkillsDAO {
         setId(id)
     }
 
-    static Object sql = DAO.connectDataBase()
+    static Sql sql = DAO.connectDataBase()
 
 
     List<Map> getAllSkills(){

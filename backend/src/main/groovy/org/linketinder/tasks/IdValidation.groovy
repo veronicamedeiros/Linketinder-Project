@@ -17,14 +17,17 @@ class IdValidation{
 
     boolean execute(){
 
-        IdValidationDAO validation = new IdValidationDAO(id, tableName)
-        boolean validationId = validation.idExists()
-
-        if(!validationId){
-            println("\nCadastro não encontrado.")
+        try {
+            IdValidationDAO validation = new IdValidationDAO(id, tableName)
+            boolean validationId = validation.idExists()
+            if(!validationId){
+                println("\nCadastro não encontrado.")
+            }
+            return validationId
         }
-
-        return validationId
+        catch (Exception e){
+            e.printStackTrace()
+        }
     }
 
 
