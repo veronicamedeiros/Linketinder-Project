@@ -1,4 +1,4 @@
-import { companyList } from "./entitiesList/companyList";
+import { companyList } from "../utilities/entitiesList/companyList";
 import { Company } from "../entities/Company";
 
 export let companyName: any = (document.getElementById('companyName')as HTMLElement);
@@ -11,8 +11,11 @@ export let companyCnpj: any = (document.getElementById('companyCnpj')as HTMLElem
 
 export class CompanyRegistration{
 
+
+    constructor(){}
     
-    static registerCompany(){
+    
+    registerCompany(){
 
         try{
             

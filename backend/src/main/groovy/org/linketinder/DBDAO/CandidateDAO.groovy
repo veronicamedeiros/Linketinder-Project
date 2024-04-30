@@ -1,11 +1,11 @@
 package org.linketinder.DBDAO
 
-import groovy.sql.Sql
+import org.linketinder.connection.DBConnection
 import org.linketinder.entities.Candidate
 import org.linketinder.interfaces.Ientities
 
 
-class CandidateDAO implements Ientities{
+class CandidateDAO extends DBConnection implements Ientities {
 
     private Integer candidateId
     private Integer chosenOption
@@ -17,30 +17,28 @@ class CandidateDAO implements Ientities{
 
     CandidateDAO(){}
 
-    CandidateDAO(newCandidate){
+    CandidateDAO(Candidate newCandidate){
         setNewCandidate(newCandidate)
     }
 
-    CandidateDAO(candidateId, chosenOption){
+    CandidateDAO(Integer candidateId, Integer chosenOption){
         setCandidateId(candidateId)
         setChosenOption(chosenOption)
     }
 
-    CandidateDAO(candidateId, chosenOption, updatedInformation){
+    CandidateDAO(Integer candidateId, Integer chosenOption, String updatedInformation){
         setCandidateId(candidateId)
         setChosenOption(chosenOption)
         setUpdatedInformation(updatedInformation)
     }
 
-    CandidateDAO(candidateId, chosenOption, oldSkill, newSkill){
+    CandidateDAO(Integer candidateId, Integer chosenOption, Integer oldSkill, Integer newSkill){
         setCandidateId(candidateId)
         setChosenOption(chosenOption)
         setOldSkill(oldSkill)
         setNewSkill(newSkill)
     }
 
-
-    static Sql sql = DAO.connectDataBase()
 
     static String[] candidateTableHeader = ['candidate_name', 'candidate_surname', 'candidate_birth', 'candidate_email', 'candidate_country',
                                             'candidate_cep', 'candidate_state', 'candidate_description', 'candidate_age', 'candidate_cpf', 'candidate_password']
@@ -53,7 +51,7 @@ class CandidateDAO implements Ientities{
         try {
             ArrayList<Integer> ids = []
 
-            sql.eachRow("""
+            database.eachRow("""
                             SELECT id FROM candidates
                             """){ row ->
 
@@ -65,7 +63,7 @@ class CandidateDAO implements Ientities{
                 ArrayList candidateSkills = []
                 String description
 
-                sql.eachRow("""
+                database.eachRow("""
                         SELECT candidate_skills.id_candidate, skills.skill, candidate_description
                         FROM candidates, candidate_skills, skills
                         WHERE candidate_skills.id_candidate = candidates.id AND candidate_skills.id_skill = skills.id AND id_candidate = CAST (${identification} AS INT)
@@ -93,7 +91,7 @@ class CandidateDAO implements Ientities{
 
         try {
 
-            List<List<Object>> result = sql.executeInsert("""
+            List<List<Object>> result = database.executeInsert("""
                                             INSERT INTO candidates (candidate_name, candidate_surname, candidate_birth, candidate_email, candidate_country,
                                                                     candidate_cep, candidate_state, candidate_description, candidate_age, candidate_cpf, candidate_password)
                                             VALUES ($newCandidate.name, $newCandidate.surname, TO_DATE($newCandidate.birth, 'YYYY-MM-DD'), $newCandidate.email, $newCandidate.country,
@@ -103,7 +101,7 @@ class CandidateDAO implements Ientities{
 
             for (newSkill in newCandidate.skills){
 
-                sql.execute("""
+                database.execute("""
                             INSERT INTO candidate_skills (id_candidate, id_skill)
                             VALUES ($generatedId, $newSkill)
                             """)
@@ -123,7 +121,7 @@ class CandidateDAO implements Ientities{
 
                 String stringChosenOption = (String) candidateTableHeader[chosenOption - 1]
 
-                sql.execute("""
+                database.execute("""
                             UPDATE candidates 
                             SET $stringChosenOption = '$updatedInformation' 
                             WHERE id = $candidateId;
@@ -132,7 +130,7 @@ class CandidateDAO implements Ientities{
 
             if (chosenOption == 12){
 
-                sql.execute("""
+                database.execute("""
                             UPDATE candidate_skills SET id_skill = ${newSkill} 
                             WHERE id_skill = ${oldSkill} AND candidate_skills.id_candidate = ${candidateId};
                             """.toString())
@@ -152,7 +150,7 @@ class CandidateDAO implements Ientities{
 
                 String stringChosenOption = (String) candidateTableHeader[chosenOption - 1]
 
-                sql.execute("""
+                database.execute("""
                                 UPDATE candidates 
                                 SET $stringChosenOption = '' 
                                 WHERE id = $candidateId;
@@ -161,7 +159,7 @@ class CandidateDAO implements Ientities{
 
             if (chosenOption == 12){
 
-                sql.execute("""
+                database.execute("""
                                 DELETE FROM candidate_skills 
                                 WHERE id_skill = $oldSkill AND candidate_skills.id_candidate = ${candidateId};
                                 """.toString())

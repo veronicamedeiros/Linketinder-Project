@@ -1,22 +1,27 @@
-package org.linketinder.DBDAO
+package org.linketinder.connection
 
 import groovy.sql.Sql
 
-class DAO {
+class PostgreSQL implements DAO{
 
-
-    protected static connectDataBase() {
-
+    @Override
+     Sql connect(){
         try {
             String url = 'jdbc:postgresql://localhost:5432/linketinder_banco'
             String user = 'postgres'
             String password = 'postgres'
             String driver = 'org.postgresql.Driver'
-            Sql.newInstance url, user, password, driver
+            Sql sql = Sql.newInstance url, user, password, driver
+            return sql
         }
         catch (Exception e){
 
             e.printStackTrace()
         }
+    }
+
+    @Override
+    void disconnect(connection) {
+        connection.close()
     }
 }

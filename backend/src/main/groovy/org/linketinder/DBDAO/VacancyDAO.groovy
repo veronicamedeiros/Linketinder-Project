@@ -1,11 +1,11 @@
 package org.linketinder.DBDAO
 
-import groovy.sql.Sql
+import org.linketinder.connection.DBConnection
 import org.linketinder.entities.Vacancy
 import org.linketinder.interfaces.Ientities
 
 
-class VacancyDAO implements Ientities{
+class VacancyDAO extends DBConnection implements Ientities {
 
     private Integer vacancyId
     private Integer chosenOption
@@ -39,8 +39,6 @@ class VacancyDAO implements Ientities{
     }
 
 
-    static Sql sql = DAO.connectDataBase()
-
     static String[] vacancyTableHeader = ['vacancy_position', 'vacancy_level', 'vacancy_shift', 'vacancy_model',
                                           'vacancy_city', 'vacancy_state', 'job_description', 'id_company']
 
@@ -51,7 +49,7 @@ class VacancyDAO implements Ientities{
             List<Map> allVacancies = []
             ArrayList<Integer> ids = []
 
-            sql.eachRow("""
+            database.eachRow("""
                             SELECT vacancy.id FROM vacancy
                             """){ row ->
 
@@ -62,7 +60,7 @@ class VacancyDAO implements Ientities{
 
                 ArrayList<String> skills = []
 
-                sql.eachRow("""
+                database.eachRow("""
                             SELECT vacancy_position, vacancy_level, vacancy_shift, vacancy_model, 
                             vacancy_state, vacancy_city, job_description, company_description
                             FROM vacancy, company 
@@ -80,7 +78,7 @@ class VacancyDAO implements Ientities{
                     String company_description = row.getString(8)
 
 
-                    sql.eachRow("""
+                    database.eachRow("""
                                 SELECT skill FROM vacancy_skills, skills
                                 WHERE vacancy_skills.id_skill = skills.id AND id_vacancy = $id;
                                 """) {rows ->
@@ -113,7 +111,7 @@ class VacancyDAO implements Ientities{
 
         try {
 
-            List<List<Object>> result = sql.executeInsert("""
+            List<List<Object>> result = database.executeInsert("""
                                             INSERT INTO vacancy (vacancy_position, vacancy_level, vacancy_shift, vacancy_model, 
                                                                 vacancy_city, vacancy_state, job_description, id_company)
                                             VALUES ($newVacancy.position, $newVacancy.level, $newVacancy.shift, $newVacancy.model, 
@@ -123,7 +121,7 @@ class VacancyDAO implements Ientities{
             Integer generatedId = (Integer) result[0][0]
 
             for (newSkill in newVacancy.desiredSkills){
-                sql.execute("""
+                database.execute("""
                             INSERT INTO vacancy_skills (id_vacancy, id_skill)
                             VALUES ($generatedId, $newSkill)
                             """)
@@ -144,7 +142,7 @@ class VacancyDAO implements Ientities{
 
                 String textChosenOption = (String) vacancyTableHeader[chosenOption - 1]
 
-                sql.execute("""
+                database.execute("""
                             UPDATE vacancy 
                             SET $textChosenOption = '$updatedInformation' 
                             WHERE id = $vacancyId;
@@ -153,7 +151,7 @@ class VacancyDAO implements Ientities{
 
             if (chosenOption == 8){
 
-                sql.execute("""
+                database.execute("""
                             UPDATE vacancy_skills SET id_skill = $newSkill
                             WHERE id_skill = $oldSkill AND id_vacancy = $vacancyId;
                             """.toString())
@@ -172,7 +170,7 @@ class VacancyDAO implements Ientities{
 
                 String textChosenOption = (String) vacancyTableHeader[chosenOption - 1]
 
-                sql.execute("""
+                database.execute("""
                             UPDATE vacancy SET $textChosenOption = '' 
                             WHERE id = $vacancyId;
                             """.toString())
@@ -180,7 +178,7 @@ class VacancyDAO implements Ientities{
 
             if (chosenOption == 8){
 
-                sql.execute("""
+                database.execute("""
                             DELETE FROM vacancy_skills 
                             WHERE id_skill = $oldSkill AND vacancy_skills.id_vacancy = ${vacancyId}
                             """.toString())

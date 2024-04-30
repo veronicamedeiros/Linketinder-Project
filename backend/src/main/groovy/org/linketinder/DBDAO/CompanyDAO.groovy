@@ -1,10 +1,12 @@
 package org.linketinder.DBDAO
 
-import groovy.sql.Sql
+import org.linketinder.connection.DBConnection
+
 import org.linketinder.interfaces.Ientities
 import org.linketinder.entities.Company
 
-class CompanyDAO implements Ientities {
+
+class CompanyDAO extends DBConnection implements Ientities {
 
     private Integer companyId
     private Integer chosenOption
@@ -13,23 +15,23 @@ class CompanyDAO implements Ientities {
 
     CompanyDAO(){}
 
-    CompanyDAO(newCompany){
+    CompanyDAO(Company newCompany){
         setNewCompany(newCompany)
     }
 
-    CompanyDAO(companyId, chosenOption){
+    CompanyDAO(Integer companyId, Integer chosenOption){
         setCompanyId(companyId)
         setChosenOption(chosenOption)
     }
 
-    CompanyDAO(companyId, chosenOption, updatedInformation){
+    CompanyDAO(Integer companyId, Integer chosenOption, String updatedInformation){
         setCompanyId(companyId)
         setChosenOption(chosenOption)
         setUpdatedInformation(updatedInformation)
     }
 
-
-    static Sql sql = DAO.connectDataBase()
+    //static Sql sql = DAO.connectDataBase()
+    //static TasksConnectonToDB database = TasksConnectonToDB.getInstance().connect()
 
     static String[] companyTableHeader = ['company_name', 'company_email', 'company_country', 'company_cep',
                                           'company_state', 'company_description', 'company_cnpj', 'company_password']
@@ -40,7 +42,7 @@ class CompanyDAO implements Ientities {
         try {
             List<Map> allCompanies= []
 
-            sql.eachRow("""
+            database.eachRow("""
                             SELECT company_description 
                             FROM company;
                             """) { resultSet ->
@@ -64,7 +66,7 @@ class CompanyDAO implements Ientities {
     void register(){
 
         try {
-            sql.executeInsert("""
+            database.executeInsert("""
                                 INSERT INTO company (company_name, company_email, company_country, company_cep, 
                                                     company_state, company_description, company_cnpj, company_password) 
                                 VALUES ($newCompany.name, $newCompany.email, $newCompany.country, $newCompany.cep, 
@@ -84,7 +86,7 @@ class CompanyDAO implements Ientities {
 
             String textChosenOption = (String) companyTableHeader[chosenOption - 1]
 
-            sql.execute("""
+            database.execute("""
                         UPDATE company 
                         SET $textChosenOption = '$updatedInformation'
                         WHERE id = $companyId;
@@ -102,7 +104,7 @@ class CompanyDAO implements Ientities {
         try {
             String textChosenOption = (String) companyTableHeader[chosenOption - 1]
 
-            sql.execute("""
+            database.execute("""
                         UPDATE company 
                         SET $textChosenOption = '' 
                         WHERE id = $companyId

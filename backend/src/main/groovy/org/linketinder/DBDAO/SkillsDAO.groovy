@@ -1,8 +1,8 @@
 package org.linketinder.DBDAO
 
-import groovy.sql.Sql
+import org.linketinder.connection.DBConnection
 
-class SkillsDAO {
+class SkillsDAO extends DBConnection {
 
     private Integer id
 
@@ -12,8 +12,6 @@ class SkillsDAO {
         setId(id)
     }
 
-    static Sql sql = DAO.connectDataBase()
-
 
     List<Map> getAllSkills(){
 
@@ -21,7 +19,7 @@ class SkillsDAO {
 
             List<Map> allSkills = []
 
-            sql.eachRow('SELECT id, skill FROM skills;') { row ->
+            database.eachRow('SELECT id, skill FROM skills;') { row ->
 
                 def skillCode = row.getString(1)
                 def skillName = row.getString(2)
@@ -43,7 +41,7 @@ class SkillsDAO {
 
             List<Map> candidateSkills = []
 
-            sql.eachRow("""
+            database.eachRow("""
                             SELECT skills.id, skills.skill 
                             FROM candidates, candidate_skills, skills 
                             WHERE candidate_skills.id_candidate = candidates.id AND candidate_skills.id_skill = skills.id AND id_candidate = ${id};
@@ -68,7 +66,7 @@ class SkillsDAO {
 
             List<Map> vacancySkills = []
 
-            sql.eachRow("""
+            database.eachRow("""
                             SELECT skills.id, skills.skill 
                             FROM vacancy, vacancy_skills, skills 
                             WHERE vacancy_skills.id_vacancy = vacancy.id AND vacancy_skills.id_skill = skills.id AND id_vacancy = ${id};

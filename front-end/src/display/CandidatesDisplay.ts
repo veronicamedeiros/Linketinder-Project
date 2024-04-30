@@ -1,4 +1,4 @@
-import { candidatesList } from "./entitiesList/candidateList";
+import { candidatesList } from "../utilities/entitiesList/candidateList";
 
 
 export class CandidatesDisplay{

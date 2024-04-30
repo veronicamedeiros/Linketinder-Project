@@ -1,4 +1,4 @@
-import { candidateDescription, candidateName, candidateCpf, candidateEmail, candidateAge, candidateCountry, candidateState, candidateCEP } from "../CandidateRegistration";
+import { candidateDescription, candidateName, candidateCpf, candidateEmail, candidateAge, candidateCountry, candidateState, candidateCEP } from "../../registration/CandidateRegistration";
 import { RegexCodes } from "./RegexCodes";
 
 

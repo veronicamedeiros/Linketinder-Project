@@ -1,5 +1,5 @@
 
-import { companyCep, companyCnpj, companyCountry, companyDescription, companyEmail, companyName, companyState } from "../CompanyRegistration";
+import { companyCep, companyCnpj, companyCountry, companyDescription, companyEmail, companyName, companyState } from "../../registration/CompanyRegistration";
 import { RegexCodes } from "./RegexCodes";
 
 

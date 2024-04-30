@@ -1,9 +1,9 @@
-import {CandidatesDisplay} from "./utilities/CandidatesDisplay"
-import {CandidateRegistration} from "./utilities/CandidateRegistration"
-import {VacanciesDisplay} from './utilities/VacanciesDisplay'
+import {CandidatesDisplay} from "./display/CandidatesDisplay"
+import {CandidateRegistration} from "./registration/CandidateRegistration"
+import {VacanciesDisplay} from './display/VacanciesDisplay'
 import {CompanyFormValidation} from './utilities/regexValidation/CompanyFormValidation'
 import { CandidateFormValidation } from './utilities/regexValidation/CandidateFormValidation'
-import { CompanyRegistration } from './utilities/CompanyRegistration'
+import { CompanyRegistration } from './registration/CompanyRegistration'
 
 
 try{
@@ -44,8 +44,10 @@ try{
         CandidateFormValidation.execute();
 
         candidateFormSubmitButton.onclick = function(){
+
+            const registration: CandidateRegistration = new CandidateRegistration()
             
-            CandidateRegistration.registerCandidate();
+            registration.registerCandidate();
         }
     }
 
@@ -56,7 +58,10 @@ try{
 
         companyFormSubmitButton.onclick = function(){
 
-            CompanyRegistration.registerCompany();
+            const registration: CompanyRegistration = new CompanyRegistration()
+            
+            registration.registerCompany();
+
         }
     }
 }

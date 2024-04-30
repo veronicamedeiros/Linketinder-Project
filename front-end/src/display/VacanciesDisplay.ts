@@ -1,4 +1,4 @@
-import { vacanciesList } from "./entitiesList/vacanciesList";
+import { vacanciesList } from "../utilities/entitiesList/vacanciesList";
 
 
 export class VacanciesDisplay{

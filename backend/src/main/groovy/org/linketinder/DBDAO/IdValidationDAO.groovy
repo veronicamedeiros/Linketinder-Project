@@ -1,8 +1,8 @@
 package org.linketinder.DBDAO
 
-import groovy.sql.Sql
+import org.linketinder.connection.DBConnection
 
-class IdValidationDAO {
+class IdValidationDAO extends DBConnection {
 
     private Integer id
     private String tableName
@@ -12,13 +12,11 @@ class IdValidationDAO {
         setTableName(tableName)
     }
 
-    static Sql sql = DAO.connectDataBase()
-
 
      boolean idExists(){
 
         try {
-            boolean query = sql.rows("""
+            boolean query = database.rows("""
                         SELECT id FROM ${tableName} 
                         WHERE id = ${id};
                         """.toString()){ resultSet ->}

@@ -1,5 +1,5 @@
 import { Candidate } from "../entities/Candidate";
-import { candidatesList } from "./entitiesList/candidateList";
+import { candidatesList } from "../utilities/entitiesList/candidateList";
 
 export let candidateName: any = (document.getElementById('candidateName')as HTMLElement);
 export let candidateEmail: any = (document.getElementById('candidateEmail')as HTMLElement);
@@ -12,8 +12,11 @@ export let candidateCpf: any = (document.getElementById('candidateCpf')as HTMLEl
     
 export class CandidateRegistration{
 
+    constructor(){}
 
-    static registerCandidate(): void{
+
+    registerCandidate(): void{
+
         
         let skillsList: Array<string> = [];
 
