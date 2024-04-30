@@ -1,22 +1,29 @@
 package org.linketinder.DBDAO
 
-import org.linketinder.connection.DBConnection
+import groovy.sql.Sql
+import org.linketinder.connection.ConnectionFactory
+import org.linketinder.connection.DBconnection
+import org.linketinder.utilities.enums.Db
 
-class IdValidationDAO extends DBConnection {
+class IdValidationDAO{
 
     private Integer id
     private String tableName
 
     IdValidationDAO(id, tableName){
-        setId(id)
-        setTableName(tableName)
+        this.id = id
+        this.tableName = tableName
     }
 
 
-     boolean idExists(){
+    DBconnection instance = new ConnectionFactory().instantiateDB(Db.POSTGRESQL)
+    Sql dbConnection = instance.connectDataBase()
+
+
+    boolean idExists(){
 
         try {
-            boolean query = database.rows("""
+            boolean query = dbConnection.rows("""
                         SELECT id FROM ${tableName} 
                         WHERE id = ${id};
                         """.toString()){ resultSet ->}
@@ -26,23 +33,5 @@ class IdValidationDAO extends DBConnection {
 
             e.printStackTrace()
         }
-    }
-
-
-
-    Integer getId() {
-        return id
-    }
-
-    void setId(Integer id) {
-        this.id = id
-    }
-
-    String getTableName() {
-        return tableName
-    }
-
-    void setTableName(String tableName) {
-        this.tableName = tableName
     }
 }

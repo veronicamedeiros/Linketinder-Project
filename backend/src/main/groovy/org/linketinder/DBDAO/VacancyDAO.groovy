@@ -1,11 +1,14 @@
 package org.linketinder.DBDAO
 
-import org.linketinder.connection.DBConnection
+import groovy.sql.Sql
+import org.linketinder.connection.ConnectionFactory
+import org.linketinder.connection.DBconnection
 import org.linketinder.entities.Vacancy
 import org.linketinder.interfaces.Ientities
+import org.linketinder.utilities.enums.Db
 
 
-class VacancyDAO extends DBConnection implements Ientities {
+class VacancyDAO implements Ientities{
 
     private Integer vacancyId
     private Integer chosenOption
@@ -14,33 +17,38 @@ class VacancyDAO extends DBConnection implements Ientities {
     private String updatedInformation
     private Vacancy newVacancy
 
+
     VacancyDAO(){}
 
     VacancyDAO(newVacancy){
-        setNewVacancy(newVacancy)
+        this.newVacancy = newVacancy
     }
 
     VacancyDAO(vacancyId, chosenOption){
-        setVacancyId(vacancyId)
-        setChosenOption(chosenOption)
+        this.vacancyId = vacancyId
+        this.chosenOption = chosenOption
     }
 
     VacancyDAO(vacancyId, chosenOption, updatedInformation){
-        setVacancyId(vacancyId)
-        setChosenOption(chosenOption)
-        setUpdatedInformation(updatedInformation)
+        this.vacancyId = vacancyId
+        this.chosenOption = chosenOption
+        this.updatedInformation = updatedInformation
     }
 
     VacancyDAO(vacancyId, chosenOption, oldSkill, newSkill){
-        setVacancyId(vacancyId)
-        setChosenOption(chosenOption)
-        setOldSkill(oldSkill)
-        setNewSkill(newSkill)
+        this.vacancyId = vacancyId
+        this.chosenOption = chosenOption
+        this.oldSkill = oldSkill
+        this.newSkill = newSkill
     }
 
 
     static String[] vacancyTableHeader = ['vacancy_position', 'vacancy_level', 'vacancy_shift', 'vacancy_model',
                                           'vacancy_city', 'vacancy_state', 'job_description', 'id_company']
+
+
+    DBconnection instance = new ConnectionFactory().instantiateDB(Db.POSTGRESQL)
+    Sql dbConnection = instance.connectDataBase()
 
 
     List<Map> list(){
@@ -49,7 +57,7 @@ class VacancyDAO extends DBConnection implements Ientities {
             List<Map> allVacancies = []
             ArrayList<Integer> ids = []
 
-            database.eachRow("""
+            dbConnection.eachRow("""
                             SELECT vacancy.id FROM vacancy
                             """){ row ->
 
@@ -60,7 +68,7 @@ class VacancyDAO extends DBConnection implements Ientities {
 
                 ArrayList<String> skills = []
 
-                database.eachRow("""
+                dbConnection.eachRow("""
                             SELECT vacancy_position, vacancy_level, vacancy_shift, vacancy_model, 
                             vacancy_state, vacancy_city, job_description, company_description
                             FROM vacancy, company 
@@ -78,7 +86,7 @@ class VacancyDAO extends DBConnection implements Ientities {
                     String company_description = row.getString(8)
 
 
-                    database.eachRow("""
+                    dbConnection.eachRow("""
                                 SELECT skill FROM vacancy_skills, skills
                                 WHERE vacancy_skills.id_skill = skills.id AND id_vacancy = $id;
                                 """) {rows ->
@@ -111,7 +119,7 @@ class VacancyDAO extends DBConnection implements Ientities {
 
         try {
 
-            List<List<Object>> result = database.executeInsert("""
+            List<List<Object>> result = dbConnection.executeInsert("""
                                             INSERT INTO vacancy (vacancy_position, vacancy_level, vacancy_shift, vacancy_model, 
                                                                 vacancy_city, vacancy_state, job_description, id_company)
                                             VALUES ($newVacancy.position, $newVacancy.level, $newVacancy.shift, $newVacancy.model, 
@@ -121,7 +129,7 @@ class VacancyDAO extends DBConnection implements Ientities {
             Integer generatedId = (Integer) result[0][0]
 
             for (newSkill in newVacancy.desiredSkills){
-                database.execute("""
+                dbConnection.execute("""
                             INSERT INTO vacancy_skills (id_vacancy, id_skill)
                             VALUES ($generatedId, $newSkill)
                             """)
@@ -142,7 +150,7 @@ class VacancyDAO extends DBConnection implements Ientities {
 
                 String textChosenOption = (String) vacancyTableHeader[chosenOption - 1]
 
-                database.execute("""
+                dbConnection.execute("""
                             UPDATE vacancy 
                             SET $textChosenOption = '$updatedInformation' 
                             WHERE id = $vacancyId;
@@ -151,7 +159,7 @@ class VacancyDAO extends DBConnection implements Ientities {
 
             if (chosenOption == 8){
 
-                database.execute("""
+                dbConnection.execute("""
                             UPDATE vacancy_skills SET id_skill = $newSkill
                             WHERE id_skill = $oldSkill AND id_vacancy = $vacancyId;
                             """.toString())
@@ -170,7 +178,7 @@ class VacancyDAO extends DBConnection implements Ientities {
 
                 String textChosenOption = (String) vacancyTableHeader[chosenOption - 1]
 
-                database.execute("""
+                dbConnection.execute("""
                             UPDATE vacancy SET $textChosenOption = '' 
                             WHERE id = $vacancyId;
                             """.toString())
@@ -178,7 +186,7 @@ class VacancyDAO extends DBConnection implements Ientities {
 
             if (chosenOption == 8){
 
-                database.execute("""
+                dbConnection.execute("""
                             DELETE FROM vacancy_skills 
                             WHERE id_skill = $oldSkill AND vacancy_skills.id_vacancy = ${vacancyId}
                             """.toString())
@@ -188,54 +196,5 @@ class VacancyDAO extends DBConnection implements Ientities {
 
             e.printStackTrace()
         }
-    }
-
-
-    Integer getVacancyId() {
-        return vacancyId
-    }
-
-    void setVacancyId(Integer vacancyId) {
-        this.vacancyId = vacancyId
-    }
-
-    Integer getChosenOption() {
-        return chosenOption
-    }
-
-    void setChosenOption(Integer chosenOption) {
-        this.chosenOption = chosenOption
-    }
-
-    Integer getOldSkill() {
-        return oldSkill
-    }
-
-    void setOldSkill(Integer oldSkill) {
-        this.oldSkill = oldSkill
-    }
-
-    Integer getNewSkill() {
-        return newSkill
-    }
-
-    void setNewSkill(Integer newSkill) {
-        this.newSkill = newSkill
-    }
-
-    String getUpdatedInformation() {
-        return updatedInformation
-    }
-
-    void setUpdatedInformation(String updatedInformation) {
-        this.updatedInformation = updatedInformation
-    }
-
-    Vacancy getNewVacancy() {
-        return newVacancy
-    }
-
-    void setNewVacancy(Vacancy newVacancy) {
-        this.newVacancy = newVacancy
     }
 }

@@ -2,10 +2,11 @@ package org.linketinder.connection
 
 import groovy.sql.Sql
 
-class PostgreSQL implements DAO{
+class PostgreSQLconnection implements DBconnection{
+
 
     @Override
-     Sql connect(){
+     Sql connectDataBase(){
         try {
             String url = 'jdbc:postgresql://localhost:5432/linketinder_banco'
             String user = 'postgres'
@@ -18,10 +19,5 @@ class PostgreSQL implements DAO{
 
             e.printStackTrace()
         }
-    }
-
-    @Override
-    void disconnect(connection) {
-        connection.close()
     }
 }

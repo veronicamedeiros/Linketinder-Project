@@ -2,6 +2,8 @@ package org.linketinder.tasks.candidate
 
 import org.linketinder.DBDAO.CandidateDAO
 import org.linketinder.DBDAO.SkillsDAO
+import org.linketinder.connection.ConnectionFactory
+import org.linketinder.connection.DBconnection
 import org.linketinder.menus.SkillsSelection
 import org.linketinder.traits.SkillsCatalogInvoke
 
@@ -29,6 +31,8 @@ class CandidateInformationsUpdate implements SkillsCatalogInvoke {
 
 
     void execute() {
+
+        //DBconnection dbConnection = new ConnectionFactory().connectDataBase(Db.POSTGRESQL) implantar posteriormente
 
         if(chosenOption < 12){
             CandidateDAO candidateDao = new CandidateDAO(id, chosenOption, updatedInformation)

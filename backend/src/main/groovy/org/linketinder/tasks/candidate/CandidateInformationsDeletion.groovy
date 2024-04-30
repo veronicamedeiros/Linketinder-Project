@@ -2,9 +2,13 @@ package org.linketinder.tasks.candidate
 
 import org.linketinder.DBDAO.CandidateDAO
 import org.linketinder.DBDAO.SkillsDAO
+import org.linketinder.connection.ConnectionFactory
+import org.linketinder.connection.DBconnection
 import org.linketinder.display.EntitiesSkillsDisplay
+import org.linketinder.entities.Candidate
 import org.linketinder.menus.SkillsSelection
 import org.linketinder.tasks.IdValidation
+import org.linketinder.utilities.enums.Db
 
 
 class CandidateInformationsDeletion{
@@ -22,6 +26,10 @@ class CandidateInformationsDeletion{
 
 
     void execute() {
+
+        //DBconnection dbConnection = new ConnectionFactory().connectDataBase(Db.POSTGRESQL).connect()
+
+        //CandidateDAO candidateDao = new Candidate(dbConnection)
 
         IdValidation validation = new IdValidation(id, tableName)
         validation.execute()

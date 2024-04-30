@@ -1,12 +1,14 @@
 package org.linketinder.DBDAO
 
-import org.linketinder.connection.DBConnection
+import groovy.sql.Sql
+import org.linketinder.connection.ConnectionFactory
+import org.linketinder.connection.DBconnection
 
 import org.linketinder.interfaces.Ientities
 import org.linketinder.entities.Company
+import org.linketinder.utilities.enums.Db
 
-
-class CompanyDAO extends DBConnection implements Ientities {
+class CompanyDAO implements Ientities {
 
     private Integer companyId
     private Integer chosenOption
@@ -16,22 +18,24 @@ class CompanyDAO extends DBConnection implements Ientities {
     CompanyDAO(){}
 
     CompanyDAO(Company newCompany){
-        setNewCompany(newCompany)
+        this.newCompany = newCompany
     }
 
     CompanyDAO(Integer companyId, Integer chosenOption){
-        setCompanyId(companyId)
-        setChosenOption(chosenOption)
+        this.companyId = companyId
+        this.chosenOption = chosenOption
     }
 
     CompanyDAO(Integer companyId, Integer chosenOption, String updatedInformation){
-        setCompanyId(companyId)
-        setChosenOption(chosenOption)
-        setUpdatedInformation(updatedInformation)
+        this.companyId = companyId
+        this.chosenOption = chosenOption
+        this.updatedInformation = updatedInformation
     }
 
-    //static Sql sql = DAO.connectDataBase()
-    //static TasksConnectonToDB database = TasksConnectonToDB.getInstance().connect()
+
+    DBconnection instance = new ConnectionFactory().instantiateDB(Db.POSTGRESQL)
+    Sql dbConnection = instance.connectDataBase()
+
 
     static String[] companyTableHeader = ['company_name', 'company_email', 'company_country', 'company_cep',
                                           'company_state', 'company_description', 'company_cnpj', 'company_password']
@@ -42,7 +46,7 @@ class CompanyDAO extends DBConnection implements Ientities {
         try {
             List<Map> allCompanies= []
 
-            database.eachRow("""
+            dbConnection.eachRow("""
                             SELECT company_description 
                             FROM company;
                             """) { resultSet ->
@@ -66,7 +70,7 @@ class CompanyDAO extends DBConnection implements Ientities {
     void register(){
 
         try {
-            database.executeInsert("""
+            dbConnection.executeInsert("""
                                 INSERT INTO company (company_name, company_email, company_country, company_cep, 
                                                     company_state, company_description, company_cnpj, company_password) 
                                 VALUES ($newCompany.name, $newCompany.email, $newCompany.country, $newCompany.cep, 
@@ -86,7 +90,7 @@ class CompanyDAO extends DBConnection implements Ientities {
 
             String textChosenOption = (String) companyTableHeader[chosenOption - 1]
 
-            database.execute("""
+            dbConnection.execute("""
                         UPDATE company 
                         SET $textChosenOption = '$updatedInformation'
                         WHERE id = $companyId;
@@ -104,7 +108,7 @@ class CompanyDAO extends DBConnection implements Ientities {
         try {
             String textChosenOption = (String) companyTableHeader[chosenOption - 1]
 
-            database.execute("""
+            dbConnection.execute("""
                         UPDATE company 
                         SET $textChosenOption = '' 
                         WHERE id = $companyId
@@ -114,38 +118,5 @@ class CompanyDAO extends DBConnection implements Ientities {
 
             e.printStackTrace()
         }
-    }
-
-
-    Integer getCompanyId() {
-        return companyId
-    }
-
-    void setCompanyId(Integer companyId) {
-        this.companyId = companyId
-    }
-
-    Integer getChosenOption() {
-        return chosenOption
-    }
-
-    void setChosenOption(Integer chosenOption) {
-        this.chosenOption = chosenOption
-    }
-
-    String getUpdatedInformation() {
-        return updatedInformation
-    }
-
-    void setUpdatedInformation(String updatedInformation) {
-        this.updatedInformation = updatedInformation
-    }
-
-    Company getNewCompany() {
-        return newCompany
-    }
-
-    void setNewCompany(Company newCompany) {
-        this.newCompany = newCompany
     }
 }

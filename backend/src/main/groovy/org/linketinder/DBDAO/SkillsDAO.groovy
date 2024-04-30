@@ -1,16 +1,23 @@
 package org.linketinder.DBDAO
 
-import org.linketinder.connection.DBConnection
+import groovy.sql.Sql
+import org.linketinder.connection.ConnectionFactory
+import org.linketinder.connection.DBconnection
+import org.linketinder.utilities.enums.Db
 
-class SkillsDAO extends DBConnection {
+class SkillsDAO{
 
     private Integer id
 
     SkillsDAO(){}
 
     SkillsDAO(id){
-        setId(id)
+        this.id = id
     }
+
+
+    DBconnection instance = new ConnectionFactory().instantiateDB(Db.POSTGRESQL)
+    Sql dbConnection = instance.connectDataBase()
 
 
     List<Map> getAllSkills(){
@@ -19,7 +26,7 @@ class SkillsDAO extends DBConnection {
 
             List<Map> allSkills = []
 
-            database.eachRow('SELECT id, skill FROM skills;') { row ->
+            dbConnection.eachRow('SELECT id, skill FROM skills;') { row ->
 
                 def skillCode = row.getString(1)
                 def skillName = row.getString(2)
@@ -41,7 +48,7 @@ class SkillsDAO extends DBConnection {
 
             List<Map> candidateSkills = []
 
-            database.eachRow("""
+            dbConnection.eachRow("""
                             SELECT skills.id, skills.skill 
                             FROM candidates, candidate_skills, skills 
                             WHERE candidate_skills.id_candidate = candidates.id AND candidate_skills.id_skill = skills.id AND id_candidate = ${id};
@@ -66,7 +73,7 @@ class SkillsDAO extends DBConnection {
 
             List<Map> vacancySkills = []
 
-            database.eachRow("""
+            dbConnection.eachRow("""
                             SELECT skills.id, skills.skill 
                             FROM vacancy, vacancy_skills, skills 
                             WHERE vacancy_skills.id_vacancy = vacancy.id AND vacancy_skills.id_skill = skills.id AND id_vacancy = ${id};
@@ -82,14 +89,5 @@ class SkillsDAO extends DBConnection {
         catch(Exception e){
             e.printStackTrace()
         }
-    }
-
-
-    Integer getId() {
-        return id
-    }
-
-    void setId(Integer id) {
-        this.id = id
     }
 }
