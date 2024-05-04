@@ -1,23 +1,19 @@
 package org.linketinder.DBDAO
 
 import groovy.sql.Sql
-import org.linketinder.connection.ConnectionFactory
-import org.linketinder.connection.DBconnection
-import org.linketinder.utilities.enums.Db
+
 
 class IdValidationDAO{
 
     private Integer id
     private String tableName
+    private Sql dbConnection
 
-    IdValidationDAO(id, tableName){
+    IdValidationDAO(id, tableName, Sql dbConnection){
         this.id = id
         this.tableName = tableName
+        this.dbConnection = dbConnection
     }
-
-
-    DBconnection instance = new ConnectionFactory().instantiateDB(Db.POSTGRESQL)
-    Sql dbConnection = instance.connectDataBase()
 
 
     boolean idExists(){

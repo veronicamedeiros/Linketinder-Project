@@ -1,54 +1,29 @@
 package org.linketinder.DBDAO
 
 import groovy.sql.Sql
-import org.linketinder.connection.ConnectionFactory
-import org.linketinder.connection.DBconnection
-import org.linketinder.entities.Vacancy
-import org.linketinder.interfaces.Ientities
-import org.linketinder.utilities.enums.Db
+import org.linketinder.DBDAO.DAOinterfaces.Ientities
+import org.linketinder.DBDAO.DAOinterfaces.Iskills
+import org.linketinder.model.entities.Vacancy
 
+class VacancyDAO implements Ientities, Iskills{
 
-class VacancyDAO implements Ientities{
-
-    private Integer vacancyId
-    private Integer chosenOption
-    private Integer oldSkill
-    private Integer newSkill
-    private String updatedInformation
-    private Vacancy newVacancy
-
+    Vacancy newVacancy
+    Sql dbConnection
 
     VacancyDAO(){}
 
-    VacancyDAO(newVacancy){
+    VacancyDAO(Sql dbConnection){
+        this.dbConnection = dbConnection
+    }
+
+    VacancyDAO(Vacancy newVacancy, Sql dbConnection){
         this.newVacancy = newVacancy
-    }
-
-    VacancyDAO(vacancyId, chosenOption){
-        this.vacancyId = vacancyId
-        this.chosenOption = chosenOption
-    }
-
-    VacancyDAO(vacancyId, chosenOption, updatedInformation){
-        this.vacancyId = vacancyId
-        this.chosenOption = chosenOption
-        this.updatedInformation = updatedInformation
-    }
-
-    VacancyDAO(vacancyId, chosenOption, oldSkill, newSkill){
-        this.vacancyId = vacancyId
-        this.chosenOption = chosenOption
-        this.oldSkill = oldSkill
-        this.newSkill = newSkill
+        this.dbConnection = dbConnection
     }
 
 
     static String[] vacancyTableHeader = ['vacancy_position', 'vacancy_level', 'vacancy_shift', 'vacancy_model',
                                           'vacancy_city', 'vacancy_state', 'job_description', 'id_company']
-
-
-    DBconnection instance = new ConnectionFactory().instantiateDB(Db.POSTGRESQL)
-    Sql dbConnection = instance.connectDataBase()
 
 
     List<Map> list(){
@@ -142,28 +117,17 @@ class VacancyDAO implements Ientities{
     }
 
 
-    void update(){
+    void update(Integer vacancyId, Integer chosenOption, String updatedInformation){
 
         try {
 
-            if (chosenOption < 8) {
+            String textChosenOpt = (String) vacancyTableHeader[chosenOption - 1]
 
-                String textChosenOption = (String) vacancyTableHeader[chosenOption - 1]
-
-                dbConnection.execute("""
-                            UPDATE vacancy 
-                            SET $textChosenOption = '$updatedInformation' 
-                            WHERE id = $vacancyId;
-                            """.toString())
-            }
-
-            if (chosenOption == 8){
-
-                dbConnection.execute("""
-                            UPDATE vacancy_skills SET id_skill = $newSkill
-                            WHERE id_skill = $oldSkill AND id_vacancy = $vacancyId;
-                            """.toString())
-            }
+            dbConnection.execute("""
+                        UPDATE vacancy 
+                        SET $textChosenOpt = '$updatedInformation' 
+                        WHERE id = $vacancyId;
+                        """.toString())
         }
         catch(Exception e){
             e.printStackTrace()
@@ -171,26 +135,44 @@ class VacancyDAO implements Ientities{
     }
 
 
-    void delete(){
+    void updateSkills(Integer vacancyId, Integer oldSkill, Integer newSkill){
 
         try {
-            if (chosenOption < 8) {
-
-                String textChosenOption = (String) vacancyTableHeader[chosenOption - 1]
-
                 dbConnection.execute("""
-                            UPDATE vacancy SET $textChosenOption = '' 
-                            WHERE id = $vacancyId;
+                            UPDATE vacancy_skills SET id_skill = $newSkill
+                            WHERE id_skill = $oldSkill AND id_vacancy = $vacancyId;
                             """.toString())
-            }
+        }
+        catch(Exception e){
+            e.printStackTrace()
+        }
+    }
 
-            if (chosenOption == 8){
 
-                dbConnection.execute("""
-                            DELETE FROM vacancy_skills 
-                            WHERE id_skill = $oldSkill AND vacancy_skills.id_vacancy = ${vacancyId}
-                            """.toString())
-            }
+    void delete(Integer vacancyId, Integer chosenOption){
+
+        try {
+            String textChosenOption = (String) vacancyTableHeader[chosenOption - 1]
+
+            dbConnection.execute("""
+                        UPDATE vacancy SET $textChosenOption = '' 
+                        WHERE id = $vacancyId;
+                        """.toString())
+        }
+        catch(Exception e){
+
+            e.printStackTrace()
+        }
+    }
+
+
+    void deleteSkills(Integer vacancyId, Integer oldSkill){
+
+        try {
+            dbConnection.execute("""
+                        DELETE FROM vacancy_skills 
+                        WHERE id_skill = $oldSkill AND vacancy_skills.id_vacancy = ${vacancyId}
+                        """.toString())
         }
         catch(Exception e){
 

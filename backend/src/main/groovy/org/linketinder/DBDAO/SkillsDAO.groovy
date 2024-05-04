@@ -1,23 +1,18 @@
 package org.linketinder.DBDAO
 
 import groovy.sql.Sql
-import org.linketinder.connection.ConnectionFactory
-import org.linketinder.connection.DBconnection
-import org.linketinder.utilities.enums.Db
+
 
 class SkillsDAO{
 
     private Integer id
+    Sql dbConnection
 
     SkillsDAO(){}
 
-    SkillsDAO(id){
-        this.id = id
+    SkillsDAO(Sql dbConnection){
+        this.dbConnection = dbConnection
     }
-
-
-    DBconnection instance = new ConnectionFactory().instantiateDB(Db.POSTGRESQL)
-    Sql dbConnection = instance.connectDataBase()
 
 
     List<Map> getAllSkills(){
@@ -42,7 +37,7 @@ class SkillsDAO{
     }
 
 
-    List<Map> getCandidateSkills(){
+    List<Map> getCandidateSkills(id){
 
         try {
 
@@ -67,7 +62,7 @@ class SkillsDAO{
     }
 
 
-    List<Map> getVacancySkills(){
+    List<Map> getVacancySkills(id){
 
         try {
 

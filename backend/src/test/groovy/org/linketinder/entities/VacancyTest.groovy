@@ -1,6 +1,7 @@
 package org.linketinder.entities;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test
+import org.linketinder.model.entities.Vacancy;
 
 import static org.junit.jupiter.api.Assertions.*;
 

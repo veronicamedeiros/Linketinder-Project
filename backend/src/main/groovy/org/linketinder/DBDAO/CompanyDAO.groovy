@@ -1,40 +1,24 @@
 package org.linketinder.DBDAO
 
 import groovy.sql.Sql
-import org.linketinder.connection.ConnectionFactory
-import org.linketinder.connection.DBconnection
-
-import org.linketinder.interfaces.Ientities
-import org.linketinder.entities.Company
-import org.linketinder.utilities.enums.Db
+import org.linketinder.DBDAO.DAOinterfaces.Ientities
+import org.linketinder.model.entities.Company
 
 class CompanyDAO implements Ientities {
 
-    private Integer companyId
-    private Integer chosenOption
-    private String updatedInformation
     private Company newCompany
+    Sql dbConnection
 
     CompanyDAO(){}
 
-    CompanyDAO(Company newCompany){
+    CompanyDAO(Sql dbConnection){
+        this.dbConnection = dbConnection
+    }
+
+    CompanyDAO(Company newCompany, Sql dbConnection){
         this.newCompany = newCompany
+        this.dbConnection = dbConnection
     }
-
-    CompanyDAO(Integer companyId, Integer chosenOption){
-        this.companyId = companyId
-        this.chosenOption = chosenOption
-    }
-
-    CompanyDAO(Integer companyId, Integer chosenOption, String updatedInformation){
-        this.companyId = companyId
-        this.chosenOption = chosenOption
-        this.updatedInformation = updatedInformation
-    }
-
-
-    DBconnection instance = new ConnectionFactory().instantiateDB(Db.POSTGRESQL)
-    Sql dbConnection = instance.connectDataBase()
 
 
     static String[] companyTableHeader = ['company_name', 'company_email', 'company_country', 'company_cep',
@@ -84,7 +68,7 @@ class CompanyDAO implements Ientities {
     }
 
 
-     void update(){
+     void update(Integer companyId, Integer chosenOption, String updatedInformation){
 
         try {
 
@@ -103,7 +87,7 @@ class CompanyDAO implements Ientities {
     }
 
 
-    void delete(){
+    void delete(Integer companyId, Integer chosenOption){
 
         try {
             String textChosenOption = (String) companyTableHeader[chosenOption - 1]

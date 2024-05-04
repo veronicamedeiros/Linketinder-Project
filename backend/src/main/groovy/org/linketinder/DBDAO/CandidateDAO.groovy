@@ -1,55 +1,26 @@
 package org.linketinder.DBDAO
 
 import groovy.sql.Sql
-import org.linketinder.connection.DBconnection
-import org.linketinder.connection.ConnectionFactory
-import org.linketinder.entities.Candidate
-import org.linketinder.interfaces.Ientities
-import org.linketinder.utilities.enums.Db
+import org.linketinder.DBDAO.DAOinterfaces.Ientities
+import org.linketinder.DBDAO.DAOinterfaces.Iskills
+import org.linketinder.model.entities.Candidate
 
 
-class CandidateDAO implements Ientities {
+class CandidateDAO implements Ientities, Iskills {
 
-    private Integer candidateId
-    private Integer chosenOption
-    private Integer oldSkill
-    private Integer newSkill
-    private String updatedInformation
     private Candidate newCandidate
-
-
-    /*CandidateDAO(DBconnection dbConnection){
-
-        this.dbConnection = dbConnection
-    } implantar posterirormente*/
-
+    Sql dbConnection
 
     CandidateDAO(){}
 
-    CandidateDAO(Candidate newCandidate){
+    CandidateDAO(Sql dbConnection){
+        this.dbConnection = dbConnection
+    }
+
+    CandidateDAO(Candidate newCandidate, Sql dbConnection){
         this.newCandidate = newCandidate
+        this.dbConnection = dbConnection
     }
-
-    CandidateDAO(Integer candidateId, Integer chosenOption){
-        this.candidateId = candidateId
-        this.chosenOption = chosenOption
-    }
-
-    CandidateDAO(Integer candidateId, Integer chosenOption, String updatedInformation){
-        this.candidateId = candidateId
-        this.chosenOption = chosenOption
-        this.updatedInformation = updatedInformation
-    }
-
-    CandidateDAO(Integer candidateId, Integer chosenOption, Integer oldSkill, Integer newSkill){
-        this.candidateId = candidateId
-        this.chosenOption = chosenOption
-        this.oldSkill = oldSkill
-        this.newSkill = newSkill
-    }
-
-    DBconnection instance = new ConnectionFactory().instantiateDB(Db.POSTGRESQL)
-    Sql dbConnection = instance.connectDataBase()
 
 
 
@@ -126,28 +97,16 @@ class CandidateDAO implements Ientities {
     }
 
 
-    void update(){
+    void update(Integer candidateId, Integer chosenOption, String updatedInformation){
 
         try {
+            String stringChosenOption = (String) candidateTableHeader[chosenOption - 1]
 
-            if (chosenOption < 12) {
-
-                String stringChosenOption = (String) candidateTableHeader[chosenOption - 1]
-
-                dbConnection.execute("""
-                            UPDATE candidates 
-                            SET $stringChosenOption = '$updatedInformation' 
-                            WHERE id = $candidateId;
-                            """.toString())
-            }
-
-            if (chosenOption == 12){
-
-                dbConnection.execute("""
-                            UPDATE candidate_skills SET id_skill = ${newSkill} 
-                            WHERE id_skill = ${oldSkill} AND candidate_skills.id_candidate = ${candidateId};
-                            """.toString())
-            }
+            dbConnection.execute("""
+                        UPDATE candidates 
+                        SET $stringChosenOption = '$updatedInformation' 
+                        WHERE id = $candidateId;
+                        """.toString())
         }
         catch (Exception e){
 
@@ -155,28 +114,47 @@ class CandidateDAO implements Ientities {
         }
     }
 
-
-    void delete(){
+    void updateSkills(Integer candidateId, Integer oldSkill, Integer newSkill){
 
         try {
-            if (chosenOption < 12) {
+            dbConnection.execute("""
+                            UPDATE candidate_skills SET id_skill = ${newSkill} 
+                            WHERE id_skill = ${oldSkill} AND candidate_skills.id_candidate = ${candidateId};
+                            """.toString())
+        }
+        catch (Exception e){
+            e.printStackTrace()
+        }
+    }
 
-                String stringChosenOption = (String) candidateTableHeader[chosenOption - 1]
 
-                dbConnection.execute("""
-                                UPDATE candidates 
-                                SET $stringChosenOption = '' 
-                                WHERE id = $candidateId;
-                                """.toString())
-            }
+    void delete(Integer candidateId, Integer chosenOption){
 
-            if (chosenOption == 12){
+        try {
 
-                dbConnection.execute("""
-                                DELETE FROM candidate_skills 
-                                WHERE id_skill = $oldSkill AND candidate_skills.id_candidate = ${candidateId};
-                                """.toString())
-            }
+            String stringChosenOption = (String) candidateTableHeader[chosenOption - 1]
+
+            dbConnection.execute("""
+                            UPDATE candidates 
+                            SET $stringChosenOption = '' 
+                            WHERE id = $candidateId;
+                            """.toString())
+
+        }
+        catch(Exception e){
+
+            e.printStackTrace()
+        }
+    }
+
+
+    void deleteSkills(Integer candidateId, Integer oldSkill){
+
+        try {
+            dbConnection.execute("""
+                            DELETE FROM candidate_skills 
+                            WHERE id_skill = $oldSkill AND candidate_skills.id_candidate = ${candidateId};
+                            """.toString())
         }
         catch(Exception e){
 
